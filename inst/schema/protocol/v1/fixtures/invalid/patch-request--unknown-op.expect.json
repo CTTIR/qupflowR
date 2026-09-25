@@ -1,0 +1,17 @@
+{
+  "schema": "patch-request",
+  "valid": false,
+  "rule": "operations are a fixed set",
+  "errors": [
+    {
+      "path": "/operations/0/op",
+      "keyword": "enum",
+      "schema_path": "patch-request.schema.json#/definitions/operation/properties/op/enum"
+    },
+    {
+      "path": "/operations/0",
+      "keyword": "anyOf",
+      "schema_path": "patch-request.schema.json#/definitions/operation/anyOf"
+    }
+  ]
+}

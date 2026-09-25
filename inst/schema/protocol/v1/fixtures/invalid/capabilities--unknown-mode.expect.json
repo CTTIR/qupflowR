@@ -1,0 +1,12 @@
+{
+  "schema": "capabilities",
+  "valid": false,
+  "rule": "modes are live or worker",
+  "errors": [
+    {
+      "path": "/capabilities/0/modes/1",
+      "keyword": "enum",
+      "schema_path": "capabilities.schema.json#/definitions/capability/properties/modes/items/enum"
+    }
+  ]
+}

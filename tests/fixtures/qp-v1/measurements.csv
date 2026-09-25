@@ -1,0 +1,62 @@
+"project","entry_key","object_key","object_id","name","storage","input_state","input_value","input_bits","stored_state","stored_value","stored_bits","dynamic_name_collision"
+"main","rgb_nores","nores_rectangle","8ce309c1-88e4-300b-8846-f0ac1980dc25","Area px^2","float64","finite","-1","bff0000000000000","finite","-1","bff0000000000000",TRUE
+"main","ome","ann_polygon_hole","ee64deb1-c4c8-3506-9178-82d2aedad38d","zero","float64","finite","0","0000000000000000","finite","0","0000000000000000",FALSE
+"main","ome","ann_polygon_hole","ee64deb1-c4c8-3506-9178-82d2aedad38d","negative","float64","finite","-12.5","c029000000000000","finite","-12.5","c029000000000000",FALSE
+"main","ome","ann_polygon_hole","ee64deb1-c4c8-3506-9178-82d2aedad38d","nan","float64","nan",NA,NA,"nan",NA,NA,FALSE
+"main","ome","ann_polygon_hole","ee64deb1-c4c8-3506-9178-82d2aedad38d","pos_inf","float64","pos_inf",NA,NA,"pos_inf",NA,NA,FALSE
+"main","ome","ann_polygon_hole","ee64deb1-c4c8-3506-9178-82d2aedad38d","neg_inf","float64","neg_inf",NA,NA,"neg_inf",NA,NA,FALSE
+"main","ome","ann_polygon_hole","ee64deb1-c4c8-3506-9178-82d2aedad38d","Area µm²","float64","finite","1234.5678901234567","40934a4584fd0fdf","finite","1234.5678901234567","40934a4584fd0fdf",FALSE
+"main","ome","ann_polygon_hole","ee64deb1-c4c8-3506-9178-82d2aedad38d","tiny double","float64","finite","4.9406564584124654e-324","0000000000000001","finite","4.9406564584124654e-324","0000000000000001",FALSE
+"main","ome","ann_polygon_hole","ee64deb1-c4c8-3506-9178-82d2aedad38d","big double","float64","finite","1.0000000000000001e+300","7e37e43c8800759c","finite","1.0000000000000001e+300","7e37e43c8800759c",FALSE
+"main","ome","ann_polygon_hole","ee64deb1-c4c8-3506-9178-82d2aedad38d","","float64","finite","7","401c000000000000","finite","7","401c000000000000",FALSE
+"main","ome","ann_polygon_hole","ee64deb1-c4c8-3506-9178-82d2aedad38d","Area µm^2","float64","finite","-1","bff0000000000000","finite","-1","bff0000000000000",TRUE
+"main","ome","cell_with_nucleus","a4fb0f5f-ae86-3eac-9117-cbe18cb50da0","zero","float32","finite","0","0000000000000000","finite","0","0000000000000000",FALSE
+"main","ome","cell_with_nucleus","a4fb0f5f-ae86-3eac-9117-cbe18cb50da0","negative","float32","finite","-12.5","c029000000000000","finite","-12.5","c029000000000000",FALSE
+"main","ome","cell_with_nucleus","a4fb0f5f-ae86-3eac-9117-cbe18cb50da0","nan","float32","nan",NA,NA,"nan",NA,NA,FALSE
+"main","ome","cell_with_nucleus","a4fb0f5f-ae86-3eac-9117-cbe18cb50da0","pos_inf","float32","pos_inf",NA,NA,"pos_inf",NA,NA,FALSE
+"main","ome","cell_with_nucleus","a4fb0f5f-ae86-3eac-9117-cbe18cb50da0","neg_inf","float32","neg_inf",NA,NA,"neg_inf",NA,NA,FALSE
+"main","ome","cell_with_nucleus","a4fb0f5f-ae86-3eac-9117-cbe18cb50da0","Area µm²","float32","finite","1234.5678901234567","40934a4584fd0fdf","finite","1234.56787109375","40934a4580000000",FALSE
+"main","ome","cell_with_nucleus","a4fb0f5f-ae86-3eac-9117-cbe18cb50da0","tiny double","float32","finite","4.9406564584124654e-324","0000000000000001","finite","0","0000000000000000",FALSE
+"main","ome","cell_with_nucleus","a4fb0f5f-ae86-3eac-9117-cbe18cb50da0","big double","float32","finite","1.0000000000000001e+300","7e37e43c8800759c","pos_inf",NA,NA,FALSE
+"main","ome","cell_with_nucleus","a4fb0f5f-ae86-3eac-9117-cbe18cb50da0","","float32","finite","7","401c000000000000","finite","7","401c000000000000",FALSE
+"main","ome","cell_with_nucleus","a4fb0f5f-ae86-3eac-9117-cbe18cb50da0","Area µm^2",NA,"missing",NA,NA,"missing",NA,NA,TRUE
+"main","ome","ann_multipolygon","9215791f-72f2-3c4b-87cb-317da4e4ccfc","zero","float64","finite","0","0000000000000000","finite","0","0000000000000000",FALSE
+"main","ome","ann_multipolygon","9215791f-72f2-3c4b-87cb-317da4e4ccfc","negative","float64","finite","-12.5","c029000000000000","finite","-12.5","c029000000000000",FALSE
+"main","ome","ann_multipolygon","9215791f-72f2-3c4b-87cb-317da4e4ccfc","nan","float64","nan",NA,NA,"nan",NA,NA,FALSE
+"main","ome","ann_multipolygon","9215791f-72f2-3c4b-87cb-317da4e4ccfc","pos_inf","float64","pos_inf",NA,NA,"pos_inf",NA,NA,FALSE
+"main","ome","ann_multipolygon","9215791f-72f2-3c4b-87cb-317da4e4ccfc","neg_inf","float64","neg_inf",NA,NA,"neg_inf",NA,NA,FALSE
+"main","ome","ann_multipolygon","9215791f-72f2-3c4b-87cb-317da4e4ccfc","Area µm²","float64","finite","1234.5678901234567","40934a4584fd0fdf","finite","1234.5678901234567","40934a4584fd0fdf",FALSE
+"main","ome","ann_multipolygon","9215791f-72f2-3c4b-87cb-317da4e4ccfc","tiny double","float64","finite","4.9406564584124654e-324","0000000000000001","finite","4.9406564584124654e-324","0000000000000001",FALSE
+"main","ome","ann_multipolygon","9215791f-72f2-3c4b-87cb-317da4e4ccfc","big double","float64","finite","1.0000000000000001e+300","7e37e43c8800759c","finite","1.0000000000000001e+300","7e37e43c8800759c",FALSE
+"main","ome","ann_multipolygon","9215791f-72f2-3c4b-87cb-317da4e4ccfc","","float64","finite","7","401c000000000000","finite","7","401c000000000000",FALSE
+"main","ome","ann_multipolygon","9215791f-72f2-3c4b-87cb-317da4e4ccfc","Area µm^2",NA,"missing",NA,NA,"missing",NA,NA,TRUE
+"main","ome","detection_three_plus","c49d01f8-896f-39ce-9230-df9db9034d96","zero",NA,"missing",NA,NA,"missing",NA,NA,FALSE
+"main","ome","detection_three_plus","c49d01f8-896f-39ce-9230-df9db9034d96","negative",NA,"missing",NA,NA,"missing",NA,NA,FALSE
+"main","ome","detection_three_plus","c49d01f8-896f-39ce-9230-df9db9034d96","nan","float32","nan",NA,NA,"nan",NA,NA,FALSE
+"main","ome","detection_three_plus","c49d01f8-896f-39ce-9230-df9db9034d96","pos_inf",NA,"missing",NA,NA,"missing",NA,NA,FALSE
+"main","ome","detection_three_plus","c49d01f8-896f-39ce-9230-df9db9034d96","neg_inf",NA,"missing",NA,NA,"missing",NA,NA,FALSE
+"main","ome","detection_three_plus","c49d01f8-896f-39ce-9230-df9db9034d96","Area µm²",NA,"missing",NA,NA,"missing",NA,NA,FALSE
+"main","ome","detection_three_plus","c49d01f8-896f-39ce-9230-df9db9034d96","tiny double",NA,"missing",NA,NA,"missing",NA,NA,FALSE
+"main","ome","detection_three_plus","c49d01f8-896f-39ce-9230-df9db9034d96","big double",NA,"missing",NA,NA,"missing",NA,NA,FALSE
+"main","ome","detection_three_plus","c49d01f8-896f-39ce-9230-df9db9034d96","",NA,"missing",NA,NA,"missing",NA,NA,FALSE
+"main","ome","detection_three_plus","c49d01f8-896f-39ce-9230-df9db9034d96","Area µm^2",NA,"missing",NA,NA,"missing",NA,NA,TRUE
+"main","ome","detection","b6f1925e-3a4d-3534-b7cf-de7629667b4a","zero","float32","finite","0","0000000000000000","finite","0","0000000000000000",FALSE
+"main","ome","detection","b6f1925e-3a4d-3534-b7cf-de7629667b4a","negative","float32","finite","-12.5","c029000000000000","finite","-12.5","c029000000000000",FALSE
+"main","ome","detection","b6f1925e-3a4d-3534-b7cf-de7629667b4a","nan","float32","nan",NA,NA,"nan",NA,NA,FALSE
+"main","ome","detection","b6f1925e-3a4d-3534-b7cf-de7629667b4a","pos_inf","float32","pos_inf",NA,NA,"pos_inf",NA,NA,FALSE
+"main","ome","detection","b6f1925e-3a4d-3534-b7cf-de7629667b4a","neg_inf","float32","neg_inf",NA,NA,"neg_inf",NA,NA,FALSE
+"main","ome","detection","b6f1925e-3a4d-3534-b7cf-de7629667b4a","Area µm²","float32","finite","1234.5678901234567","40934a4584fd0fdf","finite","1234.56787109375","40934a4580000000",FALSE
+"main","ome","detection","b6f1925e-3a4d-3534-b7cf-de7629667b4a","tiny double","float32","finite","4.9406564584124654e-324","0000000000000001","finite","0","0000000000000000",FALSE
+"main","ome","detection","b6f1925e-3a4d-3534-b7cf-de7629667b4a","big double","float32","finite","1.0000000000000001e+300","7e37e43c8800759c","pos_inf",NA,NA,FALSE
+"main","ome","detection","b6f1925e-3a4d-3534-b7cf-de7629667b4a","","float32","finite","7","401c000000000000","finite","7","401c000000000000",FALSE
+"main","ome","detection","b6f1925e-3a4d-3534-b7cf-de7629667b4a","Area µm^2",NA,"missing",NA,NA,"missing",NA,NA,TRUE
+"main","ome","tile","c6af1799-747f-36af-9f1c-36483ee900ca","zero","float32","finite","0","0000000000000000","finite","0","0000000000000000",FALSE
+"main","ome","tile","c6af1799-747f-36af-9f1c-36483ee900ca","negative","float32","finite","-12.5","c029000000000000","finite","-12.5","c029000000000000",FALSE
+"main","ome","tile","c6af1799-747f-36af-9f1c-36483ee900ca","nan",NA,"missing",NA,NA,"missing",NA,NA,FALSE
+"main","ome","tile","c6af1799-747f-36af-9f1c-36483ee900ca","pos_inf",NA,"missing",NA,NA,"missing",NA,NA,FALSE
+"main","ome","tile","c6af1799-747f-36af-9f1c-36483ee900ca","neg_inf",NA,"missing",NA,NA,"missing",NA,NA,FALSE
+"main","ome","tile","c6af1799-747f-36af-9f1c-36483ee900ca","Area µm²",NA,"missing",NA,NA,"missing",NA,NA,FALSE
+"main","ome","tile","c6af1799-747f-36af-9f1c-36483ee900ca","tiny double",NA,"missing",NA,NA,"missing",NA,NA,FALSE
+"main","ome","tile","c6af1799-747f-36af-9f1c-36483ee900ca","big double",NA,"missing",NA,NA,"missing",NA,NA,FALSE
+"main","ome","tile","c6af1799-747f-36af-9f1c-36483ee900ca","",NA,"missing",NA,NA,"missing",NA,NA,FALSE
+"main","ome","tile","c6af1799-747f-36af-9f1c-36483ee900ca","Area µm^2",NA,"missing",NA,NA,"missing",NA,NA,TRUE

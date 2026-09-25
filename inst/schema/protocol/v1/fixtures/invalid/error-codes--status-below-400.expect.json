@@ -1,0 +1,12 @@
+{
+  "schema": "error-codes",
+  "valid": false,
+  "rule": "HTTP error statuses are 400 to 599",
+  "errors": [
+    {
+      "path": "/0/http_status",
+      "keyword": "minimum",
+      "schema_path": "error-codes.schema.json#/items/properties/http_status/minimum"
+    }
+  ]
+}

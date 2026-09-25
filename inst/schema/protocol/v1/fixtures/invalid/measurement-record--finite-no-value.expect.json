@@ -1,0 +1,12 @@
+{
+  "schema": "measurement-record",
+  "valid": false,
+  "rule": "the state finite needs a number",
+  "errors": [
+    {
+      "path": "",
+      "keyword": "anyOf",
+      "schema_path": "common.schema.json#/definitions/value_consistency/anyOf"
+    }
+  ]
+}

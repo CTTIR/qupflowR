@@ -1,0 +1,12 @@
+{
+  "schema": "capabilities",
+  "valid": false,
+  "rule": "every profile I0 to I4 is reported",
+  "errors": [
+    {
+      "path": "/profiles",
+      "keyword": "required",
+      "schema_path": "capabilities.schema.json#/properties/profiles/required"
+    }
+  ]
+}

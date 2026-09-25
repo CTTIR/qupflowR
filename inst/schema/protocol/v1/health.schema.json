@@ -1,0 +1,62 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://cttir.github.io/qupflowR/schema/protocol/v1/health.schema.json",
+  "title": "Health data",
+  "description": "data of GET /v1/health. fx_thread_blocked is a boolean for the live host and null for a worker.",
+  "type": "object",
+  "required": [
+    "status",
+    "host_type",
+    "qupath_version",
+    "bridge_version",
+    "protocol_version",
+    "fx_thread_blocked"
+  ],
+  "properties": {
+    "status": {
+      "enum": ["starting", "ready", "closing"]
+    },
+    "host_type": {
+      "enum": ["live", "worker"]
+    },
+    "qupath_version": {
+      "$ref": "common.schema.json#/definitions/software_version"
+    },
+    "bridge_version": {
+      "$ref": "common.schema.json#/definitions/software_version"
+    },
+    "protocol_version": {
+      "$ref": "common.schema.json#/definitions/protocol_version"
+    },
+    "java_version": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 64
+    },
+    "fx_thread_blocked": {
+      "type": ["boolean", "null"]
+    }
+  },
+  "oneOf": [
+    {
+      "properties": {
+        "host_type": {
+          "const": "live"
+        },
+        "fx_thread_blocked": {
+          "type": "boolean"
+        }
+      }
+    },
+    {
+      "properties": {
+        "host_type": {
+          "const": "worker"
+        },
+        "fx_thread_blocked": {
+          "type": "null"
+        }
+      }
+    }
+  ]
+}

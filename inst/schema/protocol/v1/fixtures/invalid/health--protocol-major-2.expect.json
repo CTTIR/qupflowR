@@ -1,0 +1,12 @@
+{
+  "schema": "health",
+  "valid": false,
+  "rule": "another protocol major version is rejected (PROTOCOL_MISMATCH)",
+  "errors": [
+    {
+      "path": "/protocol_version",
+      "keyword": "pattern",
+      "schema_path": "common.schema.json#/definitions/protocol_version/pattern"
+    }
+  ]
+}

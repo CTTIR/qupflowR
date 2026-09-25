@@ -1,0 +1,82 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://cttir.github.io/qupflowR/schema/protocol/v1/capabilities.schema.json",
+  "title": "Capabilities data",
+  "description": "data of GET /v1/capabilities. An unavailable capability names its reason.",
+  "type": "object",
+  "required": ["capabilities"],
+  "properties": {
+    "capabilities": {
+      "type": "array",
+      "maxItems": 500,
+      "items": {
+        "$ref": "#/definitions/capability"
+      }
+    }
+  },
+  "definitions": {
+    "capability": {
+      "type": "object",
+      "required": ["id", "available", "reason", "modes", "tested_versions", "limits"],
+      "properties": {
+        "id": {
+          "$ref": "common.schema.json#/definitions/dotted_id"
+        },
+        "available": {
+          "type": "boolean"
+        },
+        "reason": {
+          "type": ["string", "null"],
+          "maxLength": 2000
+        },
+        "reason_code": {
+          "type": ["string", "null"],
+          "pattern": "^[a-z][a-z0-9_]*$"
+        },
+        "modes": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "enum": ["live", "worker"]
+          }
+        },
+        "tested_versions": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "$ref": "common.schema.json#/definitions/software_version"
+          }
+        },
+        "limits": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "common.schema.json#/definitions/count"
+          }
+        }
+      },
+      "anyOf": [
+        {
+          "properties": {
+            "available": {
+              "const": true
+            },
+            "reason": {
+              "type": "null"
+            }
+          }
+        },
+        {
+          "properties": {
+            "available": {
+              "const": false
+            },
+            "reason": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        }
+      ]
+    }
+  }
+}

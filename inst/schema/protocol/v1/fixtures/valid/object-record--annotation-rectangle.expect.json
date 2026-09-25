@@ -1,0 +1,18 @@
+{
+  "schema": "object-record",
+  "valid": true,
+  "wkb": {
+    "/roi/data": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          [0.0, 0.0],
+          [100.0, 0.0],
+          [100.0, 80.0],
+          [0.0, 80.0],
+          [0.0, 0.0]
+        ]
+      ]
+    }
+  }
+}

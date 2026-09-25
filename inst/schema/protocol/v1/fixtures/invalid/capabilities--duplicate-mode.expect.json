@@ -1,0 +1,12 @@
+{
+  "schema": "capabilities",
+  "valid": false,
+  "rule": "modes are unique",
+  "errors": [
+    {
+      "path": "/capabilities/0/modes",
+      "keyword": "uniqueItems",
+      "schema_path": "capabilities.schema.json#/definitions/capability/properties/modes/uniqueItems"
+    }
+  ]
+}

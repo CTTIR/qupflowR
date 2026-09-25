@@ -1,0 +1,27 @@
+# Thin caller of the shared CTTIR lint workflow, pinned to the reviewed
+# commit named in the build kit (docs/20_CTTIR_STANDARDS.md). The linter
+# configuration is taken from the same commit through config-ref.
+# Blocking from the first commit: this code base starts with zero findings.
+# tools/quality.R --mode lint runs the same linter set locally.
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+name: lint
+
+# The called workflow declares `permissions: read-all`. A reusable workflow
+# can only keep or reduce the caller's token permissions, so read-all is the
+# narrowest grant that lets it run. Nothing here needs write access.
+permissions: read-all
+
+jobs:
+  lint:
+    uses: CTTIR/.github/.github/workflows/lint.yaml@d54cd50b95ba0110dcc54e6371e3ebb82ee94afb
+    with:
+      blocking: true
+      with-defaults: true
+      vocabulary-only: false
+      config-ref: d54cd50b95ba0110dcc54e6371e3ebb82ee94afb

@@ -1,0 +1,14 @@
+{
+  "expected_revision": "rev-7",
+  "operations": [
+    {
+      "op": "object.update",
+      "image_id": "1",
+      "object_id": "8f6589c0-c587-4bfa-b740-8cab06bc8ce1",
+      "object_changes": {
+        "class_path": ["Tumor", "Negative"]
+      },
+      "force": true
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "event_id": "5b1f8a2c-3d4e-4f60-8a9b-0c1d2e3f4a5b:0",
+  "type": "connection.closing",
+  "session_id": null,
+  "image_id": null,
+  "revision": null,
+  "origin": null,
+  "payload": {
+    "reason": "host_shutdown"
+  }
+}

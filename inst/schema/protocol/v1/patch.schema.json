@@ -1,0 +1,90 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://cttir.github.io/qupflowR/schema/protocol/v1/patch.schema.json",
+  "title": "Patch",
+  "description": "A validated patch resource (GET /v1/sessions/{sid}/patches/{pid}).",
+  "type": "object",
+  "required": [
+    "patch_id",
+    "session_id",
+    "expected_revision",
+    "created_at",
+    "expires_at",
+    "operations",
+    "validation",
+    "summary",
+    "state"
+  ],
+  "properties": {
+    "patch_id": {
+      "$ref": "common.schema.json#/definitions/uuid"
+    },
+    "session_id": {
+      "$ref": "common.schema.json#/definitions/uuid"
+    },
+    "expected_revision": {
+      "$ref": "common.schema.json#/definitions/revision"
+    },
+    "created_at": {
+      "$ref": "common.schema.json#/definitions/date_time"
+    },
+    "expires_at": {
+      "$ref": "common.schema.json#/definitions/date_time"
+    },
+    "operations": {
+      "type": "array",
+      "maxItems": 10000,
+      "items": {
+        "$ref": "patch-request.schema.json#/definitions/operation"
+      }
+    },
+    "validation": {
+      "type": "object",
+      "required": ["valid", "errors"],
+      "properties": {
+        "valid": {
+          "type": "boolean"
+        },
+        "errors": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/validation_error"
+          }
+        }
+      }
+    },
+    "summary": {
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "common.schema.json#/definitions/count"
+      }
+    },
+    "state": {
+      "enum": ["validated", "invalid", "committed", "expired", "undone", "recovery_required"]
+    }
+  },
+  "definitions": {
+    "validation_error": {
+      "type": "object",
+      "required": ["operation_index", "code", "message_key"],
+      "properties": {
+        "operation_index": {
+          "$ref": "common.schema.json#/definitions/count"
+        },
+        "path": {
+          "type": "string",
+          "maxLength": 1024
+        },
+        "code": {
+          "$ref": "common.schema.json#/definitions/error_code"
+        },
+        "message_key": {
+          "$ref": "common.schema.json#/definitions/message_key"
+        },
+        "object_id": {
+          "$ref": "common.schema.json#/definitions/nullable_uuid"
+        }
+      }
+    }
+  }
+}

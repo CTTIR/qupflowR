@@ -1,0 +1,31 @@
+{
+  "job_id": "4a5b6c7d-8e9f-40a1-b2c3-d4e5f6a7b8c9",
+  "session_id": "7c2e9f41-6a3b-4d8e-9f10-2b3c4d5e6f70",
+  "recipe_id": "qupath.cell_detection",
+  "state": "failed",
+  "phase": null,
+  "progress": {
+    "completed": 2,
+    "total": null
+  },
+  "created_at": "2026-09-15T08:02:00Z",
+  "updated_at": "2026-09-15T08:02:30.5Z",
+  "artifacts": [
+    {
+      "artifact_id": "b7c8d9e0-f1a2-4b3c-8d4e-5f6a7b8c9d0e",
+      "kind": "log",
+      "media_type": "text/plain",
+      "size_bytes": 18,
+      "sha256": "c9e4a67e9920247ce64682ba43970ca3a38017f3c7809b3dffe89afb2b19f030"
+    }
+  ],
+  "error": {
+    "code": "OUTPUT_INVALID",
+    "message_key": "error.output_invalid",
+    "message": "Detection produced no objects",
+    "details": {
+      "reason": "empty_output"
+    },
+    "retryable": false
+  }
+}

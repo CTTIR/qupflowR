@@ -1,0 +1,181 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://cttir.github.io/qupflowR/schema/annotatr-control/v1/capabilities.schema.json",
+  "title": "annotatR interoperability capabilities",
+  "description": "Capability report of the optional annotatR partner integration (docs/22, decision D011): one entry per compatibility profile I0 to I4 with a state and, unless available, a reason code from this vocabulary. In vocabulary 1.x the control profiles I2 (controlled process) and I3 (embedded app) can only be unsupported or planned: they need an annotatR release that publishes annotatr-control-v1 and a public app builder.",
+  "type": "object",
+  "required": ["vocabulary", "vocabulary_version", "annotatr_version", "profiles"],
+  "additionalProperties": false,
+  "properties": {
+    "vocabulary": {
+      "const": "qupflowr-annotatr-capabilities"
+    },
+    "vocabulary_version": {
+      "description": "Vocabulary major 1 with any minor.",
+      "type": "string",
+      "pattern": "^1\\.(0|[1-9][0-9]*)$"
+    },
+    "annotatr_version": {
+      "description": "Installed annotatR version as R reports it, or null when annotatR is not installed.",
+      "type": ["string", "null"],
+      "maxLength": 64,
+      "pattern": "^[0-9]+([.-][0-9]+)+$"
+    },
+    "profiles": {
+      "type": "object",
+      "required": ["I0", "I1", "I2", "I3", "I4"],
+      "additionalProperties": false,
+      "properties": {
+        "I0": {
+          "description": "File interchange: QuPath GeoJSON, GeoJSON, masks and legends.",
+          "allOf": [
+            {
+              "$ref": "#/definitions/profile"
+            },
+            {
+              "properties": {
+                "name": {
+                  "const": "file_interchange"
+                }
+              }
+            }
+          ]
+        },
+        "I1": {
+          "description": "Public annotatR R functions called through a checked adapter.",
+          "allOf": [
+            {
+              "$ref": "#/definitions/profile"
+            },
+            {
+              "properties": {
+                "name": {
+                  "const": "r_interface"
+                }
+              }
+            }
+          ]
+        },
+        "I2": {
+          "description": "Controlled annotatR process over annotatr-control-v1.",
+          "allOf": [
+            {
+              "$ref": "#/definitions/profile"
+            },
+            {
+              "properties": {
+                "name": {
+                  "const": "controlled_process"
+                },
+                "state": {
+                  "enum": ["unsupported", "planned"]
+                }
+              }
+            }
+          ]
+        },
+        "I3": {
+          "description": "Embedded annotatR app from a public shiny.appobj builder.",
+          "allOf": [
+            {
+              "$ref": "#/definitions/profile"
+            },
+            {
+              "properties": {
+                "name": {
+                  "const": "embedded_app"
+                },
+                "state": {
+                  "enum": ["unsupported", "planned"]
+                }
+              }
+            }
+          ]
+        },
+        "I4": {
+          "description": "Shared validation of workflows and DNN datasets with published contracts.",
+          "allOf": [
+            {
+              "$ref": "#/definitions/profile"
+            },
+            {
+              "properties": {
+                "name": {
+                  "const": "shared_validation"
+                }
+              }
+            }
+          ]
+        }
+      }
+    }
+  },
+  "definitions": {
+    "profile": {
+      "type": "object",
+      "required": ["name", "state", "reason_code", "reason"],
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "enum": [
+            "file_interchange",
+            "r_interface",
+            "controlled_process",
+            "embedded_app",
+            "shared_validation"
+          ]
+        },
+        "state": {
+          "description": "available: usable now; unavailable: supported, but a local prerequisite is missing; unsupported: this qupflowR or annotatR version cannot provide it; planned: a later qupflowR task implements it.",
+          "enum": ["available", "unavailable", "unsupported", "planned"]
+        },
+        "reason_code": {
+          "type": ["string", "null"],
+          "enum": [
+            null,
+            "package_not_installed",
+            "package_version_too_old",
+            "adapter_not_implemented",
+            "partner_release_required",
+            "control_protocol_mismatch",
+            "validation_contract_missing"
+          ]
+        },
+        "reason": {
+          "description": "English explanation for people; never a token or a local path.",
+          "type": ["string", "null"],
+          "maxLength": 2000
+        }
+      },
+      "anyOf": [
+        {
+          "properties": {
+            "state": {
+              "const": "available"
+            },
+            "reason_code": {
+              "type": "null"
+            },
+            "reason": {
+              "type": "null"
+            }
+          }
+        },
+        {
+          "properties": {
+            "state": {
+              "enum": ["unavailable", "unsupported", "planned"]
+            },
+            "reason_code": {
+              "type": "string"
+            },
+            "reason": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        }
+      ]
+    }
+  }
+}

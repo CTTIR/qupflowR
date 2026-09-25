@@ -1,0 +1,12 @@
+{
+  "schema": "capabilities",
+  "valid": false,
+  "rule": "only the profiles of the vocabulary exist",
+  "errors": [
+    {
+      "path": "/profiles/I5",
+      "keyword": "additionalProperties",
+      "schema_path": "capabilities.schema.json#/properties/profiles/additionalProperties"
+    }
+  ]
+}

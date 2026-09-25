@@ -1,0 +1,26 @@
+{
+  "protocol_version": "1.0",
+  "request_id": "0d9a3c5e-8f7b-4a21-9c3d-2e1f0a9b8c7d",
+  "instance_id": "5b1f8a2c-3d4e-4f60-8a9b-0c1d2e3f4a5b",
+  "data": {
+    "status": "ready",
+    "host_type": "live",
+    "qupath_version": "0.7.0",
+    "bridge_version": "0.1.0-SNAPSHOT",
+    "protocol_version": "1.0",
+    "java_version": "25.0.2+10",
+    "fx_thread_blocked": false,
+    "uptime_ms": 1234
+  },
+  "warnings": [
+    {
+      "code": "SNAPSHOT_NEAR_EXPIRY",
+      "message_key": "warning.snapshot_near_expiry",
+      "message": "The snapshot expires in 10 s",
+      "details": {
+        "remaining_ms": 10000
+      }
+    }
+  ],
+  "server_time": "2026-09-15T08:00:00Z"
+}

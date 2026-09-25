@@ -1,0 +1,350 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://cttir.github.io/qupflowR/schema/protocol/v1/common.schema.json",
+  "title": "qupflowR protocol v1: shared definitions",
+  "description": "Definitions shared by the protocol 1.x schemas (schema set 1.0.0). The root accepts any value; use the definitions through $ref.",
+  "definitions": {
+    "uuid": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "nullable_uuid": {
+      "type": ["string", "null"],
+      "format": "uuid"
+    },
+    "sha256": {
+      "type": "string",
+      "format": "sha256"
+    },
+    "date_time": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "protocol_version": {
+      "description": "Protocol major 1 with any minor; another major is PROTOCOL_MISMATCH.",
+      "type": "string",
+      "pattern": "^1\\.(0|[1-9][0-9]*)$"
+    },
+    "software_version": {
+      "description": "Version such as 0.7.0 or 0.1.0-SNAPSHOT.",
+      "type": "string",
+      "maxLength": 64,
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+([-+][0-9A-Za-z.+-]+)?$"
+    },
+    "revision": {
+      "description": "Opaque equality token; compare, never parse.",
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 256
+    },
+    "image_id": {
+      "description": "QuPath project entry ID, kept as a string.",
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 256
+    },
+    "object_id": {
+      "description": "Native QuPath object UUID.",
+      "$ref": "#/definitions/uuid"
+    },
+    "error_code": {
+      "type": "string",
+      "pattern": "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$"
+    },
+    "message_key": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_]*(\\.[a-z0-9_]+)+$"
+    },
+    "reason_code": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_]*$"
+    },
+    "dotted_id": {
+      "type": "string",
+      "maxLength": 128,
+      "pattern": "^[a-z][a-z0-9_]*(\\.[a-z0-9_]+)*$"
+    },
+    "count": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "positive_integer": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "plane": {
+      "description": "Zero-based image plane. c = null means no single channel (QuPath's -1 sentinel never appears in the protocol).",
+      "type": "object",
+      "required": ["c", "z", "t"],
+      "additionalProperties": false,
+      "properties": {
+        "c": {
+          "type": ["integer", "null"],
+          "minimum": 0
+        },
+        "z": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "t": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "nullable_bounds": {
+      "description": "Bounding box in full-resolution pixels, origin top left.",
+      "type": ["object", "null"],
+      "required": ["x", "y", "width", "height"],
+      "additionalProperties": false,
+      "properties": {
+        "x": {
+          "type": "number"
+        },
+        "y": {
+          "type": "number"
+        },
+        "width": {
+          "type": "number",
+          "minimum": 0
+        },
+        "height": {
+          "type": "number",
+          "minimum": 0
+        }
+      }
+    },
+    "bounds": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/nullable_bounds"
+        },
+        {
+          "type": "object"
+        }
+      ]
+    },
+    "value_state": {
+      "type": "string",
+      "enum": ["finite", "missing", "nan", "pos_inf", "neg_inf"]
+    },
+    "value_consistency": {
+      "description": "value is a JSON number exactly when value_state is finite.",
+      "anyOf": [
+        {
+          "properties": {
+            "value": {
+              "type": "number"
+            },
+            "value_state": {
+              "const": "finite"
+            }
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "type": "null"
+            },
+            "value_state": {
+              "enum": ["missing", "nan", "pos_inf", "neg_inf"]
+            }
+          }
+        }
+      ]
+    },
+    "nullable_measurement_value": {
+      "type": ["object", "null"],
+      "required": ["value", "value_state"],
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "type": ["number", "null"]
+        },
+        "value_state": {
+          "$ref": "#/definitions/value_state"
+        }
+      },
+      "anyOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/definitions/value_consistency"
+        }
+      ]
+    },
+    "class_component": {
+      "description": "One class name component: not blank, no ':' or line break, no leading or trailing space or tab.",
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 256,
+      "pattern": "^[^:\\r\\n \\t]([^:\\r\\n]*[^:\\r\\n \\t])?$"
+    },
+    "nullable_class_path": {
+      "description": "Class as components from parent to child; null means unclassified.",
+      "type": ["array", "null"],
+      "minItems": 1,
+      "maxItems": 32,
+      "items": {
+        "$ref": "#/definitions/class_component"
+      }
+    },
+    "color": {
+      "type": "string",
+      "pattern": "^#[0-9a-f]{6}$"
+    },
+    "storage_precision": {
+      "type": "string",
+      "enum": ["float32", "float64"]
+    },
+    "nullable_roi": {
+      "description": "2D geometry as base64 WKB in image pixel coordinates; plane is separate.",
+      "type": ["object", "null"],
+      "required": ["representation", "encoding", "data"],
+      "additionalProperties": false,
+      "properties": {
+        "representation": {
+          "const": "wkb"
+        },
+        "encoding": {
+          "const": "base64"
+        },
+        "data": {
+          "type": "string",
+          "minLength": 28,
+          "pattern": "^[A-Za-z0-9+/]*={0,2}$"
+        },
+        "storage_precision": {
+          "$ref": "#/definitions/storage_precision"
+        }
+      }
+    },
+    "roi": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/nullable_roi"
+        },
+        {
+          "type": "object"
+        }
+      ]
+    },
+    "nullable_roi_native": {
+      "description": "Exact parameters of a native rectangle, ellipse, line or points ROI.",
+      "type": ["object", "null"],
+      "required": ["type"],
+      "properties": {
+        "type": {
+          "enum": ["rectangle", "ellipse", "line", "points"]
+        }
+      },
+      "anyOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/definitions/roi_native_box"
+        },
+        {
+          "$ref": "#/definitions/roi_native_line"
+        },
+        {
+          "$ref": "#/definitions/roi_native_points"
+        }
+      ]
+    },
+    "roi_native_box": {
+      "type": "object",
+      "required": ["type", "x", "y", "width", "height"],
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "enum": ["rectangle", "ellipse"]
+        },
+        "x": {
+          "type": "number"
+        },
+        "y": {
+          "type": "number"
+        },
+        "width": {
+          "type": "number",
+          "minimum": 0
+        },
+        "height": {
+          "type": "number",
+          "minimum": 0
+        }
+      }
+    },
+    "roi_native_line": {
+      "type": "object",
+      "required": ["type", "x1", "y1", "x2", "y2"],
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "const": "line"
+        },
+        "x1": {
+          "type": "number"
+        },
+        "y1": {
+          "type": "number"
+        },
+        "x2": {
+          "type": "number"
+        },
+        "y2": {
+          "type": "number"
+        }
+      }
+    },
+    "roi_native_points": {
+      "type": "object",
+      "required": ["type", "points"],
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "const": "points"
+        },
+        "points": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "required": ["x", "y"],
+            "additionalProperties": false,
+            "properties": {
+              "x": {
+                "type": "number"
+              },
+              "y": {
+                "type": "number"
+              }
+            }
+          }
+        }
+      }
+    },
+    "warning": {
+      "type": "object",
+      "required": ["code", "message_key", "message"],
+      "properties": {
+        "code": {
+          "$ref": "#/definitions/error_code"
+        },
+        "message_key": {
+          "$ref": "#/definitions/message_key"
+        },
+        "message": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "details": {
+          "type": "object"
+        }
+      }
+    }
+  }
+}

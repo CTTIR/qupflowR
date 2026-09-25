@@ -1,0 +1,12 @@
+{
+  "schema": "job",
+  "valid": false,
+  "rule": "SHA-256 digests are lower-case hex",
+  "errors": [
+    {
+      "path": "/artifacts/0/sha256",
+      "keyword": "format",
+      "schema_path": "common.schema.json#/definitions/sha256/format"
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "capabilities": [
+    {
+      "id": "measurements.dynamic.pixel_classifier",
+      "available": false,
+      "reason": null,
+      "reason_code": "not_implemented",
+      "modes": [],
+      "tested_versions": [],
+      "limits": {}
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+"image_key","path","width","height","size_c","size_z","size_t","pixel_type","in_file","pixel_width","pixel_height","z_spacing","unit","state","exists_in_output"
+"rgb","images/rgb_512x384.tif",512,384,3,1,1,"uint8","tiff_resolution_unitless_1_1",NA,NA,NA,NA,"unknown",TRUE
+"rgb_umlaut_dir","images/Ordner mit Ümlaut/rgb_512x384.tif",512,384,3,1,1,"uint8","tiff_resolution_unitless_1_1",NA,NA,NA,NA,"unknown",TRUE
+"rgb_nores","images/rgb_512x384_nores.tif",512,384,3,1,1,"uint8","absent",NA,NA,NA,NA,"unknown",TRUE
+"ome","images/ome_3c2z2t_u16.ome.tif",256,192,3,2,2,"uint16","ome_xml_physical_size",0.25,0.5,1.5,"µm","known",TRUE
+"deleted","images/deleted/rgb_512x384_deleted.tif",512,384,3,1,1,"uint8","file_missing",NA,NA,NA,NA,"unknown",FALSE
+"moved_rgb","moved/copy/images/rgb_512x384.tif",512,384,3,1,1,"uint8","tiff_resolution_unitless_1_1",NA,NA,NA,NA,"unknown",TRUE

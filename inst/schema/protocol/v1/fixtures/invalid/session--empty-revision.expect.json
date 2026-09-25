@@ -1,0 +1,12 @@
+{
+  "schema": "session",
+  "valid": false,
+  "rule": "revisions are non-empty opaque strings",
+  "errors": [
+    {
+      "path": "/revision",
+      "keyword": "minLength",
+      "schema_path": "common.schema.json#/definitions/revision/minLength"
+    }
+  ]
+}

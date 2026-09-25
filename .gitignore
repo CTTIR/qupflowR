@@ -1,0 +1,35 @@
+setup/
+
+# Local toolchains, work areas and build output
+.tools/
+work/
+artifacts/
+site/
+renv/library/
+renv/staging/
+renv/local/
+
+# R
+.Rproj.user/
+.Rhistory
+.RData
+.Ruserdata
+*.Rcheck/
+qupflowR_*.tar.gz
+
+# Java / Gradle
+tools/bridge/.gradle/
+tools/bridge/**/build/
+tools/bridge/.kotlin/
+*.class
+hs_err_pid*.log
+
+# Editors and OS
+.idea/
+.vscode/
+.DS_Store
+
+# Never commit secrets, tokens or private image data
+*.token
+.Renviron
+private-data/

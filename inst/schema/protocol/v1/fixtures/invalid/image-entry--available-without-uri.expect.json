@@ -1,0 +1,12 @@
+{
+  "schema": "image-entry",
+  "valid": false,
+  "rule": "an image without URI cannot be available",
+  "errors": [
+    {
+      "path": "",
+      "keyword": "anyOf",
+      "schema_path": "image-entry.schema.json#/anyOf"
+    }
+  ]
+}

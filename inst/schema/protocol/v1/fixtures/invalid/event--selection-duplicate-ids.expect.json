@@ -1,0 +1,12 @@
+{
+  "schema": "event",
+  "valid": false,
+  "rule": "duplicate object IDs are rejected",
+  "errors": [
+    {
+      "path": "/payload/object_ids",
+      "keyword": "uniqueItems",
+      "schema_path": "event.schema.json#/properties/payload/properties/object_ids/uniqueItems"
+    }
+  ]
+}

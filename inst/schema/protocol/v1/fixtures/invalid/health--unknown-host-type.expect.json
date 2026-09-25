@@ -1,0 +1,17 @@
+{
+  "schema": "health",
+  "valid": false,
+  "rule": "host_type is live or worker",
+  "errors": [
+    {
+      "path": "/host_type",
+      "keyword": "enum",
+      "schema_path": "health.schema.json#/properties/host_type/enum"
+    },
+    {
+      "path": "",
+      "keyword": "oneOf",
+      "schema_path": "health.schema.json#/oneOf"
+    }
+  ]
+}

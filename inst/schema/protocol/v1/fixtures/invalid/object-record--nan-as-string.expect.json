@@ -1,0 +1,17 @@
+{
+  "schema": "object-record",
+  "valid": false,
+  "rule": "NaN is never a JSON value; it is value null with value_state nan",
+  "errors": [
+    {
+      "path": "/class_probability/value",
+      "keyword": "type",
+      "schema_path": "common.schema.json#/definitions/nullable_measurement_value/properties/value/type"
+    },
+    {
+      "path": "/class_probability",
+      "keyword": "anyOf",
+      "schema_path": "common.schema.json#/definitions/nullable_measurement_value/anyOf"
+    }
+  ]
+}

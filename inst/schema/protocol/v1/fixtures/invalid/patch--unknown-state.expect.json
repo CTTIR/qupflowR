@@ -1,0 +1,12 @@
+{
+  "schema": "patch",
+  "valid": false,
+  "rule": "patch states are fixed",
+  "errors": [
+    {
+      "path": "/state",
+      "keyword": "enum",
+      "schema_path": "patch.schema.json#/properties/state/enum"
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+"path","size","sha256","provenance"
+"images/rgb_512x384_nores.tif",589964,"f736a65a03527ecf7563c1d291c08eafbe8515b35f7613349f4633a5004d0ff9","r_reconstruction"
+"images/rgb_512x384.tif",590392,"1f1e8937e47d1a0a9094ae50d32873347ff723d59a3ffe6ad085bdc337e0125c","observed_pin_jdk25_imageio"
+"images/Ordner mit Ümlaut/rgb_512x384.tif",590392,"1f1e8937e47d1a0a9094ae50d32873347ff723d59a3ffe6ad085bdc337e0125c","observed_pin_jdk25_imageio"
+"moved/copy/images/rgb_512x384.tif",590392,"1f1e8937e47d1a0a9094ae50d32873347ff723d59a3ffe6ad085bdc337e0125c","observed_pin_jdk25_imageio"
+"images/ome_3c2z2t_u16.ome.tif",1204990,"54a34bb777fda5a94221e37b6e2c1d8c77d0fe581948609522288575e3529e0e","observed_pin_bioformats_8.4.0"

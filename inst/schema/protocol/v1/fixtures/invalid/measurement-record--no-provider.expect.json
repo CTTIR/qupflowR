@@ -1,0 +1,12 @@
+{
+  "schema": "measurement-record",
+  "valid": false,
+  "rule": "dynamic values name their provider",
+  "errors": [
+    {
+      "path": "",
+      "keyword": "anyOf",
+      "schema_path": "measurement-record.schema.json#/allOf/1/anyOf"
+    }
+  ]
+}

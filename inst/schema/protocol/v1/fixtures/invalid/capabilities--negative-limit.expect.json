@@ -1,0 +1,12 @@
+{
+  "schema": "capabilities",
+  "valid": false,
+  "rule": "limits are non-negative integers",
+  "errors": [
+    {
+      "path": "/capabilities/0/limits/max_page_size",
+      "keyword": "minimum",
+      "schema_path": "common.schema.json#/definitions/count/minimum"
+    }
+  ]
+}

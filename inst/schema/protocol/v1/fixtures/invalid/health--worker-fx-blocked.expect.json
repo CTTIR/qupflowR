@@ -1,0 +1,12 @@
+{
+  "schema": "health",
+  "valid": false,
+  "rule": "a worker has no JavaFX thread, so fx_thread_blocked must be null",
+  "errors": [
+    {
+      "path": "",
+      "keyword": "oneOf",
+      "schema_path": "health.schema.json#/oneOf"
+    }
+  ]
+}

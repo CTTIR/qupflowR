@@ -1,0 +1,12 @@
+{
+  "schema": "patch",
+  "valid": false,
+  "rule": "date-time values are real calendar dates",
+  "errors": [
+    {
+      "path": "/expires_at",
+      "keyword": "format",
+      "schema_path": "common.schema.json#/definitions/date_time/format"
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "schema": "patch-request",
+  "valid": false,
+  "rule": "c = -1 is rejected in new objects too",
+  "errors": [
+    {
+      "path": "/operations/0/objects/0/plane/c",
+      "keyword": "minimum",
+      "schema_path": "common.schema.json#/definitions/plane/properties/c/minimum"
+    }
+  ]
+}

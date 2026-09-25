@@ -1,0 +1,91 @@
+{
+  "expected_revision": "rev-7",
+  "operations": [
+    {
+      "op": "object.create",
+      "image_id": "1",
+      "objects": [
+        {
+          "object_id": "d1e2f3a4-b5c6-4d7e-8f90-a1b2c3d4e5f6",
+          "parent_id": "3ea21850-79ae-4b6d-adf5-c133563aebbd",
+          "type": "cell",
+          "name": null,
+          "class_path": ["Tumor"],
+          "plane": {
+            "c": null,
+            "z": 0,
+            "t": 0
+          },
+          "roi": {
+            "representation": "wkb",
+            "encoding": "base64",
+            "data": "AQMAAAABAAAABQAAAAAAAAAAACRAAAAAAAAANEAAAAAAAAAyQAAAAAAAADRAAAAAAAAAMkAAAAAAAAA6QAAAAAAAACRAAAAAAAAAOkAAAAAAAAAkQAAAAAAAADRA"
+          },
+          "nucleus_roi": {
+            "representation": "wkb",
+            "encoding": "base64",
+            "data": "AQMAAAABAAAABQAAAAAAAAAAAChAAAAAAAAANkAAAAAAAAAwQAAAAAAAADZAAAAAAAAAMEAAAAAAAAA4QAAAAAAAAChAAAAAAAAAOEAAAAAAAAAoQAAAAAAAADZA"
+          }
+        }
+      ]
+    },
+    {
+      "op": "object.update",
+      "image_id": "1",
+      "object_id": "8f6589c0-c587-4bfa-b740-8cab06bc8ce1",
+      "object_changes": {
+        "class_path": ["Tumor", "Negative"]
+      }
+    },
+    {
+      "op": "object.delete",
+      "image_id": "1",
+      "object_ids": ["c0ffee00-1234-4abc-8def-0123456789ab"],
+      "strategy": "reject_if_children"
+    },
+    {
+      "op": "measurements.upsert",
+      "image_id": "1",
+      "values": [
+        {
+          "object_id": "8f6589c0-c587-4bfa-b740-8cab06bc8ce1",
+          "name": "User: score",
+          "value": 0.75,
+          "value_state": "finite"
+        },
+        {
+          "object_id": "d1e2f3a4-b5c6-4d7e-8f90-a1b2c3d4e5f6",
+          "name": "User: score",
+          "value": null,
+          "value_state": "missing"
+        }
+      ]
+    },
+    {
+      "op": "classes.replace",
+      "classes": [
+        {
+          "class_path": ["Tumor"],
+          "color": "#c80000"
+        },
+        {
+          "class_path": ["Tumor", "Positive"],
+          "color": "#ff6400"
+        }
+      ]
+    },
+    {
+      "op": "image.calibration",
+      "image_id": "3",
+      "pixel_width": 0.5,
+      "pixel_height": 0.25,
+      "unit": "µm",
+      "z_spacing": null
+    },
+    {
+      "op": "image.add",
+      "uri": "file:///data/images/synthetic-ome.ome.tif",
+      "name": "synthetic-ome"
+    }
+  ]
+}

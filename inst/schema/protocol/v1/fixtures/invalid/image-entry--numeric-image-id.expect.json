@@ -1,0 +1,12 @@
+{
+  "schema": "image-entry",
+  "valid": false,
+  "rule": "image IDs are strings",
+  "errors": [
+    {
+      "path": "/image_id",
+      "keyword": "type",
+      "schema_path": "common.schema.json#/definitions/image_id/type"
+    }
+  ]
+}

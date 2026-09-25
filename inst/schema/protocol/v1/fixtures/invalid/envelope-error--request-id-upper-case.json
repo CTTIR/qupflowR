@@ -1,0 +1,15 @@
+{
+  "protocol_version": "1.0",
+  "request_id": "0D9A3C5E-8F7B-4A21-9C3D-2E1F0A9B8C7D",
+  "instance_id": "5b1f8a2c-3d4e-4f60-8a9b-0c1d2e3f4a5b",
+  "error": {
+    "code": "HOST_BUSY",
+    "message_key": "error.host_busy",
+    "message": "Too many open connections; retry later",
+    "details": {
+      "reason": "connection_limit"
+    },
+    "retryable": true
+  },
+  "warnings": []
+}

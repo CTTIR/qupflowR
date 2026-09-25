@@ -1,0 +1,507 @@
+{
+  "inventory_schema_version": 1,
+  "package": "qupflowR",
+  "exports": [
+    {
+      "name": "qp_abort",
+      "type": "function",
+      "formals": [
+        {
+          "name": "code",
+          "has_default": false,
+          "default": null
+        },
+        {
+          "name": "...",
+          "has_default": false,
+          "default": null
+        },
+        {
+          "name": "class",
+          "has_default": true,
+          "default": "NULL"
+        },
+        {
+          "name": "details",
+          "has_default": true,
+          "default": "list()"
+        },
+        {
+          "name": "request_id",
+          "has_default": true,
+          "default": "NULL"
+        },
+        {
+          "name": "action",
+          "has_default": true,
+          "default": "NULL"
+        },
+        {
+          "name": "message_key",
+          "has_default": true,
+          "default": "NULL"
+        },
+        {
+          "name": "bullets",
+          "has_default": true,
+          "default": "NULL"
+        },
+        {
+          "name": "parent",
+          "has_default": true,
+          "default": "NULL"
+        },
+        {
+          "name": "call",
+          "has_default": true,
+          "default": "parent.frame()"
+        }
+      ]
+    },
+    {
+      "name": "qp_as_json",
+      "type": "function",
+      "formals": [
+        {
+          "name": "x",
+          "has_default": false,
+          "default": null
+        }
+      ]
+    },
+    {
+      "name": "qp_condition_code",
+      "type": "function",
+      "formals": [
+        {
+          "name": "cnd",
+          "has_default": false,
+          "default": null
+        }
+      ]
+    },
+    {
+      "name": "qp_empty_object",
+      "type": "function",
+      "formals": []
+    },
+    {
+      "name": "qp_error_codes",
+      "type": "function",
+      "formals": []
+    },
+    {
+      "name": "qp_error_from_response",
+      "type": "function",
+      "formals": [
+        {
+          "name": "envelope",
+          "has_default": false,
+          "default": null
+        },
+        {
+          "name": "signal",
+          "has_default": true,
+          "default": "TRUE"
+        },
+        {
+          "name": "call",
+          "has_default": true,
+          "default": "parent.frame()"
+        }
+      ]
+    },
+    {
+      "name": "qp_json_canonical",
+      "type": "function",
+      "formals": [
+        {
+          "name": "x",
+          "has_default": false,
+          "default": null
+        }
+      ]
+    },
+    {
+      "name": "qp_json_decode",
+      "type": "function",
+      "formals": [
+        {
+          "name": "txt",
+          "has_default": false,
+          "default": null
+        }
+      ]
+    },
+    {
+      "name": "qp_json_encode",
+      "type": "function",
+      "formals": [
+        {
+          "name": "x",
+          "has_default": false,
+          "default": null
+        },
+        {
+          "name": "schema_hint",
+          "has_default": true,
+          "default": "NULL"
+        }
+      ]
+    },
+    {
+      "name": "qp_msg",
+      "type": "function",
+      "formals": [
+        {
+          "name": "key",
+          "has_default": false,
+          "default": null
+        },
+        {
+          "name": "...",
+          "has_default": false,
+          "default": null
+        },
+        {
+          "name": ".lang",
+          "has_default": true,
+          "default": "getOption(\"qupflowR.language\", \"de\")"
+        }
+      ]
+    },
+    {
+      "name": "qp_redact",
+      "type": "function",
+      "formals": [
+        {
+          "name": "x",
+          "has_default": false,
+          "default": null
+        },
+        {
+          "name": "max_chars",
+          "has_default": true,
+          "default": "500L"
+        },
+        {
+          "name": "max_items",
+          "has_default": true,
+          "default": "50L"
+        },
+        {
+          "name": "max_depth",
+          "has_default": true,
+          "default": "5L"
+        }
+      ]
+    },
+    {
+      "name": "qp_run_external",
+      "type": "function",
+      "formals": [
+        {
+          "name": "program",
+          "has_default": false,
+          "default": null
+        },
+        {
+          "name": "args",
+          "has_default": false,
+          "default": null
+        },
+        {
+          "name": "pins",
+          "has_default": false,
+          "default": null
+        },
+        {
+          "name": "outputs",
+          "has_default": false,
+          "default": null
+        },
+        {
+          "name": "workspace",
+          "has_default": false,
+          "default": null
+        },
+        {
+          "name": "timeout",
+          "has_default": true,
+          "default": "600"
+        },
+        {
+          "name": "trust",
+          "has_default": true,
+          "default": "FALSE"
+        },
+        {
+          "name": "env",
+          "has_default": true,
+          "default": "character()"
+        }
+      ]
+    },
+    {
+      "name": "qp_scalar",
+      "type": "function",
+      "formals": [
+        {
+          "name": "x",
+          "has_default": false,
+          "default": null
+        }
+      ]
+    },
+    {
+      "name": "qp_schema_assert",
+      "type": "function",
+      "formals": [
+        {
+          "name": "x",
+          "has_default": false,
+          "default": null
+        },
+        {
+          "name": "schema",
+          "has_default": false,
+          "default": null
+        },
+        {
+          "name": "call",
+          "has_default": true,
+          "default": "parent.frame()"
+        }
+      ]
+    },
+    {
+      "name": "qp_schema_path",
+      "type": "function",
+      "formals": [
+        {
+          "name": "name",
+          "has_default": false,
+          "default": null
+        },
+        {
+          "name": "set",
+          "has_default": true,
+          "default": "\"protocol\""
+        },
+        {
+          "name": "version",
+          "has_default": true,
+          "default": "\"v1\""
+        }
+      ]
+    },
+    {
+      "name": "qp_schema_validate",
+      "type": "function",
+      "formals": [
+        {
+          "name": "x",
+          "has_default": false,
+          "default": null
+        },
+        {
+          "name": "schema",
+          "has_default": false,
+          "default": null
+        }
+      ]
+    },
+    {
+      "name": "qp_value_fields",
+      "type": "function",
+      "formals": [
+        {
+          "name": "x",
+          "has_default": false,
+          "default": null
+        }
+      ]
+    },
+    {
+      "name": "qp_value_from_state",
+      "type": "function",
+      "formals": [
+        {
+          "name": "value",
+          "has_default": false,
+          "default": null
+        },
+        {
+          "name": "value_state",
+          "has_default": false,
+          "default": null
+        }
+      ]
+    },
+    {
+      "name": "qp_value_state",
+      "type": "function",
+      "formals": [
+        {
+          "name": "x",
+          "has_default": false,
+          "default": null
+        }
+      ]
+    },
+    {
+      "name": "qp_warn",
+      "type": "function",
+      "formals": [
+        {
+          "name": "code",
+          "has_default": false,
+          "default": null
+        },
+        {
+          "name": "...",
+          "has_default": false,
+          "default": null
+        },
+        {
+          "name": "message_key",
+          "has_default": true,
+          "default": "NULL"
+        },
+        {
+          "name": "class",
+          "has_default": true,
+          "default": "NULL"
+        },
+        {
+          "name": "details",
+          "has_default": true,
+          "default": "list()"
+        },
+        {
+          "name": "bullets",
+          "has_default": true,
+          "default": "NULL"
+        },
+        {
+          "name": "call",
+          "has_default": true,
+          "default": "parent.frame()"
+        }
+      ]
+    },
+    {
+      "name": "qp_warnings_from_response",
+      "type": "function",
+      "formals": [
+        {
+          "name": "envelope",
+          "has_default": false,
+          "default": null
+        },
+        {
+          "name": "signal",
+          "has_default": true,
+          "default": "TRUE"
+        },
+        {
+          "name": "call",
+          "has_default": true,
+          "default": "parent.frame()"
+        }
+      ]
+    }
+  ],
+  "export_patterns": [],
+  "s3_methods": [
+    {
+      "generic": "format",
+      "class": "qp_validation_report",
+      "method": "format.qp_validation_report",
+      "type": "function",
+      "formals": [
+        {
+          "name": "x",
+          "has_default": false,
+          "default": null
+        },
+        {
+          "name": "...",
+          "has_default": false,
+          "default": null
+        }
+      ]
+    },
+    {
+      "generic": "print",
+      "class": "qp_validation_report",
+      "method": "print.qp_validation_report",
+      "type": "function",
+      "formals": [
+        {
+          "name": "x",
+          "has_default": false,
+          "default": null
+        },
+        {
+          "name": "...",
+          "has_default": false,
+          "default": null
+        }
+      ]
+    }
+  ],
+  "changes": [
+    {
+      "date": "2026-09-14",
+      "reason": "Initial baseline of the T01 package foundations (conditions, messages, protocol JSON, JSON Schema validation).",
+      "added": [
+        "S3method(format, qp_validation_report)",
+        "S3method(print, qp_validation_report)",
+        "qp_abort",
+        "qp_as_json",
+        "qp_condition_code",
+        "qp_empty_object",
+        "qp_error_codes",
+        "qp_error_from_response",
+        "qp_json_canonical",
+        "qp_json_decode",
+        "qp_json_encode",
+        "qp_msg",
+        "qp_redact",
+        "qp_scalar",
+        "qp_schema_assert",
+        "qp_schema_path",
+        "qp_schema_validate",
+        "qp_value_fields",
+        "qp_value_from_state",
+        "qp_value_state",
+        "qp_warn",
+        "qp_warnings_from_response"
+      ],
+      "removed": [],
+      "changed": []
+    },
+    {
+      "date": "2026-09-15",
+      "reason": "Record the inventory digest (inventory_sha256) so that --check ties the committed entries to the history; no API change.",
+      "added": [],
+      "removed": [],
+      "changed": [],
+      "inventory_sha256": "cb5cc93e0fd626c76c0f9ac2f8ff154ca96b10dbb501a4e51859ea377e5a2d4b",
+      "repaired_integrity_problems": [
+        "the last history entry records no inventory_sha256; the committed entries cannot be tied to the history"
+      ]
+    },
+    {
+      "date": "2026-09-25",
+      "reason": "Add explicit-trust pinned external method execution without changing analytical scripts",
+      "added": [
+        "qp_run_external"
+      ],
+      "removed": [],
+      "changed": [],
+      "inventory_sha256": "d9c9dddb61febb5e0ce8fb5eb7be40db4bf4cce20892e8e89310401017e65a0c"
+    }
+  ]
+}

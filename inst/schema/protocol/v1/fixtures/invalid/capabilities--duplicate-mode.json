@@ -1,0 +1,16 @@
+{
+  "capabilities": [
+    {
+      "id": "objects.query",
+      "available": true,
+      "reason": null,
+      "modes": ["worker", "worker"],
+      "tested_versions": ["0.7.0"],
+      "limits": {
+        "max_page_size": 10000,
+        "max_body_bytes": 16777216,
+        "max_export_bytes": 5000000000
+      }
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "project_id": null,
+  "image_id": "1",
+  "object_id": "3ea21850-79ae-4b6d-adf5-c133563aebbd",
+  "name": "Positive %",
+  "namespace": "dynamic",
+  "origin": "qupath.core",
+  "value": "NaN",
+  "value_state": "nan",
+  "unit": "percent",
+  "computed_at_revision": "rev-7",
+  "provider_id": "qupath.core.positive_percent",
+  "storage_precision": null
+}

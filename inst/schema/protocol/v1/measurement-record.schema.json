@@ -1,0 +1,88 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://cttir.github.io/qupflowR/schema/protocol/v1/measurement-record.schema.json",
+  "title": "Measurement record",
+  "description": "One measurement in long format. Names are kept byte-exact; value is a number only for the state finite. Dynamic values name their provider.",
+  "type": "object",
+  "required": [
+    "image_id",
+    "object_id",
+    "name",
+    "namespace",
+    "value",
+    "value_state",
+    "unit",
+    "computed_at_revision",
+    "provider_id"
+  ],
+  "properties": {
+    "project_id": {
+      "$ref": "common.schema.json#/definitions/nullable_uuid"
+    },
+    "image_id": {
+      "$ref": "common.schema.json#/definitions/image_id"
+    },
+    "object_id": {
+      "$ref": "common.schema.json#/definitions/object_id"
+    },
+    "name": {
+      "description": "QuPath measurement name, byte-exact; the empty string is a valid name.",
+      "type": "string",
+      "maxLength": 1024
+    },
+    "namespace": {
+      "enum": ["stored", "dynamic", "derived"]
+    },
+    "origin": {
+      "type": ["string", "null"],
+      "maxLength": 256
+    },
+    "value": {
+      "type": ["number", "null"]
+    },
+    "value_state": {
+      "$ref": "common.schema.json#/definitions/value_state"
+    },
+    "unit": {
+      "description": "Unit from the provider, otherwise the string unknown.",
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 64
+    },
+    "computed_at_revision": {
+      "$ref": "common.schema.json#/definitions/revision"
+    },
+    "provider_id": {
+      "type": ["string", "null"],
+      "maxLength": 128,
+      "pattern": "^[a-z][a-z0-9_]*(\\.[a-z0-9_]+)*$"
+    },
+    "storage_precision": {
+      "type": ["string", "null"],
+      "enum": ["float32", "float64", null]
+    }
+  },
+  "allOf": [
+    {
+      "$ref": "common.schema.json#/definitions/value_consistency"
+    },
+    {
+      "anyOf": [
+        {
+          "properties": {
+            "namespace": {
+              "enum": ["stored", "derived"]
+            }
+          }
+        },
+        {
+          "properties": {
+            "provider_id": {
+              "type": "string"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

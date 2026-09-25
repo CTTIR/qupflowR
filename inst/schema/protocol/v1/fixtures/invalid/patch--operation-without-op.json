@@ -1,0 +1,21 @@
+{
+  "patch_id": "9e8d7c6b-5a49-4382-a716-f5e4d3c2b1a0",
+  "session_id": "7c2e9f41-6a3b-4d8e-9f10-2b3c4d5e6f70",
+  "expected_revision": "rev-7",
+  "created_at": "2026-09-15T08:01:00Z",
+  "expires_at": "2026-09-15T08:11:00+02:00",
+  "operations": [
+    {
+      "image_id": "1"
+    }
+  ],
+  "validation": {
+    "valid": true,
+    "errors": []
+  },
+  "summary": {
+    "objects_updated": 1,
+    "objects_deleted": 1
+  },
+  "state": "validated"
+}

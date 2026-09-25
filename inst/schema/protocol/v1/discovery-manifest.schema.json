@@ -1,0 +1,71 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://cttir.github.io/qupflowR/schema/protocol/v1/discovery-manifest.schema.json",
+  "title": "Discovery manifest",
+  "description": "Manifest file a bridge host writes into its private runtime directory. It names the token file and never contains the token.",
+  "type": "object",
+  "required": [
+    "host_type",
+    "pid",
+    "process_start_time",
+    "instance_id",
+    "port",
+    "qupath_version",
+    "bridge_version",
+    "protocol_version",
+    "token_file"
+  ],
+  "properties": {
+    "host_type": {
+      "enum": ["live", "worker"]
+    },
+    "pid": {
+      "$ref": "common.schema.json#/definitions/positive_integer"
+    },
+    "process_start_time": {
+      "type": ["string", "null"],
+      "format": "date-time"
+    },
+    "instance_id": {
+      "$ref": "common.schema.json#/definitions/uuid"
+    },
+    "host": {
+      "const": "127.0.0.1"
+    },
+    "port": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 65535
+    },
+    "qupath_version": {
+      "$ref": "common.schema.json#/definitions/software_version"
+    },
+    "bridge_version": {
+      "$ref": "common.schema.json#/definitions/software_version"
+    },
+    "protocol_version": {
+      "$ref": "common.schema.json#/definitions/protocol_version"
+    },
+    "token_file": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 4096
+    },
+    "created_at": {
+      "$ref": "common.schema.json#/definitions/date_time"
+    }
+  },
+  "not": {
+    "anyOf": [
+      {
+        "required": ["token"]
+      },
+      {
+        "required": ["bearer_token"]
+      },
+      {
+        "required": ["authorization"]
+      }
+    ]
+  }
+}

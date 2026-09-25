@@ -1,0 +1,34 @@
+{
+  "image_id": "4",
+  "width": 256,
+  "height": 192,
+  "size_c": 3,
+  "size_z": 2,
+  "size_t": 2,
+  "pixel_type": "uint16",
+  "is_rgb": false,
+  "channels": [
+    {
+      "index": 0,
+      "name": "DAPI",
+      "color": "#0000ff"
+    },
+    {
+      "index": 1,
+      "name": "CD8",
+      "color": "#00ff00"
+    },
+    {
+      "index": 2,
+      "name": "PanCK",
+      "color": null
+    }
+  ],
+  "downsamples": [1, 4],
+  "calibration": {
+    "pixel_width": null,
+    "pixel_height": null,
+    "unit": null,
+    "source": "unknown"
+  }
+}

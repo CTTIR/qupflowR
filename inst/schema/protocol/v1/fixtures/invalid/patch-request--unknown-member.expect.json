@@ -1,0 +1,17 @@
+{
+  "schema": "patch-request",
+  "valid": false,
+  "rule": "operations accept no unknown members",
+  "errors": [
+    {
+      "path": "/operations/0/force",
+      "keyword": "additionalProperties",
+      "schema_path": "patch-request.schema.json#/definitions/operation/additionalProperties"
+    },
+    {
+      "path": "/operations/0",
+      "keyword": "anyOf",
+      "schema_path": "patch-request.schema.json#/definitions/operation/anyOf"
+    }
+  ]
+}

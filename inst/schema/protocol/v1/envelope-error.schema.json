@@ -1,0 +1,32 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://cttir.github.io/qupflowR/schema/protocol/v1/envelope-error.schema.json",
+  "title": "Error envelope",
+  "description": "Every protocol v1 error response: an error object instead of data.",
+  "type": "object",
+  "required": ["protocol_version", "request_id", "instance_id", "error", "warnings"],
+  "properties": {
+    "protocol_version": {
+      "$ref": "common.schema.json#/definitions/protocol_version"
+    },
+    "request_id": {
+      "$ref": "common.schema.json#/definitions/uuid"
+    },
+    "instance_id": {
+      "$ref": "common.schema.json#/definitions/uuid"
+    },
+    "error": {
+      "$ref": "error.schema.json"
+    },
+    "warnings": {
+      "type": "array",
+      "maxItems": 100,
+      "items": {
+        "$ref": "common.schema.json#/definitions/warning"
+      }
+    }
+  },
+  "not": {
+    "required": ["data"]
+  }
+}

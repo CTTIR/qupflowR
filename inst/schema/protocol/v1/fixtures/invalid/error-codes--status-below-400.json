@@ -1,0 +1,18 @@
+[
+  {
+    "code": "HOST_BUSY",
+    "http_status": 200,
+    "r_class": "qp_busy_error",
+    "retryable": true,
+    "message_key": "error.host_busy",
+    "source": "SP01b"
+  },
+  {
+    "code": "BUNDLE_INVALID",
+    "http_status": null,
+    "r_class": "qp_bundle_error",
+    "retryable": false,
+    "message_key": "error.bundle_invalid",
+    "source": "docs/15"
+  }
+]

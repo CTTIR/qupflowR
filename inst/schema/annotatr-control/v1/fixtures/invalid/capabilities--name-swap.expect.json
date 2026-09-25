@@ -1,0 +1,12 @@
+{
+  "schema": "capabilities",
+  "valid": false,
+  "rule": "each profile id has its fixed name",
+  "errors": [
+    {
+      "path": "/profiles/I3/name",
+      "keyword": "const",
+      "schema_path": "capabilities.schema.json#/properties/profiles/properties/I3/allOf/1/properties/name/const"
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "schema": "capabilities",
+  "valid": false,
+  "rule": "a profile that is not available names its reason",
+  "errors": [
+    {
+      "path": "/profiles/I1",
+      "keyword": "anyOf",
+      "schema_path": "capabilities.schema.json#/definitions/profile/anyOf"
+    }
+  ]
+}

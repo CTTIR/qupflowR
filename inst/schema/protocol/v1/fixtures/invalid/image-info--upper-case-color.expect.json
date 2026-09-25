@@ -1,0 +1,12 @@
+{
+  "schema": "image-info",
+  "valid": false,
+  "rule": "colours are lower-case #rrggbb",
+  "errors": [
+    {
+      "path": "/channels/0/color",
+      "keyword": "pattern",
+      "schema_path": "image-info.schema.json#/definitions/channel/properties/color/pattern"
+    }
+  ]
+}

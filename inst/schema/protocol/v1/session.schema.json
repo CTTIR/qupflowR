@@ -1,0 +1,103 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://cttir.github.io/qupflowR/schema/protocol/v1/session.schema.json",
+  "title": "Session",
+  "description": "An open project session (POST /v1/sessions, GET /v1/sessions/{sid}).",
+  "type": "object",
+  "required": [
+    "session_id",
+    "instance_id",
+    "host_type",
+    "access",
+    "project",
+    "revision",
+    "persisted_revision",
+    "dirty",
+    "state"
+  ],
+  "properties": {
+    "session_id": {
+      "$ref": "common.schema.json#/definitions/uuid"
+    },
+    "instance_id": {
+      "$ref": "common.schema.json#/definitions/uuid"
+    },
+    "host_type": {
+      "enum": ["live", "worker"]
+    },
+    "access": {
+      "enum": ["read", "copy", "exclusive"]
+    },
+    "project": {
+      "$ref": "#/definitions/project"
+    },
+    "revision": {
+      "$ref": "common.schema.json#/definitions/revision"
+    },
+    "persisted_revision": {
+      "type": ["string", "null"],
+      "minLength": 1,
+      "maxLength": 256
+    },
+    "dirty": {
+      "type": "boolean"
+    },
+    "state": {
+      "enum": ["open", "closing", "recovery_required"]
+    },
+    "owner_client_id": {
+      "$ref": "common.schema.json#/definitions/nullable_uuid"
+    },
+    "created_at": {
+      "$ref": "common.schema.json#/definitions/date_time"
+    }
+  },
+  "definitions": {
+    "project": {
+      "type": "object",
+      "required": ["project_id", "name", "path", "temporary"],
+      "properties": {
+        "project_id": {
+          "$ref": "common.schema.json#/definitions/nullable_uuid"
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1024
+        },
+        "path": {
+          "type": ["string", "null"],
+          "maxLength": 4096
+        },
+        "temporary": {
+          "type": "boolean"
+        },
+        "derived_from": {
+          "$ref": "common.schema.json#/definitions/nullable_uuid"
+        }
+      },
+      "anyOf": [
+        {
+          "properties": {
+            "temporary": {
+              "const": false
+            },
+            "project_id": {
+              "type": "string"
+            }
+          }
+        },
+        {
+          "properties": {
+            "temporary": {
+              "const": true
+            },
+            "project_id": {
+              "type": "null"
+            }
+          }
+        }
+      ]
+    }
+  }
+}

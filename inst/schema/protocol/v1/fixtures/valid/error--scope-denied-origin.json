@@ -1,0 +1,9 @@
+{
+  "code": "SCOPE_DENIED",
+  "message_key": "error.scope_denied",
+  "message": "Request not allowed for this host, origin or token scope",
+  "details": {
+    "reason": "origin_not_allowed"
+  },
+  "retryable": false
+}

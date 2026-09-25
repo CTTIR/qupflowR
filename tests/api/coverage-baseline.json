@@ -1,0 +1,52 @@
+{
+  "coverage_schema_version": 1,
+  "type": "tests",
+  "floor_percent": 90,
+  "tolerance_percent": 0.5,
+  "baseline_percent": 99.5,
+  "measured_at": "2026-09-15T08:48:40Z",
+  "source_inventory_sha256": "441b82c1c0fa2e304b20cbba37ac652f402a9fe43edfc0a3f07763cb9f3c434f",
+  "source_inventory_files": 513,
+  "r_version": "4.6.1",
+  "covr_version": "3.6.5",
+  "per_file": [
+    {
+      "file": "R/conditions.R",
+      "lines": 287,
+      "covered": 287,
+      "percent": 100
+    },
+    {
+      "file": "R/i18n.R",
+      "lines": 38,
+      "covered": 37,
+      "percent": 97.37
+    },
+    {
+      "file": "R/json-schema.R",
+      "lines": 692,
+      "covered": 687,
+      "percent": 99.28
+    },
+    {
+      "file": "R/json.R",
+      "lines": 302,
+      "covered": 301,
+      "percent": 99.67
+    },
+    {
+      "file": "R/utils-optional.R",
+      "lines": 68,
+      "covered": 68,
+      "percent": 100
+    }
+  ],
+  "history": [
+    {
+      "date": "2026-09-15",
+      "previous_percent": null,
+      "baseline_percent": 99.5,
+      "reason": "Initial tests-only coverage baseline (T01)"
+    }
+  ]
+}

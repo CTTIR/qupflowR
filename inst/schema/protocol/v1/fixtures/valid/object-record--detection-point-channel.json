@@ -1,0 +1,41 @@
+{
+  "image_id": "3",
+  "object_id": "c0ffee00-1234-4abc-8def-0123456789ab",
+  "parent_id": null,
+  "type": "detection",
+  "name": "Spot ä: 1",
+  "class_path": ["Größe (µm)", "Klasse/Unterklasse"],
+  "class_probability": {
+    "value": 0.875,
+    "value_state": "finite"
+  },
+  "locked": false,
+  "plane": {
+    "c": 1,
+    "z": 1,
+    "t": 0
+  },
+  "bounds": {
+    "x": 42.5,
+    "y": 17.25,
+    "width": 0,
+    "height": 0
+  },
+  "roi": {
+    "representation": "wkb",
+    "encoding": "base64",
+    "data": "AQEAAAAAAAAAAEBFQAAAAAAAQDFA",
+    "storage_precision": "float32"
+  },
+  "nucleus_roi": null,
+  "roi_native": {
+    "type": "points",
+    "points": [
+      {
+        "x": 42.5,
+        "y": 17.25
+      }
+    ]
+  },
+  "revision": "rev-7"
+}

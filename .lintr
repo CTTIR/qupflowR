@@ -1,0 +1,17 @@
+# Shared lintr configuration for the CTTIR suite.
+# Copied (not symlinked) into each repository by the adoption script, so a
+# repository can diverge deliberately and the divergence shows in its diff.
+linters: linters_with_defaults(
+    line_length_linter(100),
+    object_name_linter(styles = c("snake_case", "symbols")),
+    commented_code_linter = NULL,
+    cyclocomp_linter = NULL,
+    object_length_linter(40)
+  )
+exclusions: list(
+    "tests/testthat.R",
+    "R/RcppExports.R",
+    "R/cpp11.R",
+    "data-raw"
+  )
+encoding: "UTF-8"

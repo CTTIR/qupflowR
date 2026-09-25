@@ -1,0 +1,33 @@
+{
+  "expected_revision": "rev-7",
+  "operations": [
+    {
+      "op": "object.create",
+      "image_id": "1",
+      "objects": [
+        {
+          "object_id": "d1e2f3a4-b5c6-4d7e-8f90-a1b2c3d4e5f6",
+          "parent_id": "3ea21850-79ae-4b6d-adf5-c133563aebbd",
+          "type": "cell",
+          "name": null,
+          "class_path": ["Tumor"],
+          "plane": {
+            "c": -1,
+            "z": 0,
+            "t": 0
+          },
+          "roi": {
+            "representation": "wkb",
+            "encoding": "base64",
+            "data": "AQMAAAABAAAABQAAAAAAAAAAACRAAAAAAAAANEAAAAAAAAAyQAAAAAAAADRAAAAAAAAAMkAAAAAAAAA6QAAAAAAAACRAAAAAAAAAOkAAAAAAAAAkQAAAAAAAADRA"
+          },
+          "nucleus_roi": {
+            "representation": "wkb",
+            "encoding": "base64",
+            "data": "AQMAAAABAAAABQAAAAAAAAAAAChAAAAAAAAANkAAAAAAAAAwQAAAAAAAADZAAAAAAAAAMEAAAAAAAAA4QAAAAAAAAChAAAAAAAAAOEAAAAAAAAAoQAAAAAAAADZA"
+          }
+        }
+      ]
+    }
+  ]
+}

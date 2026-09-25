@@ -1,0 +1,117 @@
+---
+title: "Getting started with qupflowR"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Getting started with qupflowR}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+qupflowR is being built to connect R to [QuPath](https://qupath.github.io/)
+0.7.0 through a local Java bridge, with a Shiny app on top of the same R
+functions and shareable analysis workflows. This vignette describes what the
+current development version can and cannot do. It is updated whenever a new
+part becomes usable.
+
+## What this version contains
+
+This version is the foundation of the package. It has no functions for
+QuPath projects, images or objects yet.
+
+| Part | State in this version |
+|---|---|
+| Package skeleton, tests and quality checks | first version |
+| Classified error conditions and the error code registry | first version |
+| Message catalogue in German and English | first version |
+| JSON helpers and JSON Schema validation for the bridge protocol | first version, building blocks for the bridge client |
+| Java bridge (QuPath extension and headless worker) | in development, not reachable from R |
+| Connecting to QuPath, reading projects, objects and measurements | planned |
+| Shiny app | planned |
+| Shareable workflows | planned |
+
+Loading the package is safe on any machine: `library(qupflowR)` starts no
+Java, QuPath, Python or browser process, downloads nothing and does not load
+optional packages such as shiny, sf or annotatR.
+
+```{r}
+library(qupflowR)
+```
+
+## Errors carry stable codes
+
+Every error that qupflowR raises has a code from one registry. The Java bridge
+reads the same registry, so an error reported by the bridge and the matching
+R condition agree on the code, the R condition class, the HTTP status and
+whether a retry is safe.
+
+```{r}
+codes <- qp_error_codes()
+codes[codes$code %in% c("HOST_BUSY", "REVISION_CONFLICT"),
+      c("code", "http_status", "r_class", "retryable")]
+```
+
+Code that calls qupflowR can catch a class of problems, or look at the code:
+
+```{r}
+cnd <- tryCatch(
+  qp_abort("REVISION_CONFLICT"),
+  qp_conflict_error = function(e) e
+)
+class(cnd)
+qp_condition_code(cnd)
+```
+
+## Messages in German or English
+
+User-facing messages come from a catalogue. German is the default; the option
+`qupflowR.language` selects English.
+
+```{r}
+qp_msg("error.host_busy", .lang = "de")
+qp_msg("error.host_busy", .lang = "en")
+```
+
+## Optional packages
+
+The Shiny app, geometry conversion with sf and the annotatR interoperability
+will need packages that are listed in `Suggests`. They are checked only where
+a feature uses them. A missing package then produces a `qp_capability_error`
+with the code `CAPABILITY_UNAVAILABLE` that names the packages to install.
+
+## Requirements
+
+- R (>= 4.5.0). The package has been checked with R 4.6.1 and R 4.5.3. Older
+  R versions are not declared because they have not been checked.
+- The bridge will need QuPath 0.7.0 and a Java 25 runtime. Neither is needed
+  for the functions shown here.
+
+Nothing has been released yet. Planned functions such as connecting to a
+running QuPath or opening a project do not exist in this version, so this
+vignette does not show them.
+
+## Reproduce an existing external method
+
+`qp_run_external()` is a separate compatibility boundary for an explicitly
+trusted, hash-pinned executable and argument vector. It leaves analytical
+scripts and runtime choices unchanged. Declare all script, runtime, model and
+input pins; use a new workspace and explicit relative output files. The
+`{{workspace}}` argument token expands without a shell. A bounded private process
+environment prevents accidental use of the user's desktop/preferences.
+
+The method itself must validate its analytical outputs. The returned
+`execution_complete` status records process success, unchanged declared inputs
+and nonempty output artifacts; it does not imply scientific equivalence or a
+successful project save. Keep study configuration and data outside the public
+package. This additive API is not the future queued workflow engine and does
+not qualify the developing live bridge for other QuPath versions.
+
+The initial execution profile is Linux-only. Its receipt records the complete
+explicit child environment, and Java property values retain paths containing
+spaces or quotes. Other platforms remain unavailable until separately qualified.

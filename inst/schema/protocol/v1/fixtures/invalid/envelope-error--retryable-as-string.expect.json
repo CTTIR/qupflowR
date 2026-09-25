@@ -1,0 +1,12 @@
+{
+  "schema": "envelope-error",
+  "valid": false,
+  "rule": "retryable is a boolean",
+  "errors": [
+    {
+      "path": "/error/retryable",
+      "keyword": "type",
+      "schema_path": "error.schema.json#/properties/retryable/type"
+    }
+  ]
+}

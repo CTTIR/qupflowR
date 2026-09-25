@@ -1,0 +1,12 @@
+{
+  "schema": "object-record",
+  "valid": false,
+  "rule": "class name components must not contain ':'",
+  "errors": [
+    {
+      "path": "/class_path/1",
+      "keyword": "pattern",
+      "schema_path": "common.schema.json#/definitions/class_component/pattern"
+    }
+  ]
+}

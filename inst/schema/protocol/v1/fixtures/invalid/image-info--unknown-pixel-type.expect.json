@@ -1,0 +1,12 @@
+{
+  "schema": "image-info",
+  "valid": false,
+  "rule": "pixel types are fixed",
+  "errors": [
+    {
+      "path": "/pixel_type",
+      "keyword": "enum",
+      "schema_path": "image-info.schema.json#/properties/pixel_type/enum"
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "schema": "session",
+  "valid": false,
+  "rule": "dirty is a boolean",
+  "errors": [
+    {
+      "path": "/dirty",
+      "keyword": "type",
+      "schema_path": "session.schema.json#/properties/dirty/type"
+    }
+  ]
+}

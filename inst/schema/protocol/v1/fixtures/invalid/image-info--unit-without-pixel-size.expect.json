@@ -1,0 +1,12 @@
+{
+  "schema": "image-info",
+  "valid": false,
+  "rule": "a unit needs pixel sizes; unknown calibration has neither",
+  "errors": [
+    {
+      "path": "/calibration",
+      "keyword": "anyOf",
+      "schema_path": "image-info.schema.json#/definitions/calibration/anyOf"
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+# Thin caller of the shared CTTIR coverage workflow, pinned to the reviewed
+# commit named in the build kit (docs/20_CTTIR_STANDARDS.md).
+# The shared workflow measures covr::package_coverage(type = "tests") and
+# exits non-zero below the floor. The floor of 90 percent is this project's
+# own target (decision D009). The coverage baseline check lives in
+# tools/quality.R, because the shared workflow has no baseline input.
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+name: test-coverage
+
+# The called workflow declares `permissions: read-all`. A reusable workflow
+# can only keep or reduce the caller's token permissions, so read-all is the
+# narrowest grant that lets it run. Nothing here needs write access.
+permissions: read-all
+
+jobs:
+  coverage:
+    uses: CTTIR/.github/.github/workflows/test-coverage.yaml@d54cd50b95ba0110dcc54e6371e3ebb82ee94afb
+    with:
+      floor: 90
+    # No secrets are passed, exactly as in the docs/20 caller block: the
+    # shared workflow then gates on the floor and skips the Codecov upload
+    # with a warning. Publishing coverage is decided in T11.

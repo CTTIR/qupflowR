@@ -1,0 +1,12 @@
+{
+  "schema": "envelope-error",
+  "valid": false,
+  "rule": "UUIDs use the lower-case form",
+  "errors": [
+    {
+      "path": "/request_id",
+      "keyword": "format",
+      "schema_path": "common.schema.json#/definitions/uuid/format"
+    }
+  ]
+}

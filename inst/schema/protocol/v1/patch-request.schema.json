@@ -1,0 +1,467 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://cttir.github.io/qupflowR/schema/protocol/v1/patch-request.schema.json",
+  "title": "Patch request",
+  "description": "Body of POST /v1/sessions/{sid}/patches. Every image-scoped operation names its image_id; deletes name a strategy for descendants. Referential checks and revisions are semantic.",
+  "type": "object",
+  "required": ["expected_revision", "operations"],
+  "additionalProperties": false,
+  "properties": {
+    "expected_revision": {
+      "$ref": "common.schema.json#/definitions/revision"
+    },
+    "operations": {
+      "type": "array",
+      "maxItems": 10000,
+      "items": {
+        "$ref": "#/definitions/operation"
+      }
+    }
+  },
+  "definitions": {
+    "operation": {
+      "type": "object",
+      "required": ["op"],
+      "additionalProperties": false,
+      "properties": {
+        "op": {
+          "enum": [
+            "image.add",
+            "image.remove",
+            "image.update",
+            "image.paths",
+            "image.calibration",
+            "classes.replace",
+            "object.create",
+            "object.update",
+            "object.delete",
+            "measurements.upsert",
+            "measurements.delete"
+          ]
+        },
+        "image_id": {
+          "$ref": "common.schema.json#/definitions/image_id"
+        },
+        "uri": {
+          "type": "string",
+          "format": "uri-reference",
+          "minLength": 1,
+          "maxLength": 8192
+        },
+        "name": {
+          "type": "string",
+          "maxLength": 4096
+        },
+        "old_uri": {
+          "type": "string",
+          "format": "uri-reference",
+          "maxLength": 8192
+        },
+        "new_uri": {
+          "type": "string",
+          "format": "uri-reference",
+          "minLength": 1,
+          "maxLength": 8192
+        },
+        "image_changes": {
+          "$ref": "#/definitions/image_changes"
+        },
+        "pixel_width": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "pixel_height": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "unit": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 32
+        },
+        "z_spacing": {
+          "type": ["number", "null"],
+          "exclusiveMinimum": 0
+        },
+        "time_interval": {
+          "type": ["number", "null"],
+          "exclusiveMinimum": 0
+        },
+        "classes": {
+          "type": "array",
+          "maxItems": 10000,
+          "items": {
+            "$ref": "#/definitions/class_entry"
+          }
+        },
+        "objects": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 10000,
+          "items": {
+            "$ref": "#/definitions/new_object"
+          }
+        },
+        "object_id": {
+          "$ref": "common.schema.json#/definitions/object_id"
+        },
+        "object_changes": {
+          "$ref": "#/definitions/object_changes"
+        },
+        "object_ids": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 10000,
+          "uniqueItems": true,
+          "items": {
+            "$ref": "common.schema.json#/definitions/object_id"
+          }
+        },
+        "strategy": {
+          "enum": ["reject_if_children", "keep_children", "delete_subtree"]
+        },
+        "values": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 100000,
+          "items": {
+            "$ref": "#/definitions/measurement_value"
+          }
+        },
+        "names": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 10000,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 1024
+          }
+        }
+      },
+      "anyOf": [
+        {
+          "required": ["op", "uri"],
+          "additionalProperties": false,
+          "properties": {
+            "op": {
+              "const": "image.add"
+            },
+            "uri": true,
+            "name": true
+          }
+        },
+        {
+          "required": ["op", "image_id"],
+          "additionalProperties": false,
+          "properties": {
+            "op": {
+              "const": "image.remove"
+            },
+            "image_id": true
+          }
+        },
+        {
+          "required": ["op", "image_id", "image_changes"],
+          "additionalProperties": false,
+          "properties": {
+            "op": {
+              "const": "image.update"
+            },
+            "image_id": true,
+            "image_changes": true
+          }
+        },
+        {
+          "required": ["op", "image_id", "old_uri", "new_uri"],
+          "additionalProperties": false,
+          "properties": {
+            "op": {
+              "const": "image.paths"
+            },
+            "image_id": true,
+            "old_uri": true,
+            "new_uri": true
+          }
+        },
+        {
+          "required": ["op", "image_id", "pixel_width", "pixel_height", "unit"],
+          "additionalProperties": false,
+          "properties": {
+            "op": {
+              "const": "image.calibration"
+            },
+            "image_id": true,
+            "pixel_width": true,
+            "pixel_height": true,
+            "unit": true,
+            "z_spacing": true,
+            "time_interval": true
+          }
+        },
+        {
+          "required": ["op", "classes"],
+          "additionalProperties": false,
+          "properties": {
+            "op": {
+              "const": "classes.replace"
+            },
+            "classes": true
+          }
+        },
+        {
+          "required": ["op", "image_id", "objects"],
+          "additionalProperties": false,
+          "properties": {
+            "op": {
+              "const": "object.create"
+            },
+            "image_id": true,
+            "objects": true
+          }
+        },
+        {
+          "required": ["op", "image_id", "object_id", "object_changes"],
+          "additionalProperties": false,
+          "properties": {
+            "op": {
+              "const": "object.update"
+            },
+            "image_id": true,
+            "object_id": true,
+            "object_changes": true
+          }
+        },
+        {
+          "required": ["op", "image_id", "object_ids", "strategy"],
+          "additionalProperties": false,
+          "properties": {
+            "op": {
+              "const": "object.delete"
+            },
+            "image_id": true,
+            "object_ids": true,
+            "strategy": true
+          }
+        },
+        {
+          "required": ["op", "image_id", "values"],
+          "additionalProperties": false,
+          "properties": {
+            "op": {
+              "const": "measurements.upsert"
+            },
+            "image_id": true,
+            "values": true
+          }
+        },
+        {
+          "required": ["op", "image_id", "names"],
+          "additionalProperties": false,
+          "properties": {
+            "op": {
+              "const": "measurements.delete"
+            },
+            "image_id": true,
+            "names": true,
+            "object_ids": true
+          }
+        }
+      ]
+    },
+    "image_changes": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 4096
+        },
+        "description": {
+          "type": ["string", "null"],
+          "maxLength": 100000
+        },
+        "metadata": {
+          "type": "object",
+          "additionalProperties": {
+            "type": ["string", "null"]
+          }
+        }
+      },
+      "anyOf": [
+        {
+          "required": ["name"]
+        },
+        {
+          "required": ["description"]
+        },
+        {
+          "required": ["metadata"]
+        }
+      ]
+    },
+    "object_changes": {
+      "description": "Only the changed fields.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "type": ["string", "null"],
+          "maxLength": 4096
+        },
+        "class_path": {
+          "$ref": "common.schema.json#/definitions/nullable_class_path"
+        },
+        "class_probability": {
+          "$ref": "common.schema.json#/definitions/nullable_measurement_value"
+        },
+        "parent_id": {
+          "$ref": "common.schema.json#/definitions/nullable_uuid"
+        },
+        "locked": {
+          "type": "boolean"
+        },
+        "plane": {
+          "$ref": "common.schema.json#/definitions/plane"
+        },
+        "roi": {
+          "$ref": "common.schema.json#/definitions/roi"
+        },
+        "nucleus_roi": {
+          "$ref": "common.schema.json#/definitions/nullable_roi"
+        }
+      },
+      "anyOf": [
+        {
+          "required": ["name"]
+        },
+        {
+          "required": ["class_path"]
+        },
+        {
+          "required": ["class_probability"]
+        },
+        {
+          "required": ["parent_id"]
+        },
+        {
+          "required": ["locked"]
+        },
+        {
+          "required": ["plane"]
+        },
+        {
+          "required": ["roi"]
+        },
+        {
+          "required": ["nucleus_roi"]
+        }
+      ]
+    },
+    "class_entry": {
+      "type": "object",
+      "required": ["class_path", "color"],
+      "additionalProperties": false,
+      "properties": {
+        "class_path": {
+          "allOf": [
+            {
+              "$ref": "common.schema.json#/definitions/nullable_class_path"
+            },
+            {
+              "type": "array"
+            }
+          ]
+        },
+        "color": {
+          "$ref": "common.schema.json#/definitions/color"
+        }
+      }
+    },
+    "new_object": {
+      "description": "An object with a reserved UUID; parents may be other new objects.",
+      "type": "object",
+      "required": ["object_id", "parent_id", "type", "plane", "roi"],
+      "additionalProperties": false,
+      "properties": {
+        "object_id": {
+          "$ref": "common.schema.json#/definitions/object_id"
+        },
+        "parent_id": {
+          "$ref": "common.schema.json#/definitions/nullable_uuid"
+        },
+        "type": {
+          "enum": ["annotation", "detection", "cell", "tile"]
+        },
+        "name": {
+          "type": ["string", "null"],
+          "maxLength": 4096
+        },
+        "class_path": {
+          "$ref": "common.schema.json#/definitions/nullable_class_path"
+        },
+        "locked": {
+          "type": "boolean"
+        },
+        "plane": {
+          "$ref": "common.schema.json#/definitions/plane"
+        },
+        "roi": {
+          "$ref": "common.schema.json#/definitions/roi"
+        },
+        "nucleus_roi": {
+          "$ref": "common.schema.json#/definitions/nullable_roi"
+        }
+      },
+      "anyOf": [
+        {
+          "properties": {
+            "type": {
+              "const": "cell"
+            }
+          }
+        },
+        {
+          "properties": {
+            "nucleus_roi": {
+              "type": "null"
+            }
+          }
+        }
+      ]
+    },
+    "measurement_value": {
+      "type": "object",
+      "required": ["object_id", "name", "value", "value_state"],
+      "additionalProperties": false,
+      "properties": {
+        "object_id": {
+          "$ref": "common.schema.json#/definitions/object_id"
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1024
+        },
+        "value": {
+          "type": ["number", "null"]
+        },
+        "value_state": {
+          "$ref": "common.schema.json#/definitions/value_state"
+        },
+        "unit": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 64
+        }
+      },
+      "allOf": [
+        {
+          "$ref": "common.schema.json#/definitions/value_consistency"
+        }
+      ]
+    }
+  }
+}

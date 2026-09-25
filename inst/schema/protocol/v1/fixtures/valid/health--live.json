@@ -1,0 +1,9 @@
+{
+  "status": "ready",
+  "host_type": "live",
+  "qupath_version": "0.7.0",
+  "bridge_version": "0.1.0-SNAPSHOT",
+  "protocol_version": "1.0",
+  "java_version": "25.0.2+10",
+  "fx_thread_blocked": false
+}

@@ -1,0 +1,4 @@
+{
+  "code": "JSON_INVALID",
+  "reason": "unpaired_surrogate"
+}

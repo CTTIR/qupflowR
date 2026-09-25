@@ -1,0 +1,10 @@
+{
+  "code": "HOST_BUSY",
+  "message_key": "error.host_busy",
+  "message": "Too many open connections; retry later",
+  "details": {
+    "reason": "body_too_large",
+    "limit_bytes": -1
+  },
+  "retryable": true
+}

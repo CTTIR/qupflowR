@@ -1,0 +1,12 @@
+{
+  "schema": "health",
+  "valid": false,
+  "rule": "qupath_version is required",
+  "errors": [
+    {
+      "path": "",
+      "keyword": "required",
+      "schema_path": "health.schema.json#/required"
+    }
+  ]
+}

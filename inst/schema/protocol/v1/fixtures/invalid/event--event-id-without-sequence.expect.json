@@ -1,0 +1,12 @@
+{
+  "schema": "event",
+  "valid": false,
+  "rule": "event IDs are <instance_id>:<sequence>",
+  "errors": [
+    {
+      "path": "/event_id",
+      "keyword": "pattern",
+      "schema_path": "event.schema.json#/properties/event_id/pattern"
+    }
+  ]
+}

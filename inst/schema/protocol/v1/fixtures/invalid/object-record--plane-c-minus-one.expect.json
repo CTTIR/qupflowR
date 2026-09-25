@@ -1,0 +1,12 @@
+{
+  "schema": "object-record",
+  "valid": false,
+  "rule": "c = -1 is QuPath's internal sentinel; the protocol uses c = null for no single channel",
+  "errors": [
+    {
+      "path": "/plane/c",
+      "keyword": "minimum",
+      "schema_path": "common.schema.json#/definitions/plane/properties/c/minimum"
+    }
+  ]
+}

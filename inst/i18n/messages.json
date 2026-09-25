@@ -1,0 +1,459 @@
+{
+  "catalog_version": 1,
+  "default_language": "de",
+  "fallback_language": "en",
+  "languages": [
+    "de",
+    "en"
+  ],
+  "messages": {
+    "app.title": {
+      "de": "qupflowR Studio",
+      "en": "qupflowR Studio"
+    },
+    "condition.action": {
+      "de": "Empfohlene Aktion: {action}",
+      "en": "Suggested action: {action}"
+    },
+    "condition.host_message": {
+      "de": "Meldung der Bridge: {message}",
+      "en": "Bridge message: {message}"
+    },
+    "condition.more_errors": {
+      "de": "... und {n} weitere Fehler.",
+      "en": "... and {n} more error{?s}."
+    },
+    "condition.needed_for": {
+      "de": "Benötigt für:",
+      "en": "Needed for:"
+    },
+    "condition.packages_missing": {
+      "de": "Nicht installiert:",
+      "en": "Not installed:"
+    },
+    "condition.packages_outdated": {
+      "de": "Zu alte Version:",
+      "en": "Version too old:"
+    },
+    "condition.request_id": {
+      "de": "Anfrage-ID: {request_id}",
+      "en": "Request ID: {request_id}"
+    },
+    "condition.validation_error": {
+      "de": "{path}: {message}",
+      "en": "{path}: {message}"
+    },
+    "error.auth_required": {
+      "de": "Die Bridge hat die Anmeldung abgelehnt. Bitte die Verbindung erneuern.",
+      "en": "The bridge rejected the credentials. Please reconnect."
+    },
+    "error.bundle_integrity_failed": {
+      "de": "Die Integritätsprüfung des Workflow-Pakets ist fehlgeschlagen.",
+      "en": "The workflow bundle failed its integrity check."
+    },
+    "error.bundle_invalid": {
+      "de": "Das Workflow-Paket ist ungültig.",
+      "en": "The workflow bundle is invalid."
+    },
+    "error.bundle_version_unsupported": {
+      "de": "Die Version des Workflow-Pakets wird nicht unterstützt.",
+      "en": "The workflow bundle version is not supported."
+    },
+    "error.calibration_missing": {
+      "de": "Für dieses Bild fehlt eine gültige Kalibrierung.",
+      "en": "This image has no valid calibration."
+    },
+    "error.capability_unavailable": {
+      "de": "Diese Funktion ist in der verbundenen Bridge nicht verfügbar.",
+      "en": "This function is not available in the connected bridge."
+    },
+    "error.dependency_unresolved": {
+      "de": "Eine Abhängigkeit des Workflows konnte nicht aufgelöst werden.",
+      "en": "A workflow dependency could not be resolved."
+    },
+    "error.embed_limit_exceeded": {
+      "de": "Die Grenze für eingebettete Daten wurde überschritten.",
+      "en": "The limit for embedded data was exceeded."
+    },
+    "error.endpoint_not_found": {
+      "de": "Die Bridge kennt diesen Endpunkt nicht; möglicherweise passen die Versionen nicht zusammen.",
+      "en": "The bridge does not know this endpoint; the versions may not match."
+    },
+    "error.executor_unavailable": {
+      "de": "Der benötigte Executor ist nicht verfügbar.",
+      "en": "The required executor is not available."
+    },
+    "error.expectation_failed": {
+      "de": "Die Expect-Angabe der Anfrage wird nicht unterstützt.",
+      "en": "The Expect header of the request is not supported."
+    },
+    "error.headers_too_large": {
+      "de": "Die Anfrage-Header sind zu groß oder zu zahlreich.",
+      "en": "The request headers are too large or too many."
+    },
+    "error.host_busy": {
+      "de": "Die Bridge ist ausgelastet; die Anfrage kann später wiederholt werden.",
+      "en": "The bridge is busy; the request can be retried later."
+    },
+    "error.host_closing": {
+      "de": "Die Bridge wird gerade beendet.",
+      "en": "The bridge is shutting down."
+    },
+    "error.http_version_not_supported": {
+      "de": "Diese HTTP-Version wird nicht unterstützt.",
+      "en": "This HTTP version is not supported."
+    },
+    "error.idempotency_conflict": {
+      "de": "Der Idempotenzschlüssel wurde bereits für eine andere Anfrage verwendet.",
+      "en": "The idempotency key was already used for a different request."
+    },
+    "error.image_unavailable": {
+      "de": "Die Bilddatei ist nicht erreichbar. Bitte den Projektpfad reparieren.",
+      "en": "The image file is not available. Please repair the project path."
+    },
+    "error.input_binding_required": {
+      "de": "Für den Workflow fehlen Eingabebindungen.",
+      "en": "The workflow is missing input bindings."
+    },
+    "error.input_mismatch": {
+      "de": "Die Eingaben stimmen nicht mit der Referenz überein.",
+      "en": "The inputs do not match the reference."
+    },
+    "error.internal_error": {
+      "de": "In der Bridge ist ein interner Fehler aufgetreten.",
+      "en": "An internal error occurred in the bridge."
+    },
+    "error.invalid_argument": {
+      "de": "Das Argument {.arg {arg}} muss {expected} sein.",
+      "en": "Argument {.arg {arg}} must be {expected}."
+    },
+    "error.invalid_geometry": {
+      "de": "Die Geometrie ist leer oder ungültig.",
+      "en": "The geometry is empty or invalid."
+    },
+    "error.invalid_plane": {
+      "de": "Die angegebene Bildebene (c/z/t) ist ungültig.",
+      "en": "The given image plane (c/z/t) is invalid."
+    },
+    "error.json_invalid": {
+      "de": "Der Text ist kein gültiges JSON ({reason}).",
+      "en": "The text is not valid JSON ({reason})."
+    },
+    "error.json_unrepresentable": {
+      "de": "Der Wert an {.code {path}} lässt sich nicht als JSON darstellen ({reason}).",
+      "en": "The value at {.code {path}} cannot be represented as JSON ({reason})."
+    },
+    "error.length_required": {
+      "de": "Der Anfragetext muss mit Content-Length übertragen werden.",
+      "en": "The request body must be sent with Content-Length."
+    },
+    "error.license_asset_required": {
+      "de": "Eine lizenzpflichtige Ressource muss bereitgestellt werden.",
+      "en": "A licensed asset must be provided."
+    },
+    "error.malformed_request": {
+      "de": "Die Bridge konnte die Anfrage nicht lesen.",
+      "en": "The bridge could not parse the request."
+    },
+    "error.method_not_allowed": {
+      "de": "Die HTTP-Methode ist für diesen Endpunkt nicht erlaubt.",
+      "en": "The HTTP method is not allowed for this endpoint."
+    },
+    "error.migration_required": {
+      "de": "Die Daten müssen zuerst ausdrücklich migriert werden.",
+      "en": "The data must be migrated explicitly first."
+    },
+    "error.migration_unsupported": {
+      "de": "Für diese Version gibt es keine Migration.",
+      "en": "No migration exists for this version."
+    },
+    "error.object_not_found": {
+      "de": "Das Objekt wurde nicht gefunden.",
+      "en": "The object was not found."
+    },
+    "error.optional_packages_unavailable": {
+      "de": "Für diese Funktion fehlen optionale R-Pakete.",
+      "en": "Optional R packages needed for this function are not available."
+    },
+    "error.output_invalid": {
+      "de": "Die Ausgabe eines Workflow-Schritts ist ungültig.",
+      "en": "The output of a workflow step is invalid."
+    },
+    "error.payload_too_large": {
+      "de": "Die Anfrage ist zu groß. Bitte eine kleinere Seite oder einen Exportjob verwenden.",
+      "en": "The request is too large. Please use a smaller page or an export job."
+    },
+    "error.project_busy": {
+      "de": "Das Projekt ist gerade durch einen anderen Vorgang belegt.",
+      "en": "The project is busy with another operation."
+    },
+    "error.protocol_mismatch": {
+      "de": "Die Protokoll-Hauptversion der Bridge ist nicht kompatibel.",
+      "en": "The protocol major version of the bridge is not compatible."
+    },
+    "error.protocol_violation": {
+      "de": "Die Antwort der Bridge entspricht nicht dem Protokoll v1.",
+      "en": "The bridge response does not follow protocol v1."
+    },
+    "error.r_object_invalid": {
+      "de": "Das R-Objekt verletzt seinen Vertrag.",
+      "en": "The R object violates its contract."
+    },
+    "error.recovery_required": {
+      "de": "Das Projekt muss wiederhergestellt werden; Schreibzugriffe sind gesperrt.",
+      "en": "The project needs recovery; write access is locked."
+    },
+    "error.reproduction_mismatch": {
+      "de": "Das Ergebnis weicht von der Referenz ab.",
+      "en": "The result differs from the reference."
+    },
+    "error.request_line_too_long": {
+      "de": "Die Anfragezeile ist zu lang.",
+      "en": "The request line is too long."
+    },
+    "error.request_timeout": {
+      "de": "Die Anfrage wurde nicht rechtzeitig vollständig übertragen.",
+      "en": "The request was not received completely in time."
+    },
+    "error.resource_changed": {
+      "de": "Eine Ressource wurde seit ihrer Registrierung verändert.",
+      "en": "A resource has changed since it was registered."
+    },
+    "error.resource_missing": {
+      "de": "Eine benötigte Ressource fehlt.",
+      "en": "A required resource is missing."
+    },
+    "error.revision_conflict": {
+      "de": "Das Projekt wurde inzwischen geändert. Bitte einen neuen Diff erstellen.",
+      "en": "The project has changed in the meantime. Please create a new diff."
+    },
+    "error.runtime_unavailable": {
+      "de": "Die benötigte Laufzeitumgebung ist nicht verfügbar.",
+      "en": "The required runtime is not available."
+    },
+    "error.schema_invalid": {
+      "de": "Das JSON-Schema {.file {schema}} ist ungültig oder nicht auflösbar ({reason}).",
+      "en": "The JSON Schema {.file {schema}} is invalid or cannot be resolved ({reason})."
+    },
+    "error.scope_denied": {
+      "de": "Dieser Zugriff ist für diesen Host, diese Herkunft oder dieses Token nicht erlaubt.",
+      "en": "This access is not allowed for this host, origin or token scope."
+    },
+    "error.serialization_trust_required": {
+      "de": "Das Einlesen dieser R-Serialisierung erfordert eine ausdrückliche Freigabe.",
+      "en": "Reading this R serialization requires explicit trust."
+    },
+    "error.serialization_unsupported": {
+      "de": "Dieses Serialisierungsformat wird nicht unterstützt.",
+      "en": "This serialization format is not supported."
+    },
+    "error.session_not_found": {
+      "de": "Die Sitzung existiert nicht mehr. Bitte den Kontext aktualisieren.",
+      "en": "The session no longer exists. Please refresh the context."
+    },
+    "error.snapshot_expired": {
+      "de": "Der Abfrage-Snapshot ist abgelaufen. Bitte die Abfrage neu starten.",
+      "en": "The query snapshot has expired. Please restart the query."
+    },
+    "error.store_unavailable": {
+      "de": "Der Speicher ist nicht verfügbar.",
+      "en": "The store is not available."
+    },
+    "error.trust_required": {
+      "de": "Die Ausführung erfordert eine ausdrückliche Vertrauensfreigabe.",
+      "en": "Execution requires an explicit trust decision."
+    },
+    "error.unknown_code": {
+      "de": "Die Bridge meldet einen unbekannten Fehler ({code}).",
+      "en": "The bridge reports an unknown error ({code})."
+    },
+    "error.validation_failed": {
+      "de": "Die Anfrage ist ungültig; es wurde nichts geändert.",
+      "en": "The request is invalid; nothing was changed."
+    },
+    "expect.character": {
+      "de": "ein Zeichenvektor ohne fehlende Werte",
+      "en": "a character vector without missing values"
+    },
+    "expect.error_code": {
+      "de": "ein Fehlercode aus Großbuchstaben, Ziffern und Unterstrichen",
+      "en": "an error code of upper-case letters, digits and underscores"
+    },
+    "expect.flag": {
+      "de": "ein einzelner Wahrheitswert (TRUE oder FALSE)",
+      "en": "a single logical value (TRUE or FALSE)"
+    },
+    "expect.json_text": {
+      "de": "ein einzelner JSON-Text in UTF-8",
+      "en": "a single JSON text in UTF-8"
+    },
+    "expect.list": {
+      "de": "eine Liste",
+      "en": "a list"
+    },
+    "expect.message_key": {
+      "de": "ein Meldungsschlüssel wie error.host_busy",
+      "en": "a message key such as error.host_busy"
+    },
+    "expect.named_values": {
+      "de": "benannte Werte",
+      "en": "named values"
+    },
+    "expect.numeric": {
+      "de": "ein numerischer Vektor",
+      "en": "a numeric vector"
+    },
+    "expect.package_names": {
+      "de": "ein Vektor eindeutiger, nicht leerer Paketnamen",
+      "en": "a vector of unique, non-empty package names"
+    },
+    "expect.positive_count": {
+      "de": "eine einzelne positive ganze Zahl",
+      "en": "a single positive whole number"
+    },
+    "expect.response_envelope": {
+      "de": "eine dekodierte Protokoll-Antwort (Liste)",
+      "en": "a decoded protocol response (list)"
+    },
+    "expect.scalar": {
+      "de": "ein atomarer Wert der Länge 1 oder NULL",
+      "en": "an atomic value of length 1 or NULL"
+    },
+    "expect.schema": {
+      "de": "ein Schemaname oder der Pfad zu einer Schemadatei",
+      "en": "a schema name or the path to a schema file"
+    },
+    "expect.string": {
+      "de": "eine einzelne Zeichenkette",
+      "en": "a single string"
+    },
+    "expect.value_state": {
+      "de": "ein Werte-Zustand (finite, missing, nan, pos_inf oder neg_inf) passend zum Wert",
+      "en": "a value state (finite, missing, nan, pos_inf or neg_inf) that matches the value"
+    },
+    "expect.version_strings": {
+      "de": "NULL oder Versionsangaben parallel zu den Paketnamen",
+      "en": "NULL or version strings parallel to the package names"
+    },
+    "language.de": {
+      "de": "Deutsch",
+      "en": "German"
+    },
+    "language.en": {
+      "de": "Englisch",
+      "en": "English"
+    },
+    "validation.additional_properties": {
+      "de": "Die Eigenschaft {.code {property}} ist hier nicht erlaubt.",
+      "en": "Property {.code {property}} is not allowed here."
+    },
+    "validation.any_of": {
+      "de": "Keine der Alternativen passt.",
+      "en": "None of the alternatives matches."
+    },
+    "validation.const": {
+      "de": "Der Wert muss {expected} sein.",
+      "en": "The value must be {expected}."
+    },
+    "validation.enum": {
+      "de": "Der Wert ist nicht erlaubt; erlaubt: {allowed}.",
+      "en": "The value is not allowed; allowed: {allowed}."
+    },
+    "validation.exclusive_maximum": {
+      "de": "Der Wert muss kleiner als {limit} sein.",
+      "en": "The value must be less than {limit}."
+    },
+    "validation.exclusive_minimum": {
+      "de": "Der Wert muss größer als {limit} sein.",
+      "en": "The value must be greater than {limit}."
+    },
+    "validation.false_schema": {
+      "de": "An dieser Stelle ist kein Wert erlaubt.",
+      "en": "No value is allowed here."
+    },
+    "validation.format": {
+      "de": "Der Text hat nicht das Format {format}.",
+      "en": "The text does not have the format {format}."
+    },
+    "validation.invalid": {
+      "de": "Ungültig gemäß {schema}: {n} Fehler.",
+      "en": "Invalid against {schema}: {n} error{?s}."
+    },
+    "validation.max_items": {
+      "de": "Höchstens {limit} Elemente sind erlaubt.",
+      "en": "At most {limit} items are allowed."
+    },
+    "validation.max_length": {
+      "de": "Höchstens {limit} Zeichen sind erlaubt.",
+      "en": "At most {limit} characters are allowed."
+    },
+    "validation.maximum": {
+      "de": "Der Wert darf höchstens {limit} sein.",
+      "en": "The value must be at most {limit}."
+    },
+    "validation.min_items": {
+      "de": "Mindestens {limit} Elemente sind erforderlich.",
+      "en": "At least {limit} items are required."
+    },
+    "validation.min_length": {
+      "de": "Mindestens {limit} Zeichen sind erforderlich.",
+      "en": "At least {limit} characters are required."
+    },
+    "validation.minimum": {
+      "de": "Der Wert muss mindestens {limit} sein.",
+      "en": "The value must be at least {limit}."
+    },
+    "validation.not": {
+      "de": "Der Wert entspricht einem ausgeschlossenen Schema.",
+      "en": "The value matches an excluded schema."
+    },
+    "validation.one_of": {
+      "de": "Genau eine Alternative muss passen; passend: {matched}.",
+      "en": "Exactly one alternative must match; matching: {matched}."
+    },
+    "validation.pattern": {
+      "de": "Der Text entspricht nicht dem Muster {pattern}.",
+      "en": "The text does not match the pattern {pattern}."
+    },
+    "validation.required": {
+      "de": "Die Pflichteigenschaft {.code {property}} fehlt.",
+      "en": "Required property {.code {property}} is missing."
+    },
+    "validation.type": {
+      "de": "Erwartet wird {expected}, gefunden wurde {actual}.",
+      "en": "Expected {expected}, found {actual}."
+    },
+    "validation.unique_items": {
+      "de": "Die Elemente {first} und {second} sind gleich.",
+      "en": "Items {first} and {second} are equal."
+    },
+    "validation.valid": {
+      "de": "Gültig gemäß {schema}.",
+      "en": "Valid against {schema}."
+    },
+    "value_state.finite": {
+      "de": "endlicher Wert",
+      "en": "finite value"
+    },
+    "value_state.missing": {
+      "de": "fehlender Wert",
+      "en": "missing value"
+    },
+    "value_state.nan": {
+      "de": "keine Zahl (NaN)",
+      "en": "not a number (NaN)"
+    },
+    "value_state.neg_inf": {
+      "de": "minus unendlich",
+      "en": "negative infinity"
+    },
+    "value_state.pos_inf": {
+      "de": "plus unendlich",
+      "en": "positive infinity"
+    },
+    "warning.unknown_code": {
+      "de": "Die Bridge meldet eine Warnung mit dem Code {code}.",
+      "en": "The bridge reports a warning with code {code}."
+    }
+  }
+}

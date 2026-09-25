@@ -1,0 +1,1 @@
+{"one": ["x"], "scalar": "x", "nulls": [null], "flags": [true], "mixed": [1, "a", null], "nested": [[]]}

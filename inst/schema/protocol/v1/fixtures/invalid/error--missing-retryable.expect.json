@@ -1,0 +1,12 @@
+{
+  "schema": "error",
+  "valid": false,
+  "rule": "retryable is required",
+  "errors": [
+    {
+      "path": "",
+      "keyword": "required",
+      "schema_path": "error.schema.json#/required"
+    }
+  ]
+}

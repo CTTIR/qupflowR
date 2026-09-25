@@ -1,0 +1,12 @@
+{
+  "schema": "discovery-manifest",
+  "valid": false,
+  "rule": "the manifest never contains the token itself",
+  "errors": [
+    {
+      "path": "",
+      "keyword": "not",
+      "schema_path": "discovery-manifest.schema.json#/not"
+    }
+  ]
+}

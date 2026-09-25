@@ -1,0 +1,12 @@
+{
+  "schema": "measurement-record",
+  "valid": false,
+  "rule": "namespace is stored, dynamic or derived",
+  "errors": [
+    {
+      "path": "/namespace",
+      "keyword": "enum",
+      "schema_path": "measurement-record.schema.json#/properties/namespace/enum"
+    }
+  ]
+}

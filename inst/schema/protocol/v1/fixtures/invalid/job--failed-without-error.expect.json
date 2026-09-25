@@ -1,0 +1,12 @@
+{
+  "schema": "job",
+  "valid": false,
+  "rule": "a failed job carries its error",
+  "errors": [
+    {
+      "path": "",
+      "keyword": "anyOf",
+      "schema_path": "job.schema.json#/allOf/0/anyOf"
+    }
+  ]
+}

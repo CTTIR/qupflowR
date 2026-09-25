@@ -1,0 +1,12 @@
+{
+  "schema": "error-codes",
+  "valid": false,
+  "rule": "registry entries have a fixed set of members",
+  "errors": [
+    {
+      "path": "/0/severity",
+      "keyword": "additionalProperties",
+      "schema_path": "error-codes.schema.json#/items/additionalProperties"
+    }
+  ]
+}

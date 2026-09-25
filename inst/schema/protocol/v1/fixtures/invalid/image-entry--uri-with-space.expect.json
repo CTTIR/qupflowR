@@ -1,0 +1,12 @@
+{
+  "schema": "image-entry",
+  "valid": false,
+  "rule": "URIs percent-encode spaces",
+  "errors": [
+    {
+      "path": "/uri",
+      "keyword": "format",
+      "schema_path": "image-entry.schema.json#/properties/uri/format"
+    }
+  ]
+}

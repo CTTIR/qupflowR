@@ -1,0 +1,12 @@
+{
+  "schema": "event",
+  "valid": false,
+  "rule": "selection events list the selected object IDs",
+  "errors": [
+    {
+      "path": "",
+      "keyword": "anyOf",
+      "schema_path": "event.schema.json#/allOf/0/anyOf"
+    }
+  ]
+}

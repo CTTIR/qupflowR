@@ -1,0 +1,150 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://cttir.github.io/qupflowR/schema/protocol/v1/job.schema.json",
+  "title": "Job",
+  "description": "A bridge job (GET /v1/sessions/{sid}/jobs/{jid}). A failed job carries its error; other states carry none.",
+  "type": "object",
+  "required": [
+    "job_id",
+    "session_id",
+    "recipe_id",
+    "state",
+    "phase",
+    "progress",
+    "created_at",
+    "updated_at",
+    "artifacts",
+    "error"
+  ],
+  "properties": {
+    "job_id": {
+      "$ref": "common.schema.json#/definitions/uuid"
+    },
+    "session_id": {
+      "$ref": "common.schema.json#/definitions/uuid"
+    },
+    "recipe_id": {
+      "type": ["string", "null"],
+      "maxLength": 128,
+      "pattern": "^[a-z][a-z0-9_]*(\\.[a-z0-9_]+)*$"
+    },
+    "state": {
+      "enum": [
+        "queued",
+        "running",
+        "succeeded",
+        "failed",
+        "cancel_requested",
+        "cancelled",
+        "interrupted"
+      ]
+    },
+    "phase": {
+      "type": ["string", "null"],
+      "maxLength": 256
+    },
+    "progress": {
+      "type": "object",
+      "required": ["completed", "total"],
+      "additionalProperties": false,
+      "properties": {
+        "completed": {
+          "$ref": "common.schema.json#/definitions/count"
+        },
+        "total": {
+          "type": ["integer", "null"],
+          "minimum": 0
+        }
+      }
+    },
+    "created_at": {
+      "$ref": "common.schema.json#/definitions/date_time"
+    },
+    "updated_at": {
+      "$ref": "common.schema.json#/definitions/date_time"
+    },
+    "artifacts": {
+      "type": "array",
+      "maxItems": 10000,
+      "items": {
+        "$ref": "#/definitions/artifact"
+      }
+    },
+    "error": {
+      "type": ["object", "null"],
+      "anyOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "error.schema.json"
+        }
+      ]
+    }
+  },
+  "allOf": [
+    {
+      "anyOf": [
+        {
+          "properties": {
+            "state": {
+              "not": {
+                "const": "failed"
+              }
+            }
+          }
+        },
+        {
+          "properties": {
+            "error": {
+              "type": "object"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "anyOf": [
+        {
+          "properties": {
+            "state": {
+              "const": "failed"
+            }
+          }
+        },
+        {
+          "properties": {
+            "error": {
+              "type": "null"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "definitions": {
+    "artifact": {
+      "type": "object",
+      "required": ["artifact_id", "kind", "media_type", "size_bytes", "sha256"],
+      "properties": {
+        "artifact_id": {
+          "$ref": "common.schema.json#/definitions/uuid"
+        },
+        "kind": {
+          "$ref": "common.schema.json#/definitions/reason_code"
+        },
+        "media_type": {
+          "type": "string",
+          "maxLength": 128,
+          "pattern": "^[a-z]+/[A-Za-z0-9.+-]+$"
+        },
+        "size_bytes": {
+          "$ref": "common.schema.json#/definitions/count"
+        },
+        "sha256": {
+          "$ref": "common.schema.json#/definitions/sha256"
+        }
+      }
+    }
+  }
+}

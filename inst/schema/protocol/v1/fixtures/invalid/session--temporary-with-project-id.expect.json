@@ -1,0 +1,12 @@
+{
+  "schema": "session",
+  "valid": false,
+  "rule": "a temporary project reference has no persistent project_id",
+  "errors": [
+    {
+      "path": "/project",
+      "keyword": "anyOf",
+      "schema_path": "session.schema.json#/definitions/project/anyOf"
+    }
+  ]
+}

@@ -1,0 +1,67 @@
+Package: qupflowR
+Title: Connect R and 'Shiny' to 'QuPath' Through a Local Bridge
+Version: 0.0.0.9000
+Authors@R:
+    person("R.", "Heller", email = "58561665+r-heller@users.noreply.github.com",
+           role = c("aut", "cre", "cph"))
+Description: Development version of an interface between R and the 'QuPath'
+    0.7.0 platform for digital pathology image analysis. The planned design
+    lets R talk to a local 'Java' bridge (a 'QuPath' extension and a headless
+    worker) over an authenticated loopback protocol, adds a 'Shiny' app that
+    is built on the same R functions, and packages analysis workflows so they
+    can be shared and run again. This version contains only the package
+    foundations: classified error conditions, a message catalogue, protocol
+    JSON helpers and a JSON Schema subset validator with the protocol
+    schemas, plus a hash-pinned external-method execution boundary.
+    The bridge client, the app and the workflow engine are not
+    implemented yet.
+License: GPL (>= 3)
+URL: https://github.com/CTTIR/qupflowR, https://cttir.github.io/qupflowR/
+BugReports: https://github.com/CTTIR/qupflowR/issues
+Depends:
+    R (>= 4.5.0)
+Imports:
+    cli,
+    jsonlite,
+    stats,
+    tibble,
+    utils
+Suggests:
+    annotatR,
+    bslib,
+    callr,
+    chromote,
+    covr,
+    data.table,
+    digest,
+    DT,
+    fs,
+    htmltools,
+    htmlwidgets,
+    httr2,
+    knitr,
+    lintr,
+    plotly,
+    png,
+    processx,
+    promises,
+    R6,
+    rmarkdown,
+    sf,
+    shiny,
+    shinytest2,
+    testthat (>= 3.0.0),
+    tiff,
+    withr,
+    zip
+Remotes:
+    CTTIR/annotatR
+VignetteBuilder: knitr
+SystemRequirements: QuPath (0.7.0) and a Java runtime (25) for the
+    optional QuPath bridge; neither is needed to install or load the package.
+Config/Needs/website: CTTIR/themakR
+Config/testthat/edition: 3
+Encoding: UTF-8
+Language: en-US
+Roxygen: list(markdown = TRUE)
+Config/roxygen2/version: 8.0.0

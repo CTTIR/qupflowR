@@ -1,0 +1,12 @@
+{
+  "schema": "error",
+  "valid": false,
+  "rule": "details is an object",
+  "errors": [
+    {
+      "path": "/details",
+      "keyword": "type",
+      "schema_path": "error.schema.json#/properties/details/type"
+    }
+  ]
+}

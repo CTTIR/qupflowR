@@ -1,0 +1,12 @@
+{
+  "schema": "envelope-success",
+  "valid": false,
+  "rule": "a success envelope must not carry an error member",
+  "errors": [
+    {
+      "path": "",
+      "keyword": "not",
+      "schema_path": "envelope-success.schema.json#/not"
+    }
+  ]
+}

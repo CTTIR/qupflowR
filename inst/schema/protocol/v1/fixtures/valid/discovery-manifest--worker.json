@@ -1,0 +1,13 @@
+{
+  "host_type": "worker",
+  "pid": 2658485,
+  "process_start_time": "2026-09-14T20:43:59.120Z",
+  "instance_id": "5b1f8a2c-3d4e-4f60-8a9b-0c1d2e3f4a5b",
+  "host": "127.0.0.1",
+  "port": 40123,
+  "qupath_version": "0.7.0",
+  "bridge_version": "0.1.0-SNAPSHOT",
+  "protocol_version": "1.0",
+  "token_file": "/run/user/1000/qupflowr/instances/5b1f8a2c-3d4e-4f60-8a9b-0c1d2e3f4a5b.token",
+  "created_at": "2026-09-14T20:44:00.004Z"
+}

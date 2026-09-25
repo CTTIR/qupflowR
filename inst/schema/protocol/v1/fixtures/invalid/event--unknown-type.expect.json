@@ -1,0 +1,12 @@
+{
+  "schema": "event",
+  "valid": false,
+  "rule": "event types are fixed",
+  "errors": [
+    {
+      "path": "/type",
+      "keyword": "enum",
+      "schema_path": "event.schema.json#/properties/type/enum"
+    }
+  ]
+}

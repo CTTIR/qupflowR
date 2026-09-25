@@ -1,0 +1,32 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://cttir.github.io/qupflowR/schema/protocol/v1/envelope-success.schema.json",
+  "title": "Success envelope",
+  "description": "Every successful protocol v1 response. Unknown optional members are allowed for minor-version compatibility; data is checked against the endpoint schema.",
+  "type": "object",
+  "required": ["protocol_version", "request_id", "instance_id", "data", "warnings"],
+  "properties": {
+    "protocol_version": {
+      "$ref": "common.schema.json#/definitions/protocol_version"
+    },
+    "request_id": {
+      "$ref": "common.schema.json#/definitions/uuid"
+    },
+    "instance_id": {
+      "$ref": "common.schema.json#/definitions/uuid"
+    },
+    "data": {
+      "type": "object"
+    },
+    "warnings": {
+      "type": "array",
+      "maxItems": 100,
+      "items": {
+        "$ref": "common.schema.json#/definitions/warning"
+      }
+    }
+  },
+  "not": {
+    "required": ["error"]
+  }
+}

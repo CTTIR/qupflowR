@@ -1,0 +1,12 @@
+{
+  "schema": "object-record",
+  "valid": false,
+  "rule": "the root object has no ROI",
+  "errors": [
+    {
+      "path": "",
+      "keyword": "anyOf",
+      "schema_path": "object-record.schema.json#/allOf/0/anyOf"
+    }
+  ]
+}

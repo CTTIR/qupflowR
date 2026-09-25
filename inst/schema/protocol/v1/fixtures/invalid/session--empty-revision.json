@@ -1,0 +1,19 @@
+{
+  "session_id": "7c2e9f41-6a3b-4d8e-9f10-2b3c4d5e6f70",
+  "instance_id": "5b1f8a2c-3d4e-4f60-8a9b-0c1d2e3f4a5b",
+  "host_type": "worker",
+  "access": "copy",
+  "project": {
+    "project_id": "2d4f6a8c-0e1f-4a3b-9c5d-7e8f9a0b1c2d",
+    "name": "Studie A (Kopie)",
+    "path": "/data/workspace/copies/studie-a/project.qpproj",
+    "temporary": false,
+    "derived_from": "6f5e4d3c-2b1a-4098-8765-43210fedcba9"
+  },
+  "revision": "",
+  "persisted_revision": "rev-7",
+  "dirty": false,
+  "state": "open",
+  "owner_client_id": "e4d3c2b1-a098-4765-8321-0fedcba98765",
+  "created_at": "2026-09-15T08:00:00Z"
+}

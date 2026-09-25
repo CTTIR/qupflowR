@@ -1,0 +1,59 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://cttir.github.io/qupflowR/schema/protocol/v1/image-entry.schema.json",
+  "title": "Image entry",
+  "description": "One project image entry (GET /v1/sessions/{sid}/images).",
+  "type": "object",
+  "required": ["image_id", "name", "uri", "uri_status"],
+  "properties": {
+    "image_id": {
+      "$ref": "common.schema.json#/definitions/image_id"
+    },
+    "name": {
+      "type": "string",
+      "maxLength": 4096
+    },
+    "uri": {
+      "type": ["string", "null"],
+      "format": "uri-reference",
+      "maxLength": 8192
+    },
+    "uri_status": {
+      "enum": ["available", "missing", "unknown"]
+    },
+    "image_type": {
+      "type": ["string", "null"],
+      "maxLength": 64
+    },
+    "width": {
+      "type": ["integer", "null"],
+      "minimum": 1
+    },
+    "height": {
+      "type": ["integer", "null"],
+      "minimum": 1
+    },
+    "metadata": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      }
+    }
+  },
+  "anyOf": [
+    {
+      "properties": {
+        "uri": {
+          "type": "string"
+        }
+      }
+    },
+    {
+      "properties": {
+        "uri_status": {
+          "enum": ["missing", "unknown"]
+        }
+      }
+    }
+  ]
+}

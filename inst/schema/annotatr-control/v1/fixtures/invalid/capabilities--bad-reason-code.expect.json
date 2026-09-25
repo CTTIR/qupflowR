@@ -1,0 +1,12 @@
+{
+  "schema": "capabilities",
+  "valid": false,
+  "rule": "reason codes come from the vocabulary",
+  "errors": [
+    {
+      "path": "/profiles/I0/reason_code",
+      "keyword": "enum",
+      "schema_path": "capabilities.schema.json#/definitions/profile/properties/reason_code/enum"
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "schema": "discovery-manifest",
+  "valid": false,
+  "rule": "the bridge listens on 127.0.0.1 only",
+  "errors": [
+    {
+      "path": "/host",
+      "keyword": "const",
+      "schema_path": "discovery-manifest.schema.json#/properties/host/const"
+    }
+  ]
+}

@@ -1,0 +1,111 @@
+{
+  "schema_set": "qupflowr-protocol",
+  "schema_set_version": "1.0.0",
+  "protocol_version": "1.0",
+  "json_schema_draft": "http://json-schema.org/draft-07/schema#",
+  "error_codes": "error-codes.json",
+  "schemas": [
+    {
+      "name": "common",
+      "file": "common.schema.json",
+      "id": "https://cttir.github.io/qupflowR/schema/protocol/v1/common.schema.json",
+      "fixtures": false
+    },
+    {
+      "name": "envelope-success",
+      "file": "envelope-success.schema.json",
+      "id": "https://cttir.github.io/qupflowR/schema/protocol/v1/envelope-success.schema.json",
+      "fixtures": true
+    },
+    {
+      "name": "envelope-error",
+      "file": "envelope-error.schema.json",
+      "id": "https://cttir.github.io/qupflowR/schema/protocol/v1/envelope-error.schema.json",
+      "fixtures": true
+    },
+    {
+      "name": "error",
+      "file": "error.schema.json",
+      "id": "https://cttir.github.io/qupflowR/schema/protocol/v1/error.schema.json",
+      "fixtures": true
+    },
+    {
+      "name": "health",
+      "file": "health.schema.json",
+      "id": "https://cttir.github.io/qupflowR/schema/protocol/v1/health.schema.json",
+      "fixtures": true
+    },
+    {
+      "name": "capabilities",
+      "file": "capabilities.schema.json",
+      "id": "https://cttir.github.io/qupflowR/schema/protocol/v1/capabilities.schema.json",
+      "fixtures": true
+    },
+    {
+      "name": "discovery-manifest",
+      "file": "discovery-manifest.schema.json",
+      "id": "https://cttir.github.io/qupflowR/schema/protocol/v1/discovery-manifest.schema.json",
+      "fixtures": true
+    },
+    {
+      "name": "session",
+      "file": "session.schema.json",
+      "id": "https://cttir.github.io/qupflowR/schema/protocol/v1/session.schema.json",
+      "fixtures": true
+    },
+    {
+      "name": "image-entry",
+      "file": "image-entry.schema.json",
+      "id": "https://cttir.github.io/qupflowR/schema/protocol/v1/image-entry.schema.json",
+      "fixtures": true
+    },
+    {
+      "name": "image-info",
+      "file": "image-info.schema.json",
+      "id": "https://cttir.github.io/qupflowR/schema/protocol/v1/image-info.schema.json",
+      "fixtures": true
+    },
+    {
+      "name": "object-record",
+      "file": "object-record.schema.json",
+      "id": "https://cttir.github.io/qupflowR/schema/protocol/v1/object-record.schema.json",
+      "fixtures": true
+    },
+    {
+      "name": "measurement-record",
+      "file": "measurement-record.schema.json",
+      "id": "https://cttir.github.io/qupflowR/schema/protocol/v1/measurement-record.schema.json",
+      "fixtures": true
+    },
+    {
+      "name": "patch-request",
+      "file": "patch-request.schema.json",
+      "id": "https://cttir.github.io/qupflowR/schema/protocol/v1/patch-request.schema.json",
+      "fixtures": true
+    },
+    {
+      "name": "patch",
+      "file": "patch.schema.json",
+      "id": "https://cttir.github.io/qupflowR/schema/protocol/v1/patch.schema.json",
+      "fixtures": true
+    },
+    {
+      "name": "event",
+      "file": "event.schema.json",
+      "id": "https://cttir.github.io/qupflowR/schema/protocol/v1/event.schema.json",
+      "fixtures": true
+    },
+    {
+      "name": "job",
+      "file": "job.schema.json",
+      "id": "https://cttir.github.io/qupflowR/schema/protocol/v1/job.schema.json",
+      "fixtures": true
+    },
+    {
+      "name": "error-codes",
+      "file": "error-codes.schema.json",
+      "id": "https://cttir.github.io/qupflowR/schema/protocol/v1/error-codes.schema.json",
+      "fixtures": true
+    }
+  ]
+}

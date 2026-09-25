@@ -1,0 +1,12 @@
+{
+  "schema": "envelope-success",
+  "valid": false,
+  "rule": "unknown protocol major version",
+  "errors": [
+    {
+      "path": "/protocol_version",
+      "keyword": "pattern",
+      "schema_path": "common.schema.json#/definitions/protocol_version/pattern"
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "schema": "event",
+  "valid": false,
+  "rule": "only connection.closing may have no session",
+  "errors": [
+    {
+      "path": "",
+      "keyword": "anyOf",
+      "schema_path": "event.schema.json#/allOf/1/anyOf"
+    }
+  ]
+}

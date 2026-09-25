@@ -1,0 +1,12 @@
+{
+  "schema": "envelope-success",
+  "valid": false,
+  "rule": "request_id is required",
+  "errors": [
+    {
+      "path": "",
+      "keyword": "required",
+      "schema_path": "envelope-success.schema.json#/required"
+    }
+  ]
+}

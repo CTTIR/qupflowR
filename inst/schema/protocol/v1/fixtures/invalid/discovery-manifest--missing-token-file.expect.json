@@ -1,0 +1,12 @@
+{
+  "schema": "discovery-manifest",
+  "valid": false,
+  "rule": "token_file is required",
+  "errors": [
+    {
+      "path": "",
+      "keyword": "required",
+      "schema_path": "discovery-manifest.schema.json#/required"
+    }
+  ]
+}

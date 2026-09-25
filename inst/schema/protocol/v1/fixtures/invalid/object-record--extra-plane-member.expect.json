@@ -1,0 +1,12 @@
+{
+  "schema": "object-record",
+  "valid": false,
+  "rule": "plane has exactly c, z and t",
+  "errors": [
+    {
+      "path": "/plane/channel",
+      "keyword": "additionalProperties",
+      "schema_path": "common.schema.json#/definitions/plane/additionalProperties"
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "schema": "envelope-success",
+  "valid": false,
+  "rule": "warning codes use upper-case letters, digits and underscores",
+  "errors": [
+    {
+      "path": "/warnings/0/code",
+      "keyword": "pattern",
+      "schema_path": "common.schema.json#/definitions/error_code/pattern"
+    }
+  ]
+}

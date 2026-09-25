@@ -1,0 +1,12 @@
+{
+  "schema": "error-codes",
+  "valid": false,
+  "rule": "codes are upper-case",
+  "errors": [
+    {
+      "path": "/0/code",
+      "keyword": "pattern",
+      "schema_path": "common.schema.json#/definitions/error_code/pattern"
+    }
+  ]
+}

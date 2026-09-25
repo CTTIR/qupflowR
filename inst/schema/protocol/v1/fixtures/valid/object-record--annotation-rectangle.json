@@ -1,0 +1,34 @@
+{
+  "image_id": "1",
+  "object_id": "3ea21850-79ae-4b6d-adf5-c133563aebbd",
+  "parent_id": "00000000-0000-4000-8000-000000000001",
+  "type": "annotation",
+  "name": "Region 1",
+  "class_path": ["Stroma"],
+  "locked": true,
+  "plane": {
+    "c": null,
+    "z": 0,
+    "t": 0
+  },
+  "bounds": {
+    "x": 0,
+    "y": 0,
+    "width": 100,
+    "height": 80
+  },
+  "roi": {
+    "representation": "wkb",
+    "encoding": "base64",
+    "data": "AQMAAAABAAAABQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABZQAAAAAAAAAAAAAAAAAAAWUAAAAAAAABUQAAAAAAAAAAAAAAAAAAAVEAAAAAAAAAAAAAAAAAAAAAA"
+  },
+  "nucleus_roi": null,
+  "roi_native": {
+    "type": "rectangle",
+    "x": 0,
+    "y": 0,
+    "width": 100,
+    "height": 80
+  },
+  "revision": "rev-7"
+}

@@ -1,0 +1,37 @@
+{
+  "vocabulary": "qupflowr-annotatr-capabilities",
+  "vocabulary_version": "1.0",
+  "annotatr_version": null,
+  "profiles": {
+    "I0": {
+      "name": "file_interchange",
+      "state": "planned",
+      "reason_code": "adapter_not_implemented",
+      "reason": "The annotatR file adapter is not part of this qupflowR version."
+    },
+    "I1": {
+      "name": "r_interface",
+      "state": "unavailable",
+      "reason_code": "package_not_installed",
+      "reason": "annotatR is not installed."
+    },
+    "I2": {
+      "name": "controlled_process",
+      "state": "unsupported",
+      "reason_code": "partner_release_required",
+      "reason": "No annotatR release publishes annotatr-control-v1 yet."
+    },
+    "I3": {
+      "name": "file_interchange",
+      "state": "planned",
+      "reason_code": "partner_release_required",
+      "reason": "annotatR does not yet return its app as a shiny.appobj."
+    },
+    "I4": {
+      "name": "shared_validation",
+      "state": "planned",
+      "reason_code": "validation_contract_missing",
+      "reason": "No shared contract and fixture version is published yet."
+    }
+  }
+}

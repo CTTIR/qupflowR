@@ -1,0 +1,34 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://cttir.github.io/qupflowR/schema/protocol/v1/error.schema.json",
+  "title": "Error object",
+  "description": "The error member of an error envelope. code and message_key come from error-codes.json; details never contain tokens or unbounded file contents.",
+  "type": "object",
+  "required": ["code", "message_key", "message", "details", "retryable"],
+  "properties": {
+    "code": {
+      "$ref": "common.schema.json#/definitions/error_code"
+    },
+    "message_key": {
+      "$ref": "common.schema.json#/definitions/message_key"
+    },
+    "message": {
+      "type": "string",
+      "maxLength": 2000
+    },
+    "details": {
+      "type": "object",
+      "properties": {
+        "reason": {
+          "$ref": "common.schema.json#/definitions/reason_code"
+        },
+        "limit_bytes": {
+          "$ref": "common.schema.json#/definitions/count"
+        }
+      }
+    },
+    "retryable": {
+      "type": "boolean"
+    }
+  }
+}

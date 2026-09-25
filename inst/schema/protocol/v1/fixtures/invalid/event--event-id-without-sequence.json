@@ -1,0 +1,14 @@
+{
+  "event_id": "5b1f8a2c-3d4e-4f60-8a9b-0c1d2e3f4a5b",
+  "type": "selection.changed",
+  "session_id": "7c2e9f41-6a3b-4d8e-9f10-2b3c4d5e6f70",
+  "image_id": "1",
+  "revision": "rev-7",
+  "origin": {
+    "client_id": "e4d3c2b1-a098-4765-8321-0fedcba98765",
+    "action_id": "a1b2c3d4-e5f6-4a7b-8c9d-0e1f2a3b4c5d"
+  },
+  "payload": {
+    "object_ids": ["8f6589c0-c587-4bfa-b740-8cab06bc8ce1"]
+  }
+}

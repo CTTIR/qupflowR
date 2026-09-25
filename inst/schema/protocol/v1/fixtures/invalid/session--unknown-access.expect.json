@@ -1,0 +1,12 @@
+{
+  "schema": "session",
+  "valid": false,
+  "rule": "access is read, copy or exclusive",
+  "errors": [
+    {
+      "path": "/access",
+      "keyword": "enum",
+      "schema_path": "session.schema.json#/properties/access/enum"
+    }
+  ]
+}

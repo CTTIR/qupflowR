@@ -1,0 +1,14 @@
+{
+  "project_id": "2d4f6a8c-0e1f-4a3b-9c5d-7e8f9a0b1c2d",
+  "image_id": "1",
+  "object_id": "8f6589c0-c587-4bfa-b740-8cab06bc8ce1",
+  "name": "Nucleus: Area µm^2",
+  "namespace": "stored",
+  "origin": "qupath",
+  "value": 12.5,
+  "value_state": "finite",
+  "unit": "µm^2",
+  "computed_at_revision": "rev-7",
+  "provider_id": null,
+  "storage_precision": "float32"
+}

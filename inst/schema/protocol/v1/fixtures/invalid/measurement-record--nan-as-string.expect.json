@@ -1,0 +1,17 @@
+{
+  "schema": "measurement-record",
+  "valid": false,
+  "rule": "NaN is sent as value null with value_state nan, never as text",
+  "errors": [
+    {
+      "path": "/value",
+      "keyword": "type",
+      "schema_path": "measurement-record.schema.json#/properties/value/type"
+    },
+    {
+      "path": "",
+      "keyword": "anyOf",
+      "schema_path": "common.schema.json#/definitions/value_consistency/anyOf"
+    }
+  ]
+}

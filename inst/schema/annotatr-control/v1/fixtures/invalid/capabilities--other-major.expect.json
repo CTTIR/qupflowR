@@ -1,0 +1,17 @@
+{
+  "schema": "capabilities",
+  "valid": false,
+  "rule": "vocabulary major 1 and R package version strings",
+  "errors": [
+    {
+      "path": "/annotatr_version",
+      "keyword": "pattern",
+      "schema_path": "capabilities.schema.json#/properties/annotatr_version/pattern"
+    },
+    {
+      "path": "/vocabulary_version",
+      "keyword": "pattern",
+      "schema_path": "capabilities.schema.json#/properties/vocabulary_version/pattern"
+    }
+  ]
+}

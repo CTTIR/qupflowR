@@ -1,0 +1,116 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://cttir.github.io/qupflowR/schema/protocol/v1/object-record.schema.json",
+  "title": "Object record",
+  "description": "One QuPath object. Root has no ROI and no parent; only cells have a nucleus ROI. Uniqueness of object_id, parent existence and cycles are semantic checks.",
+  "type": "object",
+  "required": [
+    "image_id",
+    "object_id",
+    "parent_id",
+    "type",
+    "name",
+    "class_path",
+    "locked",
+    "plane",
+    "bounds",
+    "roi",
+    "nucleus_roi",
+    "revision"
+  ],
+  "properties": {
+    "image_id": {
+      "$ref": "common.schema.json#/definitions/image_id"
+    },
+    "object_id": {
+      "$ref": "common.schema.json#/definitions/object_id"
+    },
+    "parent_id": {
+      "$ref": "common.schema.json#/definitions/nullable_uuid"
+    },
+    "type": {
+      "enum": ["annotation", "detection", "cell", "tile", "tma_core", "root"]
+    },
+    "name": {
+      "type": ["string", "null"],
+      "maxLength": 4096
+    },
+    "class_path": {
+      "$ref": "common.schema.json#/definitions/nullable_class_path"
+    },
+    "class_probability": {
+      "$ref": "common.schema.json#/definitions/nullable_measurement_value"
+    },
+    "locked": {
+      "type": "boolean"
+    },
+    "plane": {
+      "$ref": "common.schema.json#/definitions/plane"
+    },
+    "bounds": {
+      "$ref": "common.schema.json#/definitions/nullable_bounds"
+    },
+    "roi": {
+      "$ref": "common.schema.json#/definitions/nullable_roi"
+    },
+    "nucleus_roi": {
+      "$ref": "common.schema.json#/definitions/nullable_roi"
+    },
+    "roi_native": {
+      "$ref": "common.schema.json#/definitions/nullable_roi_native"
+    },
+    "revision": {
+      "$ref": "common.schema.json#/definitions/revision"
+    }
+  },
+  "allOf": [
+    {
+      "anyOf": [
+        {
+          "properties": {
+            "type": {
+              "const": "root"
+            },
+            "parent_id": {
+              "type": "null"
+            },
+            "roi": {
+              "type": "null"
+            }
+          }
+        },
+        {
+          "properties": {
+            "type": {
+              "enum": ["annotation", "detection", "cell", "tile", "tma_core"]
+            },
+            "roi": {
+              "type": "object"
+            },
+            "bounds": {
+              "type": "object"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "anyOf": [
+        {
+          "properties": {
+            "type": {
+              "const": "cell"
+            }
+          }
+        },
+        {
+          "properties": {
+            "nucleus_roi": {
+              "type": "null"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

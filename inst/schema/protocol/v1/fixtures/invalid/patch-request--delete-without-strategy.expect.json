@@ -1,0 +1,12 @@
+{
+  "schema": "patch-request",
+  "valid": false,
+  "rule": "deletes name a strategy for descendants",
+  "errors": [
+    {
+      "path": "/operations/0",
+      "keyword": "anyOf",
+      "schema_path": "patch-request.schema.json#/definitions/operation/anyOf"
+    }
+  ]
+}

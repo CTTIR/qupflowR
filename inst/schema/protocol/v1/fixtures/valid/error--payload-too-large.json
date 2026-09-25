@@ -1,0 +1,10 @@
+{
+  "code": "PAYLOAD_TOO_LARGE",
+  "message_key": "error.payload_too_large",
+  "message": "Request body exceeds the limit",
+  "details": {
+    "reason": "body_too_large",
+    "limit_bytes": 16777216
+  },
+  "retryable": false
+}

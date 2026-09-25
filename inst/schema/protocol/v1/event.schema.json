@@ -1,0 +1,105 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://cttir.github.io/qupflowR/schema/protocol/v1/event.schema.json",
+  "title": "Event",
+  "description": "One event of GET /v1/sessions/{sid}/events. event_id is <instance_id>:<sequence>.",
+  "type": "object",
+  "required": ["event_id", "type", "session_id", "image_id", "revision", "origin", "payload"],
+  "properties": {
+    "event_id": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}:(0|[1-9][0-9]*)$"
+    },
+    "type": {
+      "enum": [
+        "project.changed",
+        "image.changed",
+        "objects.changed",
+        "measurements.changed",
+        "selection.changed",
+        "viewport.changed",
+        "job.changed",
+        "connection.closing"
+      ]
+    },
+    "session_id": {
+      "$ref": "common.schema.json#/definitions/nullable_uuid"
+    },
+    "image_id": {
+      "type": ["string", "null"],
+      "minLength": 1,
+      "maxLength": 256
+    },
+    "revision": {
+      "type": ["string", "null"],
+      "minLength": 1,
+      "maxLength": 256
+    },
+    "origin": {
+      "type": ["object", "null"],
+      "required": ["client_id", "action_id"],
+      "additionalProperties": false,
+      "properties": {
+        "client_id": {
+          "$ref": "common.schema.json#/definitions/nullable_uuid"
+        },
+        "action_id": {
+          "$ref": "common.schema.json#/definitions/nullable_uuid"
+        }
+      }
+    },
+    "payload": {
+      "type": "object",
+      "properties": {
+        "object_ids": {
+          "type": "array",
+          "maxItems": 10000,
+          "uniqueItems": true,
+          "items": {
+            "$ref": "common.schema.json#/definitions/object_id"
+          }
+        }
+      }
+    }
+  },
+  "allOf": [
+    {
+      "anyOf": [
+        {
+          "properties": {
+            "type": {
+              "not": {
+                "const": "selection.changed"
+              }
+            }
+          }
+        },
+        {
+          "properties": {
+            "payload": {
+              "required": ["object_ids"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "anyOf": [
+        {
+          "properties": {
+            "type": {
+              "const": "connection.closing"
+            }
+          }
+        },
+        {
+          "properties": {
+            "session_id": {
+              "type": "string"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "schema": "patch",
+  "valid": false,
+  "rule": "summary counts are non-negative",
+  "errors": [
+    {
+      "path": "/summary/objects_updated",
+      "keyword": "minimum",
+      "schema_path": "common.schema.json#/definitions/count/minimum"
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "schema": "patch-request",
+  "valid": false,
+  "rule": "the strategy is reject_if_children, keep_children or delete_subtree",
+  "errors": [
+    {
+      "path": "/operations/0/strategy",
+      "keyword": "enum",
+      "schema_path": "patch-request.schema.json#/definitions/operation/properties/strategy/enum"
+    }
+  ]
+}

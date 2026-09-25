@@ -1,0 +1,12 @@
+{
+  "schema": "capabilities",
+  "valid": false,
+  "rule": "the control profiles I2 and I3 cannot be available in vocabulary 1.x",
+  "errors": [
+    {
+      "path": "/profiles/I2/state",
+      "keyword": "enum",
+      "schema_path": "capabilities.schema.json#/properties/profiles/properties/I2/allOf/1/properties/state/enum"
+    }
+  ]
+}

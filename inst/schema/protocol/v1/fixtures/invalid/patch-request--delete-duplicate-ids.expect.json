@@ -1,0 +1,12 @@
+{
+  "schema": "patch-request",
+  "valid": false,
+  "rule": "object IDs in one operation are unique",
+  "errors": [
+    {
+      "path": "/operations/0/object_ids",
+      "keyword": "uniqueItems",
+      "schema_path": "patch-request.schema.json#/definitions/operation/properties/object_ids/uniqueItems"
+    }
+  ]
+}

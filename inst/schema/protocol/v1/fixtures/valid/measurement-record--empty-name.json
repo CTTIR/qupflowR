@@ -1,0 +1,14 @@
+{
+  "project_id": "2d4f6a8c-0e1f-4a3b-9c5d-7e8f9a0b1c2d",
+  "image_id": "4",
+  "object_id": "0b7d2c55-3c11-3f0e-8a47-5d2f6c1e9a30",
+  "name": "",
+  "namespace": "stored",
+  "origin": "qupath",
+  "value": 7,
+  "value_state": "finite",
+  "unit": "unknown",
+  "computed_at_revision": "rev-1",
+  "provider_id": null,
+  "storage_precision": "float32"
+}

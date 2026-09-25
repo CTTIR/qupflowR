@@ -1,0 +1,37 @@
+{
+  "vocabulary": "qupflowr-annotatr-capabilities",
+  "vocabulary_version": "1.2",
+  "annotatr_version": "0.1.0.9000",
+  "profiles": {
+    "I0": {
+      "name": "file_interchange",
+      "state": "available",
+      "reason_code": null,
+      "reason": null
+    },
+    "I1": {
+      "name": "r_interface",
+      "state": "available",
+      "reason_code": null,
+      "reason": null
+    },
+    "I2": {
+      "name": "controlled_process",
+      "state": "unsupported",
+      "reason_code": "package_version_too_old",
+      "reason": "annotatR 0.2.0 or later with annotatr-control-v1 is required."
+    },
+    "I3": {
+      "name": "embedded_app",
+      "state": "unsupported",
+      "reason_code": "partner_release_required",
+      "reason": "annotatR does not yet return its app as a shiny.appobj."
+    },
+    "I4": {
+      "name": "shared_validation",
+      "state": "unavailable",
+      "reason_code": "package_version_too_old",
+      "reason": "annotatR 0.1.0.9000 does not publish the shared fixture version."
+    }
+  }
+}

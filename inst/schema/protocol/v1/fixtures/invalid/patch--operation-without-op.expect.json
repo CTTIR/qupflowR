@@ -1,0 +1,17 @@
+{
+  "schema": "patch",
+  "valid": false,
+  "rule": "every operation names op",
+  "errors": [
+    {
+      "path": "/operations/0",
+      "keyword": "required",
+      "schema_path": "patch-request.schema.json#/definitions/operation/required"
+    },
+    {
+      "path": "/operations/0",
+      "keyword": "anyOf",
+      "schema_path": "patch-request.schema.json#/definitions/operation/anyOf"
+    }
+  ]
+}

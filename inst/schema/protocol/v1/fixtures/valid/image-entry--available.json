@@ -1,0 +1,12 @@
+{
+  "image_id": "1",
+  "name": "synthetic-rgb.tif",
+  "uri": "file:///data/images/synthetic%20rgb.tif",
+  "uri_status": "available",
+  "image_type": "BRIGHTFIELD_H_E",
+  "width": 512,
+  "height": 384,
+  "metadata": {
+    "sample_id": "S-001"
+  }
+}

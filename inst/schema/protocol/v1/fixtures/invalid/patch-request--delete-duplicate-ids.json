@@ -1,0 +1,11 @@
+{
+  "expected_revision": "rev-7",
+  "operations": [
+    {
+      "op": "object.delete",
+      "image_id": "1",
+      "object_ids": ["c0ffee00-1234-4abc-8def-0123456789ab", "c0ffee00-1234-4abc-8def-0123456789ab"],
+      "strategy": "reject_if_children"
+    }
+  ]
+}

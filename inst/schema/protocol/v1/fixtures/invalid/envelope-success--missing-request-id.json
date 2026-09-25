@@ -1,0 +1,14 @@
+{
+  "protocol_version": "1.0",
+  "instance_id": "5b1f8a2c-3d4e-4f60-8a9b-0c1d2e3f4a5b",
+  "data": {
+    "status": "ready",
+    "host_type": "worker",
+    "qupath_version": "0.7.0",
+    "bridge_version": "0.1.0-SNAPSHOT",
+    "protocol_version": "1.0",
+    "java_version": "25.0.4.1+1-LTS",
+    "fx_thread_blocked": null
+  },
+  "warnings": []
+}

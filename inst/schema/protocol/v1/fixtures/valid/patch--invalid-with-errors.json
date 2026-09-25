@@ -1,0 +1,40 @@
+{
+  "patch_id": "9e8d7c6b-5a49-4382-a716-f5e4d3c2b1a0",
+  "session_id": "7c2e9f41-6a3b-4d8e-9f10-2b3c4d5e6f70",
+  "expected_revision": "rev-7",
+  "created_at": "2026-09-15T08:01:00Z",
+  "expires_at": "2026-09-15T08:11:00+02:00",
+  "operations": [
+    {
+      "op": "object.update",
+      "image_id": "1",
+      "object_id": "8f6589c0-c587-4bfa-b740-8cab06bc8ce1",
+      "object_changes": {
+        "class_path": ["Tumor", "Negative"]
+      }
+    },
+    {
+      "op": "object.delete",
+      "image_id": "1",
+      "object_ids": ["c0ffee00-1234-4abc-8def-0123456789ab"],
+      "strategy": "reject_if_children"
+    }
+  ],
+  "validation": {
+    "valid": false,
+    "errors": [
+      {
+        "operation_index": 1,
+        "path": "/object_ids/0",
+        "code": "OBJECT_NOT_FOUND",
+        "message_key": "error.object_not_found",
+        "object_id": "c0ffee00-1234-4abc-8def-0123456789ab"
+      }
+    ]
+  },
+  "summary": {
+    "objects_updated": 1,
+    "objects_deleted": 1
+  },
+  "state": "invalid"
+}

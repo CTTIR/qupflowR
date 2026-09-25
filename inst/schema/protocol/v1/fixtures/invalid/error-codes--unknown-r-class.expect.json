@@ -1,0 +1,12 @@
+{
+  "schema": "error-codes",
+  "valid": false,
+  "rule": "r_class is one of the documented condition classes",
+  "errors": [
+    {
+      "path": "/1/r_class",
+      "keyword": "enum",
+      "schema_path": "error-codes.schema.json#/items/properties/r_class/enum"
+    }
+  ]
+}

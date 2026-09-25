@@ -1,0 +1,12 @@
+{
+  "schema": "discovery-manifest",
+  "valid": false,
+  "rule": "port is 1 to 65535",
+  "errors": [
+    {
+      "path": "/port",
+      "keyword": "minimum",
+      "schema_path": "discovery-manifest.schema.json#/properties/port/minimum"
+    }
+  ]
+}

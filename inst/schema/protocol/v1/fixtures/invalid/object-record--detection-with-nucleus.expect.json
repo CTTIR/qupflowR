@@ -1,0 +1,12 @@
+{
+  "schema": "object-record",
+  "valid": false,
+  "rule": "only cells have a nucleus ROI",
+  "errors": [
+    {
+      "path": "",
+      "keyword": "anyOf",
+      "schema_path": "object-record.schema.json#/allOf/1/anyOf"
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "schema": "object-record",
+  "valid": true,
+  "wkb": {
+    "/roi/data": {
+      "type": "Point",
+      "coordinates": [
+        [
+          [42.5, 17.25]
+        ]
+      ]
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "schema_set": "qupflowr-annotatr-control",
+  "schema_set_version": "1.0.0",
+  "vocabulary_version": "1.0",
+  "json_schema_draft": "http://json-schema.org/draft-07/schema#",
+  "partner_contract": "annotatr-control-v1",
+  "partner_contract_state": "unsupported until an annotatR release publishes it",
+  "schemas": [
+    {
+      "name": "capabilities",
+      "file": "capabilities.schema.json",
+      "id": "https://cttir.github.io/qupflowR/schema/annotatr-control/v1/capabilities.schema.json",
+      "fixtures": true
+    }
+  ]
+}

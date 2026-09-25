@@ -1,0 +1,12 @@
+{
+  "schema": "envelope-error",
+  "valid": false,
+  "rule": "an error envelope must not carry data",
+  "errors": [
+    {
+      "path": "",
+      "keyword": "not",
+      "schema_path": "envelope-error.schema.json#/not"
+    }
+  ]
+}

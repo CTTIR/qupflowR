@@ -1,0 +1,15 @@
+{
+  "job_id": "4a5b6c7d-8e9f-40a1-b2c3-d4e5f6a7b8c9",
+  "session_id": "7c2e9f41-6a3b-4d8e-9f10-2b3c4d5e6f70",
+  "recipe_id": "qupath.cell_detection",
+  "state": "running",
+  "phase": "detecting",
+  "progress": {
+    "completed": 1,
+    "total": 3
+  },
+  "created_at": "2026-09-15T08:02:00Z",
+  "updated_at": "2026-09-15T08:02:30.5Z",
+  "artifacts": [],
+  "error": null
+}

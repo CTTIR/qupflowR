@@ -1,0 +1,22 @@
+{
+  "image_id": "1",
+  "object_id": "00000000-0000-4000-8000-000000000001",
+  "parent_id": null,
+  "type": "root",
+  "name": null,
+  "class_path": null,
+  "locked": false,
+  "plane": {
+    "c": null,
+    "z": 0,
+    "t": 0
+  },
+  "bounds": null,
+  "roi": {
+    "representation": "wkb",
+    "encoding": "base64",
+    "data": "AQMAAAABAAAABQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABZQAAAAAAAAAAAAAAAAAAAWUAAAAAAAABUQAAAAAAAAAAAAAAAAAAAVEAAAAAAAAAAAAAAAAAAAAAA"
+  },
+  "nucleus_roi": null,
+  "revision": "rev-7"
+}

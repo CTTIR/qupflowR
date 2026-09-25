@@ -1,0 +1,12 @@
+{
+  "schema": "object-record",
+  "valid": false,
+  "rule": "ROI data is base64 WKB",
+  "errors": [
+    {
+      "path": "/roi/data",
+      "keyword": "pattern",
+      "schema_path": "common.schema.json#/definitions/nullable_roi/properties/data/pattern"
+    }
+  ]
+}

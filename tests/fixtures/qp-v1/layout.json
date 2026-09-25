@@ -1,0 +1,410 @@
+{
+  "fixture_set": "qupflowr-synthetic",
+  "fixture_set_version": "1",
+  "generator_version": "1.0.0",
+  "id_namespace": "qupflowr-fixtures-v1",
+  "manifest_schema_version": "1.0",
+  "formula_ids": [
+    "rgb.fields_gradient.v1",
+    "ome.linear_czt.v1",
+    "object_id.name_uuid_v3.v1",
+    "ome_uuid.name_uuid_v3.v1",
+    "storage.float32.v1",
+    "area.px2.v1"
+  ],
+  "ome_uuid": "urn:uuid:970128d4-2d6d-3cdb-88e4-6b917178a01d",
+  "expected_files": [
+    {
+      "path": "expected/expected-values.json",
+      "role": "expected_values",
+      "normalisation": []
+    },
+    {
+      "path": "expected/raw-tiff-check.json",
+      "role": "expected_values",
+      "normalisation": []
+    },
+    {
+      "path": "images/Ordner mit Ümlaut/rgb_512x384.tif",
+      "role": "image",
+      "normalisation": []
+    },
+    {
+      "path": "images/ome_3c2z2t_u16.ome.tif",
+      "role": "image",
+      "normalisation": []
+    },
+    {
+      "path": "images/rgb_512x384.tif",
+      "role": "image",
+      "normalisation": []
+    },
+    {
+      "path": "images/rgb_512x384_nores.tif",
+      "role": "image",
+      "normalisation": []
+    },
+    {
+      "path": "moved/copy/images/rgb_512x384.tif",
+      "role": "qupath_project_moved",
+      "normalisation": []
+    },
+    {
+      "path": "moved/copy/project/data/1/data.qpdata",
+      "role": "qupath_project_moved",
+      "normalisation": [
+        "root"
+      ]
+    },
+    {
+      "path": "moved/copy/project/data/1/server.json",
+      "role": "qupath_project_moved",
+      "normalisation": [
+        "root"
+      ]
+    },
+    {
+      "path": "moved/copy/project/data/1/summary.json",
+      "role": "qupath_project_moved",
+      "normalisation": [
+        "qupath_summary"
+      ]
+    },
+    {
+      "path": "moved/copy/project/data/2/data.qpdata",
+      "role": "qupath_project_moved",
+      "normalisation": [
+        "root"
+      ]
+    },
+    {
+      "path": "moved/copy/project/data/2/server.json",
+      "role": "qupath_project_moved",
+      "normalisation": [
+        "root"
+      ]
+    },
+    {
+      "path": "moved/copy/project/data/2/summary.json",
+      "role": "qupath_project_moved",
+      "normalisation": [
+        "qupath_summary"
+      ]
+    },
+    {
+      "path": "moved/copy/project/data/metadata.json",
+      "role": "qupath_project_moved",
+      "normalisation": []
+    },
+    {
+      "path": "moved/copy/project/project.qpproj",
+      "role": "qupath_project_moved",
+      "normalisation": [
+        "root",
+        "qupath_project"
+      ]
+    },
+    {
+      "path": "project/classifiers/classes.json",
+      "role": "qupath_project",
+      "normalisation": []
+    },
+    {
+      "path": "project/data/1/data.qpdata",
+      "role": "qupath_project",
+      "normalisation": [
+        "root"
+      ]
+    },
+    {
+      "path": "project/data/1/server.json",
+      "role": "qupath_project",
+      "normalisation": [
+        "root"
+      ]
+    },
+    {
+      "path": "project/data/1/summary.json",
+      "role": "qupath_project",
+      "normalisation": [
+        "qupath_summary"
+      ]
+    },
+    {
+      "path": "project/data/2/data.qpdata",
+      "role": "qupath_project",
+      "normalisation": [
+        "root"
+      ]
+    },
+    {
+      "path": "project/data/2/server.json",
+      "role": "qupath_project",
+      "normalisation": [
+        "root"
+      ]
+    },
+    {
+      "path": "project/data/2/summary.json",
+      "role": "qupath_project",
+      "normalisation": [
+        "qupath_summary"
+      ]
+    },
+    {
+      "path": "project/data/3/data.qpdata",
+      "role": "qupath_project",
+      "normalisation": [
+        "root"
+      ]
+    },
+    {
+      "path": "project/data/3/server.json",
+      "role": "qupath_project",
+      "normalisation": [
+        "root"
+      ]
+    },
+    {
+      "path": "project/data/3/summary.json",
+      "role": "qupath_project",
+      "normalisation": [
+        "qupath_summary"
+      ]
+    },
+    {
+      "path": "project/data/4/data.qpdata",
+      "role": "qupath_project",
+      "normalisation": [
+        "root"
+      ]
+    },
+    {
+      "path": "project/data/4/server.json",
+      "role": "qupath_project",
+      "normalisation": [
+        "root"
+      ]
+    },
+    {
+      "path": "project/data/4/summary.json",
+      "role": "qupath_project",
+      "normalisation": [
+        "qupath_summary"
+      ]
+    },
+    {
+      "path": "project/data/5/data.qpdata",
+      "role": "qupath_project",
+      "normalisation": [
+        "root"
+      ]
+    },
+    {
+      "path": "project/data/5/server.json",
+      "role": "qupath_project",
+      "normalisation": [
+        "root"
+      ]
+    },
+    {
+      "path": "project/data/5/summary.json",
+      "role": "qupath_project",
+      "normalisation": [
+        "qupath_summary"
+      ]
+    },
+    {
+      "path": "project/data/metadata.json",
+      "role": "qupath_project",
+      "normalisation": []
+    },
+    {
+      "path": "project/project.qpproj",
+      "role": "qupath_project",
+      "normalisation": [
+        "root",
+        "qupath_project"
+      ]
+    }
+  ],
+  "absent_paths": [
+    "images/deleted/rgb_512x384_deleted.tif",
+    "images/deleted",
+    "staging"
+  ],
+  "projects": [
+    {
+      "key": "main",
+      "project_file": "project/project.qpproj",
+      "written_as": "project/project.qpproj",
+      "classes": [
+        [
+          "Tümor"
+        ],
+        [
+          "Tümor",
+          "Positive"
+        ],
+        [
+          "Tümor",
+          "2+"
+        ],
+        [
+          "Tümor",
+          "3+"
+        ],
+        [
+          "Negative"
+        ]
+      ],
+      "entries": [
+        {
+          "entry_id": "1",
+          "key": "rgb",
+          "image_name": "RGB Fixture ä",
+          "image_path": "images/rgb_512x384.tif",
+          "image_key": "rgb",
+          "image_type": "BRIGHTFIELD_H_E",
+          "root_object_id": "28f0cdc7-0c72-30fa-9d85-b0ee7ccd8283",
+          "counts": {
+            "annotations": 1,
+            "detections_incl_cells_tiles": 0,
+            "cells": 0,
+            "tiles": 0,
+            "objects": 1
+          },
+          "image_exists": true
+        },
+        {
+          "entry_id": "2",
+          "key": "rgb_umlaut_dir",
+          "image_name": "RGB aus Ordner mit Ümlaut",
+          "image_path": "images/Ordner mit Ümlaut/rgb_512x384.tif",
+          "image_key": "rgb_umlaut_dir",
+          "image_type": "BRIGHTFIELD_H_E",
+          "root_object_id": "8c350c15-09d2-3670-a3cc-b35a464b453d",
+          "counts": {
+            "annotations": 0,
+            "detections_incl_cells_tiles": 0,
+            "cells": 0,
+            "tiles": 0,
+            "objects": 0
+          },
+          "image_exists": true
+        },
+        {
+          "entry_id": "3",
+          "key": "rgb_nores",
+          "image_name": "RGB ohne Kalibrierung",
+          "image_path": "images/rgb_512x384_nores.tif",
+          "image_key": "rgb_nores",
+          "image_type": "BRIGHTFIELD_H_E",
+          "root_object_id": "041e3e49-ba00-3a54-8ce1-915e0127456e",
+          "counts": {
+            "annotations": 1,
+            "detections_incl_cells_tiles": 0,
+            "cells": 0,
+            "tiles": 0,
+            "objects": 1
+          },
+          "image_exists": true
+        },
+        {
+          "entry_id": "4",
+          "key": "ome",
+          "image_name": "OME 3c2z2t µ",
+          "image_path": "images/ome_3c2z2t_u16.ome.tif",
+          "image_key": "ome",
+          "image_type": "FLUORESCENCE",
+          "root_object_id": "f8ae84a4-9c81-387f-a7b1-0fe9d5830f8b",
+          "counts": {
+            "annotations": 7,
+            "detections_incl_cells_tiles": 5,
+            "cells": 2,
+            "tiles": 1,
+            "objects": 12
+          },
+          "image_exists": true
+        },
+        {
+          "entry_id": "5",
+          "key": "missing_image",
+          "image_name": "Fehlendes Bild",
+          "image_path": "images/deleted/rgb_512x384_deleted.tif",
+          "image_key": "deleted",
+          "image_type": "BRIGHTFIELD_H_E",
+          "root_object_id": "9836412a-18ad-3485-b883-783c76875387",
+          "counts": {
+            "annotations": 1,
+            "detections_incl_cells_tiles": 0,
+            "cells": 0,
+            "tiles": 0,
+            "objects": 1
+          },
+          "image_exists": false
+        }
+      ]
+    },
+    {
+      "key": "moved",
+      "project_file": "moved/copy/project/project.qpproj",
+      "written_as": "staging/project/project.qpproj",
+      "classes": [],
+      "entries": [
+        {
+          "entry_id": "1",
+          "key": "moved_rgb_inside",
+          "image_name": "RGB mit relativem Pfad",
+          "image_path": "staging/images/rgb_512x384.tif",
+          "image_key": "moved_rgb",
+          "image_type": "BRIGHTFIELD_H_E",
+          "root_object_id": "6d5f4247-a477-3595-a1cd-73f45ac57e5a",
+          "counts": {
+            "annotations": 1,
+            "detections_incl_cells_tiles": 0,
+            "cells": 0,
+            "tiles": 0,
+            "objects": 1
+          },
+          "stored_path_exists": false,
+          "relative_to_project_dir": "../images/rgb_512x384.tif",
+          "relative_resolved": "moved/copy/images/rgb_512x384.tif",
+          "relative_exists": true,
+          "image_exists": true
+        },
+        {
+          "entry_id": "2",
+          "key": "moved_ome_outside",
+          "image_name": "OME mit absolutem Pfad",
+          "image_path": "images/ome_3c2z2t_u16.ome.tif",
+          "image_key": "ome",
+          "image_type": "FLUORESCENCE",
+          "root_object_id": "e852ea9a-87ef-30c8-b173-bc30274ca545",
+          "counts": {
+            "annotations": 0,
+            "detections_incl_cells_tiles": 0,
+            "cells": 0,
+            "tiles": 0,
+            "objects": 0
+          },
+          "stored_path_exists": true,
+          "relative_to_project_dir": "../../images/ome_3c2z2t_u16.ome.tif",
+          "relative_resolved": "moved/images/ome_3c2z2t_u16.ome.tif",
+          "relative_exists": false,
+          "image_exists": true
+        }
+      ]
+    }
+  ],
+  "negative_cases": [
+    {
+      "key": "class_component_colon",
+      "base_class": "Tümor",
+      "component": "Positive: strong",
+      "qupath_outcome": "java.lang.IllegalArgumentException",
+      "bridge_outcome": "VALIDATION_FAILED",
+      "object_created": false
+    }
+  ]
+}

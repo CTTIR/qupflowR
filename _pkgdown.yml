@@ -38,9 +38,15 @@ reference:
       - qupflowR-package
 articles:
   - title: Getting started
-    navbar: Guides
+    navbar: ~
     contents:
       - qupflowR
+
+navbar:
+  components:
+    articles:
+      text: Getting started
+      href: articles/qupflowR.html
 
 includes:
   in_header: |

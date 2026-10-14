@@ -50,7 +50,7 @@ encode protocol data; they do not connect to QuPath or modify a project.
 
 ## Documentation and support
 
-The [getting-started vignette](vignettes/qupflowR.Rmd) covers conditions, messages,
+The [getting-started vignette](https://github.com/CTTIR/qupflowR/blob/main/vignettes/qupflowR.Rmd) covers conditions, messages,
 JSON, schema validation and a runnable synthetic external-method example. After
 installing with vignettes, open `vignette("qupflowR", package = "qupflowR")`.
 Use `help(package = "qupflowR")` for complete argument and return-value contracts,

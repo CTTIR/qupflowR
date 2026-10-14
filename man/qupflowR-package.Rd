@@ -17,7 +17,9 @@ analysis workflows.
 
 This development version contains only the package foundations:
 classified error conditions, a message catalogue, protocol JSON helpers and
-a JSON Schema subset validator with the protocol schemas. The bridge client,
+a JSON Schema subset validator with the protocol schemas, plus
+\code{\link[=qp_run_external]{qp_run_external()}} for trusted, hash-pinned external methods on Linux.
+The bridge client,
 project and object functions, the Shiny app and the workflow engine do not
 exist yet; see \code{NEWS.md} for what each version adds.
 
@@ -38,7 +40,6 @@ or \code{"en"}. Messages missing in the chosen language fall back to English.
 Useful links:
 \itemize{
   \item \url{https://github.com/CTTIR/qupflowR}
-  \item \url{https://cttir.github.io/qupflowR/}
   \item Report bugs at \url{https://github.com/CTTIR/qupflowR/issues}
 }
 

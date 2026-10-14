@@ -40,8 +40,14 @@ test_that("numbers keep integers exact and doubles round-trip", {
     paste0("[5000000000,2147483648,-2147483649,9007199254740992,0,",
            "1000000000000000,1e+16]")
   )
+  # Construct 2.5e300 from its IEEE-754 bytes: parsing a decimal R literal
+  # can round differently when long double has only double precision.
+  large <- readBin(
+    as.raw(c(0x7e, 0x4d, 0xdd, 0x4b, 0xaa, 0x00, 0x93, 0x03)),
+    "double", n = 1L, size = 8L, endian = "big"
+  )
   expect_identical(
-    enc(c(0.1, 0.5, 1 / 3, 0.1 + 0.2, 1e-7, 2.5e300)),
+    enc(c(0.1, 0.5, 1 / 3, 0.1 + 0.2, 1e-7, large)),
     "[0.1,0.5,0.3333333333333333,0.30000000000000004,1e-07,2.5e+300]"
   )
   expect_identical(enc(qp_scalar(2^53 + 2)), "9007199254740994")

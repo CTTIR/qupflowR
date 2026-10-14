@@ -1,4 +1,6 @@
-# qupflowR
+# qupflowR <img src="man/figures/logo.svg" align="right" height="160" alt="qupflowR hex logo" />
+
+[![R-CMD-check](https://github.com/CTTIR/qupflowR/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/CTTIR/qupflowR/actions/workflows/R-CMD-check.yaml)
 
 Experimental R foundations for a planned QuPath interface. This first source
 milestone contains classified conditions and bilingual messages, protocol JSON
@@ -18,9 +20,47 @@ Java and QuPath are not needed to install or load these foundations. Optional
 packages listed in Suggests support tests or planned features and are loaded
 only where used. No runtime or model is downloaded automatically.
 
+Install the development package and its vignette from GitHub:
+
+```r
+install.packages("remotes")
+remotes::install_github("CTTIR/qupflowR", build_vignettes = TRUE)
+```
+
 From a checked-out source tree, use `R CMD build .`, then
-`R CMD INSTALL qupflowR_0.0.0.9000.tar.gz`. The getting-started vignette and
-`help(package = "qupflowR")` describe the available interfaces.
+`R CMD INSTALL qupflowR_0.0.0.9000.tar.gz`.
+
+## Quick start
+
+This example uses only the implemented R foundations and synthetic values:
+
+```r
+library(qupflowR)
+payload <- list(image_id = qp_scalar("synthetic-image"), object_ids = c("1", "2"))
+json <- qp_json_encode(payload)
+qp_json_decode(json)$object_ids
+#> [1] "1" "2"
+qp_value_state(c(1.5, NA_real_, NaN, Inf, -Inf))
+#> [1] "finite" "missing" "nan" "pos_inf" "neg_inf"
+```
+
+Mark scalar JSON fields with `qp_scalar()`; unmarked vectors remain arrays,
+including vectors of length one. IDs remain character values. These helpers
+encode protocol data; they do not connect to QuPath or modify a project.
+
+## Documentation and support
+
+The [getting-started vignette](vignettes/qupflowR.Rmd) covers conditions, messages,
+JSON, schema validation and a runnable synthetic external-method example. After
+installing with vignettes, open `vignette("qupflowR", package = "qupflowR")`.
+Use `help(package = "qupflowR")` for complete argument and return-value contracts,
+and `citation("qupflowR")` for the installed package's citation.
+
+Report reproducible problems with synthetic inputs at
+<https://github.com/CTTIR/qupflowR/issues>. Contributor conventions are in the
+[CTTIR contributing guide](https://github.com/CTTIR/.github/blob/main/CONTRIBUTING.md).
+The local documentation site uses `themakR` and builds into `site/`; a local
+build does not establish that the public website is deployed.
 
 ## Existing-method execution
 

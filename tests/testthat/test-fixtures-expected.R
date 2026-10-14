@@ -25,7 +25,18 @@ fx_json <- function(path) {
 }
 
 fx_num <- function(x) {
-  suppressWarnings(as.numeric(x))
+  if (!is.character(x)) {
+    return(as.numeric(x))
+  }
+  # Keep the decimal fixture inputs independent of R's long-double parser.
+  # The committed IEEE-754 bit columns remain the exact-value oracle.
+  out <- rep(NA_real_, length(x))
+  present <- !is.na(x)
+  if (any(present)) {
+    array <- paste0("[", paste(x[present], collapse = ","), "]")
+    out[present] <- as.double(unlist(jsonlite::parse_json(array)))
+  }
+  out
 }
 
 fx_hex_bytes <- function(hex) {

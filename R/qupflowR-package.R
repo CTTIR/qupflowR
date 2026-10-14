@@ -11,7 +11,9 @@
 #' @section Current scope:
 #' This development version contains only the package foundations:
 #' classified error conditions, a message catalogue, protocol JSON helpers and
-#' a JSON Schema subset validator with the protocol schemas. The bridge client,
+#' a JSON Schema subset validator with the protocol schemas, plus
+#' [qp_run_external()] for trusted, hash-pinned external methods on Linux.
+#' The bridge client,
 #' project and object functions, the Shiny app and the workflow engine do not
 #' exist yet; see `NEWS.md` for what each version adds.
 #'

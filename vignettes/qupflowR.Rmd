@@ -31,6 +31,7 @@ QuPath projects, images or objects yet.
 | Classified error conditions and the error code registry | first version |
 | Message catalogue in German and English | first version |
 | JSON helpers and JSON Schema validation for the bridge protocol | first version, building blocks for the bridge client |
+| Pinned execution of an explicitly trusted external method | implemented for Linux; separate from the live bridge |
 | Java bridge (QuPath extension and headless worker) | in development, not reachable from R |
 | Connecting to QuPath, reading projects, objects and measurements | planned |
 | Shiny app | planned |
@@ -85,10 +86,37 @@ will need packages that are listed in `Suggests`. They are checked only where
 a feature uses them. A missing package then produces a `qp_capability_error`
 with the code `CAPABILITY_UNAVAILABLE` that names the packages to install.
 
+## JSON values and schema validation
+
+Protocol IDs are character values. Mark a scalar explicitly; unmarked vectors
+remain arrays, even when they contain only one element.
+
+```{r json-values}
+payload <- list(
+  image_id = qp_scalar("synthetic-image"),
+  object_ids = c("1", "2"),
+  metadata = qp_empty_object()
+)
+encoded <- qp_json_encode(payload)
+encoded
+qp_json_decode(encoded)$object_ids
+qp_value_state(c(1.5, NA_real_, NaN, Inf, -Inf))
+```
+
+The schema validator checks protocol structure, not the existence of a running
+bridge or the correctness of image measurements. An incomplete health document
+therefore produces a report with errors:
+
+```{r schema-validation}
+report <- qp_schema_validate(qp_as_json("{}"), "health")
+report$valid
+head(report$errors)
+```
+
 ## Requirements
 
-- R (>= 4.5.0). The package has been checked with R 4.6.1 and R 4.5.3. Older
-  R versions are not declared because they have not been checked.
+- R (>= 4.5.0), as declared in DESCRIPTION. Local checks and the hosted R/OS
+  matrix provide separate evidence; neither qualifies the native bridge.
 - The bridge will need QuPath 0.7.0 and a Java 25 runtime. Neither is needed
   for the functions shown here.
 
@@ -115,3 +143,56 @@ not qualify the developing live bridge for other QuPath versions.
 The initial execution profile is Linux-only. Its receipt records the complete
 explicit child environment, and Java property values retain paths containing
 spaces or quotes. Other platforms remain unavailable until separately qualified.
+
+The following Linux example creates a synthetic method in a temporary directory,
+pins the executable and script, and checks the output against a known value.
+It does not read study files, start QuPath or access the network. `digest` and
+`processx` are optional dependencies required by this API. The example is
+evaluated on Linux when both are installed; elsewhere it is shown as code only.
+Real methods must also pin their data, runtime and model dependencies.
+
+```{r external-method, eval=identical(Sys.info()[["sysname"]], "Linux") && requireNamespace("digest", quietly=TRUE) && requireNamespace("processx", quietly=TRUE)}
+local({
+  example_dir <- tempfile("qupflowr-example-")
+  dir.create(example_dir)
+  on.exit(unlink(example_dir, recursive = TRUE), add = TRUE)
+  script <- file.path(example_dir, "synthetic-method.R")
+  writeLines(c(
+    "out <- commandArgs(trailingOnly = TRUE)[1]",
+    "writeLines('42', file.path(out, 'result.txt'))"
+  ), script)
+  program <- normalizePath(file.path(R.home("bin"), "Rscript"))
+  paths <- c(program, script)
+  pins <- data.frame(
+    path = paths,
+    sha256 = vapply(paths, function(path) {
+      digest::digest(file = path, algo = "sha256")
+    }, character(1), USE.NAMES = FALSE)
+  )
+  result <- qp_run_external(
+    program = program,
+    args = c("--vanilla", script, "{{workspace}}"),
+    pins = pins,
+    outputs = "result.txt",
+    workspace = file.path(example_dir, "run"),
+    timeout = 30,
+    trust = TRUE
+  )
+  observed <- readLines(file.path(result$workspace, "result.txt"))
+  if (!identical(observed, "42")) {
+    cli::cli_abort("Unexpected synthetic output.", class = "qp_example_error")
+  }
+  result$status
+})
+```
+
+An existing workspace, a changed pinned file, a nonzero process exit, or a
+missing/empty declared output fails the run. Inspect the retained `run.json`
+and process logs for real failures. Keep those receipts private because they
+record paths and the explicit child environment.
+
+## Further help
+
+Use `help(package = "qupflowR")` for the function reference and
+`citation("qupflowR")` for citation details. The package is GPL (>= 3).
+Report reproducible issues at <https://github.com/CTTIR/qupflowR/issues>.

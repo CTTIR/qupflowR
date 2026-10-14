@@ -15,7 +15,6 @@
 ^\.Rprofile$
 ^\.Renviron$
 ^tests/api$
-^man/figures/logo\.png$
 ^docs$
 ^adr$
 ^workplan$
@@ -43,3 +42,4 @@
 ^.*\.Rcheck$
 ^qupflowR_.*\.tar\.gz$
 ^instructions$
+^\.git$

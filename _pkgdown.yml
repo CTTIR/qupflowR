@@ -1,0 +1,47 @@
+template:
+  package: themakR
+development:
+  mode: auto
+destination: site
+home:
+  title: qupflowR
+  description: >
+    Experimental R foundations for a planned QuPath interface: classified
+    conditions, protocol JSON, schema validation and pinned external methods.
+reference:
+  - title: Conditions and messages
+    contents:
+      - qp_abort
+      - qp_warn
+      - qp_condition_code
+      - qp_error_codes
+      - qp_error_from_response
+      - qp_warnings_from_response
+      - qp_redact
+      - qp_msg
+  - title: Protocol JSON
+    contents:
+      - qp_json_encode
+      - qp_json_canonical
+      - qp_scalar
+      - qp_value_state
+  - title: Schema validation
+    contents:
+      - qp_schema_validate
+      - qp_schema_assert
+      - qp_schema_path
+  - title: External methods
+    contents:
+      - qp_run_external
+  - title: Package
+    contents:
+      - qupflowR-package
+articles:
+  - title: Getting started
+    navbar: Guides
+    contents:
+      - qupflowR
+
+includes:
+  in_header: |
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">

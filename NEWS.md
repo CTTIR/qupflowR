@@ -1,5 +1,12 @@
 # qupflowR development
 
+* Made numeric test inputs portable across differing long-double precisions;
+  the exact binary reference values and protocol assertions remain unchanged.
+* Expanded installation and API guidance, documented scalar/array semantics,
+  and added executable schema and synthetic external-method vignette examples.
+* Included the grouped reference and article configuration for the shared
+  CTTIR documentation theme. Native bridge qualification remains separate.
+
 * Added `qp_run_external()` for explicitly trusted, hash-pinned external methods
   with argument-vector execution, isolated process settings, time limits, fresh
   output directories, input revalidation and machine-readable run receipts.

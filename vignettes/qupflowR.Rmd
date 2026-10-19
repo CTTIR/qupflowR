@@ -39,7 +39,7 @@ QuPath projects, images or objects yet.
 
 Loading the package is safe on any machine: `library(qupflowR)` starts no
 Java, QuPath, Python or browser process, downloads nothing and does not load
-optional packages such as shiny, sf or annotatR.
+optional packages such as shiny, sf or hyperannotatR.
 
 ```{r}
 library(qupflowR)
@@ -81,7 +81,7 @@ qp_msg("error.host_busy", .lang = "en")
 
 ## Optional packages
 
-The Shiny app, geometry conversion with sf and the annotatR interoperability
+The Shiny app, geometry conversion with sf and the hyperannotatR interoperability
 will need packages that are listed in `Suggests`. They are checked only where
 a feature uses them. A missing package then produces a `qp_capability_error`
 with the code `CAPABILITY_UNAVAILABLE` that names the packages to install.

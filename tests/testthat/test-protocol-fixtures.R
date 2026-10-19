@@ -1,5 +1,5 @@
 # Shared schema fixture corpora (also run by the Java bridge tests): the
-# protocol set and the annotatR capability vocabulary.
+# protocol set and the hyperannotatR capability vocabulary.
 
 schema_sets <- c("protocol", "annotatr-control")
 
@@ -143,7 +143,7 @@ test_that("measurement names are byte-exact, including the empty name", {
                                  "measurement-record")$valid)
 })
 
-test_that("the annotatR control profiles cannot be advertised as available", {
+test_that("hyperannotatR control profiles cannot be advertised as available", {
   base <- jsonlite::read_json(fixture_path(
     "valid", "capabilities--installed.json", set = "annotatr-control"
   ))

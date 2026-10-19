@@ -7,25 +7,25 @@
       "name": "file_interchange",
       "state": "planned",
       "reason_code": "adapter_not_implemented",
-      "reason": "The annotatR file adapter is not part of this qupflowR version."
+      "reason": "The hyperannotatR file adapter is not part of this qupflowR version."
     },
     "I1": {
       "name": "r_interface",
       "state": "unavailable",
       "reason_code": "package_not_installed",
-      "reason": "annotatR is not installed."
+      "reason": "hyperannotatR is not installed."
     },
     "I2": {
       "name": "controlled_process",
       "state": "unsupported",
       "reason_code": "partner_release_required",
-      "reason": "No annotatR release publishes annotatr-control-v1 yet."
+      "reason": "hyperannotatR (annotatR 0.2.0 or later) with annotatr-control-v1 is required."
     },
     "I3": {
       "name": "file_interchange",
       "state": "planned",
       "reason_code": "partner_release_required",
-      "reason": "annotatR does not yet return its app as a shiny.appobj."
+      "reason": "hyperannotatR (annotatR 0.2.0 or later) with a public shiny.appobj builder is required."
     },
     "I4": {
       "name": "shared_validation",

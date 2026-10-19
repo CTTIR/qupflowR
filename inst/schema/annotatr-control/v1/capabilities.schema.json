@@ -1,8 +1,8 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "https://cttir.github.io/qupflowR/schema/annotatr-control/v1/capabilities.schema.json",
-  "title": "annotatR interoperability capabilities",
-  "description": "Capability report of the optional annotatR partner integration (docs/22, decision D011): one entry per compatibility profile I0 to I4 with a state and, unless available, a reason code from this vocabulary. In vocabulary 1.x the control profiles I2 (controlled process) and I3 (embedded app) can only be unsupported or planned: they need an annotatR release that publishes annotatr-control-v1 and a public app builder.",
+  "title": "hyperannotatR interoperability capabilities",
+  "description": "Capability report of the optional hyperannotatR partner integration (docs/22, decision D011): one entry per compatibility profile I0 to I4 with a state and, unless available, a reason code from this vocabulary. In vocabulary 1.x the control profiles I2 (controlled process) and I3 (embedded app) can only be unsupported or planned: enabling them needs a new vocabulary version and hyperannotatR (annotatR 0.2.0 or later), which publishes annotatr-control-v1 and a public app builder.",
   "type": "object",
   "required": ["vocabulary", "vocabulary_version", "annotatr_version", "profiles"],
   "additionalProperties": false,
@@ -16,7 +16,7 @@
       "pattern": "^1\\.(0|[1-9][0-9]*)$"
     },
     "annotatr_version": {
-      "description": "Installed annotatR version as R reports it, or null when annotatR is not installed.",
+      "description": "Installed hyperannotatR (formerly annotatR) version as R reports it, or null when hyperannotatR is not installed.",
       "type": ["string", "null"],
       "maxLength": 64,
       "pattern": "^[0-9]+([.-][0-9]+)+$"
@@ -42,7 +42,7 @@
           ]
         },
         "I1": {
-          "description": "Public annotatR R functions called through a checked adapter.",
+          "description": "Public hyperannotatR R functions called through a checked adapter.",
           "allOf": [
             {
               "$ref": "#/definitions/profile"
@@ -57,7 +57,7 @@
           ]
         },
         "I2": {
-          "description": "Controlled annotatR process over annotatr-control-v1.",
+          "description": "Controlled hyperannotatR process over annotatr-control-v1.",
           "allOf": [
             {
               "$ref": "#/definitions/profile"
@@ -75,7 +75,7 @@
           ]
         },
         "I3": {
-          "description": "Embedded annotatR app from a public shiny.appobj builder.",
+          "description": "Embedded hyperannotatR app from a public shiny.appobj builder.",
           "allOf": [
             {
               "$ref": "#/definitions/profile"
@@ -126,7 +126,7 @@
           ]
         },
         "state": {
-          "description": "available: usable now; unavailable: supported, but a local prerequisite is missing; unsupported: this qupflowR or annotatR version cannot provide it; planned: a later qupflowR task implements it.",
+          "description": "available: usable now; unavailable: supported, but a local prerequisite is missing; unsupported: this qupflowR or hyperannotatR version cannot provide it; planned: a later qupflowR task implements it.",
           "enum": ["available", "unavailable", "unsupported", "planned"]
         },
         "reason_code": {

@@ -15,7 +15,7 @@ schema/
     fixtures/canonical/        canonical JSON vectors
   annotatr-control/v1/
     index.json                 vocabulary set metadata
-    capabilities.schema.json   capability report of the annotatR integration
+    capabilities.schema.json   capability report of the hyperannotatR integration
     fixtures/valid/            documents that must validate
     fixtures/invalid/          documents that must fail, with *.expect.json
 ```
@@ -61,13 +61,14 @@ bridge and the R client (T02/T04), not schema rules:
 - class name components without leading or trailing Unicode white space
   (the pattern checks space and tab only).
 
-## annotatR capability vocabulary (decision D029)
+## hyperannotatR capability vocabulary (decision D029)
 
 `annotatr-control/v1/capabilities.schema.json` describes the capability
-report of the optional annotatR integration (docs/22). It is a separate,
-self-contained schema set with its own vocabulary version (`1.0`); it does
-not reference the protocol set. The report lists the compatibility profiles
-by id, each with a fixed name, a state and, unless available, a reason:
+report of the optional hyperannotatR (formerly annotatR) integration
+(docs/22). It is a separate, self-contained schema set with its own
+vocabulary version (`1.0`); it does not reference the protocol set. The
+report lists the compatibility profiles by id, each with a fixed name, a
+state and, unless available, a reason:
 
 | Profile | Name | Possible states in vocabulary 1.x |
 |---|---|---|
@@ -78,16 +79,23 @@ by id, each with a fixed name, a state and, unless available, a reason:
 | `I4` | `shared_validation` | `available`, `unavailable`, `unsupported`, `planned` |
 
 `available`: usable now. `unavailable`: supported, but a local prerequisite
-is missing. `unsupported`: this qupflowR or annotatR version cannot provide
-it. `planned`: a later qupflowR task implements it. Reason codes:
+is missing. `unsupported`: this qupflowR or hyperannotatR version cannot
+provide it. `planned`: a later qupflowR task implements it. Reason codes:
 `package_not_installed`, `package_version_too_old`,
 `adapter_not_implemented`, `partner_release_required`,
 `control_protocol_mismatch`, `validation_contract_missing`. I2 and I3 need
-an annotatR release that publishes `annotatr-control-v1` and a public app
-builder; enabling them needs a new vocabulary version. This version of
-qupflowR has no annotatR adapter; the vocabulary is the contract that the
-adapter (T05/T06) and `qp_annotatr_capabilities()` will report in. The
-fixtures follow the rules of the protocol corpus below.
+hyperannotatR (annotatR 0.2.0 or later), which publishes `annotatr-control-v1`
+and a public app builder; enabling them needs a new vocabulary version.
+This version of qupflowR has no hyperannotatR adapter; the vocabulary is
+the contract that the adapter (T05/T06) and `qp_annotatr_capabilities()`
+will report in. The fixtures follow the rules of the protocol corpus below.
+
+The identifiers keep the old spelling: the directory `annotatr-control`, the
+schema set `qupflowr-annotatr-control`, the vocabulary
+`qupflowr-annotatr-capabilities`, the field `annotatr_version` and the
+partner contract `annotatr-control-v1`. Histology and cell annotation moved
+from annotatR to segmantR, the planned histology partner
+(`segmantR-control-v1`; there is no segmantR adapter yet).
 
 ## Validator subset (decision D022)
 

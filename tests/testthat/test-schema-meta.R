@@ -106,7 +106,7 @@ test_that("schemas are Draft-07 documents matching the index", {
   expect_setequal(vapply(index$schemas, function(s) s$name, ""), expected)
 })
 
-test_that("the annotatR capability vocabulary is its own indexed set", {
+test_that("the hyperannotatR capability vocabulary is its own indexed set", {
   dir <- system.file("schema", "annotatr-control", "v1", package = "qupflowR")
   index <- jsonlite::read_json(file.path(dir, "index.json"))
   expect_identical(index$json_schema_draft, draft07)

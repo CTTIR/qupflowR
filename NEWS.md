@@ -1,5 +1,14 @@
 # qupflowR development
 
+* The partner package annotatR was renamed to hyperannotatR (HSI annotation).
+  `Suggests` and `Remotes` now name hyperannotatR. The contract identifiers
+  keep their names: the schema set `annotatr-control/v1`, the vocabulary
+  `qupflowr-annotatr-capabilities`, the field `annotatr_version` and the
+  partner contract `annotatr-control-v1`, published since annotatR 0.2.0.
+  Descriptions and example reasons in that schema set now name hyperannotatR;
+  validation is unchanged. Histology and cell annotation moved from annotatR
+  to segmantR, the planned histology partner (`segmantR-control-v1`; there is
+  no segmantR adapter yet).
 * Made numeric test inputs portable across differing long-double precisions;
   the exact binary reference values and protocol assertions remain unchanged.
 * Expanded installation and API guidance, documented scalar/array semantics,

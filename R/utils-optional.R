@@ -1,6 +1,6 @@
 # Optional dependencies ------------------------------------------------------
 #
-# Packages in Suggests (the Shiny app, sf geometry conversion, annotatR
+# Packages in Suggests (the Shiny app, sf geometry conversion, hyperannotatR
 # interoperability, ...) are checked where they are used. Both helpers read
 # installed package metadata only and never load a namespace, so a capability
 # report does not change the session.

@@ -25,7 +25,7 @@ exist yet; see \code{NEWS.md} for what each version adds.
 
 Loading the package starts no Java, QuPath, Python or browser process,
 performs no download and does not load optional packages such as shiny,
-sf or annotatR. Optional packages are checked where they are used.
+sf or hyperannotatR. Optional packages are checked where they are used.
 }
 
 \section{Options}{

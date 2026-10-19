@@ -26,11 +26,11 @@ test_that("optional app, geometry and partner packages are not imported", {
   desc <- utils::packageDescription("qupflowR")
   hard <- c(description_field_packages(desc$Depends),
             description_field_packages(desc$Imports))
-  optional <- c("annotatR", "arrow", "bslib", "chromote", "DT", "htmltools",
-                "htmlwidgets", "plotly", "promises", "reticulate", "rJava",
+  optional <- c("arrow", "bslib", "chromote", "DT", "htmltools", "htmlwidgets",
+                "hyperannotatR", "plotly", "promises", "reticulate", "rJava",
                 "segmantR", "sf", "shiny", "shinytest2")
   expect_identical(intersect(hard, optional), character())
-  expect_true(all(c("shiny", "sf", "annotatR") %in%
+  expect_true(all(c("shiny", "sf", "hyperannotatR") %in%
                     description_field_packages(desc$Suggests)))
 })
 

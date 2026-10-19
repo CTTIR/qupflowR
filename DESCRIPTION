@@ -23,8 +23,7 @@ Imports: cli,
  stats,
  tibble,
  utils
-Suggests: annotatR,
- bslib,
+Suggests: bslib,
  callr,
  chromote,
  covr,
@@ -35,6 +34,7 @@ Suggests: annotatR,
  htmltools,
  htmlwidgets,
  httr2,
+ hyperannotatR,
  knitr,
  lintr,
  plotly,
@@ -50,7 +50,7 @@ Suggests: annotatR,
  tiff,
  withr,
  zip
-Remotes: CTTIR/annotatR
+Remotes: CTTIR/hyperannotatR
 VignetteBuilder: knitr
 SystemRequirements: QuPath (0.7.0) and a Java runtime (25) for the
  optional QuPath bridge; neither is needed to install or load the package.

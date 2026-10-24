@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Logging of the fixture generator: warnings and errors only, on standard error, so that
+     standard output carries the generator's own phase lines. Selected with
+     -Dlogback.configurationFile=io/github/cttir/qupflowr/fixtures/qupath/logback-fixtures.xml -->
+<configuration>
+  <appender name="STDERR" class="ch.qos.logback.core.ConsoleAppender">
+    <target>System.err</target>
+    <encoder>
+      <pattern>%-5level %logger{36} - %msg%n</pattern>
+    </encoder>
+  </appender>
+  <root level="WARN">
+    <appender-ref ref="STDERR"/>
+  </root>
+</configuration>

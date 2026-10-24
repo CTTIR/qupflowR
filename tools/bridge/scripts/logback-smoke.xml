@@ -1,0 +1,16 @@
+<!--
+  Logging of QuPath GUI smoke runs: QuPath's console pattern on stdout, plus DEBUG for the extension
+  manager so that an extension directory skipped because of exhausted inotify instances is visible.
+-->
+<configuration>
+  <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+    <encoder>
+      <pattern>%d{HH:mm:ss.SSS} [%thread] [%-5level] %logger{36} - %msg%n</pattern>
+    </encoder>
+  </appender>
+  <root level="info">
+    <appender-ref ref="STDOUT" />
+  </root>
+  <logger name="loci.formats" level="WARN" />
+  <logger name="qupath.ext.extensionmanager" level="DEBUG" />
+</configuration>

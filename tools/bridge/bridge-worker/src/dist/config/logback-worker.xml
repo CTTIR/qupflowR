@@ -1,0 +1,17 @@
+<!--
+  Logging of the qupflowR worker in the java launch profile
+  (-Dlogback.configurationFile=<DIST>/config/logback-worker.xml). All log output goes to standard
+  error: standard output is reserved for the JSON event lines.
+-->
+<configuration>
+  <appender name="STDERR" class="ch.qos.logback.core.ConsoleAppender">
+    <target>System.err</target>
+    <encoder>
+      <pattern>%d{HH:mm:ss.SSS} [%thread] [%-5level] %logger{36} - %msg%n</pattern>
+    </encoder>
+  </appender>
+  <logger name="loci.formats" level="WARN" />
+  <root level="INFO">
+    <appender-ref ref="STDERR" />
+  </root>
+</configuration>

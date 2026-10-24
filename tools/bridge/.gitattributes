@@ -1,0 +1,8 @@
+# Keep checksummed and executable files byte-identical on every platform.
+gradlew                               text eol=lf
+*.bat                                 text eol=crlf
+*.sh                                  text eol=lf
+*.jar                                 binary
+*.lockfile                            text eol=lf
+gradle/verification-metadata.xml      text eol=lf
+gradle/wrapper/gradle-wrapper.properties text eol=lf

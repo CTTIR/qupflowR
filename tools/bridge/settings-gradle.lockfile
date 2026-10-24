@@ -1,0 +1,5 @@
+# This is a Gradle generated file for dependency locking.
+# Manual edits can break the build and are not advised.
+# This file is expected to be part of source control.
+io.github.qupath:qupath-catalog:0.7.0=incomingCatalogForLibs0
+empty=

@@ -1,0 +1,40 @@
+# This is a Gradle generated file for dependency locking.
+# Manual edits can break the build and are not advised.
+# This file is expected to be part of source control.
+ch.qos.logback:logback-classic:1.5.23=testCompileClasspath,testRuntimeClasspath
+ch.qos.logback:logback-core:1.5.23=testCompileClasspath,testRuntimeClasspath
+com.google.code.gson:gson:2.13.2=compileClasspath,testCompileClasspath,testRuntimeClasspath
+com.google.errorprone:error_prone_annotations:2.41.0=compileClasspath,testCompileClasspath,testRuntimeClasspath
+io.github.qupath:qupath-bioimageio-spec:0.2.0=compileClasspath
+io.github.qupath:qupath-core-processing:0.7.0=compileClasspath
+io.github.qupath:qupath-core:0.7.0=compileClasspath
+io.github.qupath:qupath-gui-fx:0.7.0=compileClasspath
+net.imagej:ij:1.54p=compileClasspath
+org.apiguardian:apiguardian-api:1.1.2=testCompileClasspath
+org.bytedeco:javacpp-platform:1.5.12=compileClasspath
+org.bytedeco:javacpp:1.5.12=compileClasspath
+org.bytedeco:openblas-platform:0.3.30-1.5.12=compileClasspath
+org.bytedeco:openblas:0.3.30-1.5.12=compileClasspath
+org.bytedeco:opencv-platform:4.11.0-1.5.12=compileClasspath
+org.bytedeco:opencv:4.11.0-1.5.12=compileClasspath
+org.controlsfx:controlsfx:11.2.2=compileClasspath
+org.junit.jupiter:junit-jupiter-api:5.11.0=testCompileClasspath,testRuntimeClasspath
+org.junit.jupiter:junit-jupiter-engine:5.11.0=testRuntimeClasspath
+org.junit.jupiter:junit-jupiter-params:5.11.0=testCompileClasspath,testRuntimeClasspath
+org.junit.jupiter:junit-jupiter:5.11.0=testCompileClasspath,testRuntimeClasspath
+org.junit.platform:junit-platform-commons:1.11.0=testCompileClasspath,testRuntimeClasspath
+org.junit.platform:junit-platform-engine:1.11.0=testRuntimeClasspath
+org.junit.platform:junit-platform-launcher:1.11.0=testRuntimeClasspath
+org.junit:junit-bom:5.11.0=testCompileClasspath,testRuntimeClasspath
+org.locationtech.jts:jts-core:1.20.0=compileClasspath
+org.openjfx:javafx-base:25.0.2=compileClasspath
+org.openjfx:javafx-controls:25.0.2=compileClasspath
+org.openjfx:javafx-fxml:25.0.2=compileClasspath
+org.openjfx:javafx-graphics:25.0.2=compileClasspath
+org.openjfx:javafx-media:25.0.2=compileClasspath
+org.openjfx:javafx-swing:25.0.2=compileClasspath
+org.openjfx:javafx-web:25.0.2=compileClasspath
+org.openjfx:jdk-jsobject:25.0.2=compileClasspath
+org.opentest4j:opentest4j:1.3.0=testCompileClasspath,testRuntimeClasspath
+org.slf4j:slf4j-api:2.0.17=compileClasspath,testCompileClasspath,testRuntimeClasspath
+empty=annotationProcessor,runtimeClasspath,testAnnotationProcessor

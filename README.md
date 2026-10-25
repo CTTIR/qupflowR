@@ -1,4 +1,4 @@
-# qupflowR <img src="man/figures/logo.svg" align="right" height="160" alt="qupflowR hex logo" />
+# qupflowR <img src="man/figures/logo.png" align="right" width="120" height="139" alt="qupflowR logo" />
 
 [![R-CMD-check](https://github.com/CTTIR/qupflowR/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/CTTIR/qupflowR/actions/workflows/R-CMD-check.yaml)
 
@@ -105,3 +105,8 @@ GPL (>= 3), with the full text in `LICENSE.md`. Package code is attributed to
 the maintainer declared in DESCRIPTION. External engines and dependencies are
 not bundled and retain their own licenses. MIT consumers should use the agreed
 external process/file interface rather than silently importing GPL code.
+
+## Branding
+
+Editable R sources and regeneration instructions are in
+[tools/branding](https://github.com/CTTIR/qupflowR/tree/main/tools/branding).

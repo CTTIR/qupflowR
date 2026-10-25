@@ -43,3 +43,4 @@
 ^qupflowR_.*\.tar\.gz$
 ^instructions$
 ^\.git$
+^tools/branding$

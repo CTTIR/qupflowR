@@ -47,7 +47,3 @@ navbar:
     articles:
       text: Getting started
       href: articles/qupflowR.html
-
-includes:
-  in_header: |
-    <link rel="icon" type="image/svg+xml" href="favicon.svg">

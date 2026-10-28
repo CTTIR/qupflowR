@@ -1,5 +1,9 @@
 # qupflowR development
 
+* Standardize the named v5 package logo across README, documentation pages
+  and available application headers, with matching light and dark artwork.
+
+
 * The partner package annotatR was renamed to hyperannotatR (HSI annotation).
   `Suggests` and `Remotes` now name hyperannotatR. The contract identifiers
   keep their names: the schema set `annotatr-control/v1`, the vocabulary

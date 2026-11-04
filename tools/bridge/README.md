@@ -106,13 +106,20 @@ classifier artifacts added to the verification metadata before the extension bui
   bearer token, route and method, route body limit; `100 Continue` only after admission.
 - At most 64 counted connections. A connection counts until its response is written; the slot is
   released before the bounded linger. When the cap is reached, the oldest connection that is stalled
-  in its header phase (no unread input, and either some bytes received or silent for more than
+  in its header phase (waiting for more input, and either some bytes received or silent for more than
   250 ms) is evicted with `503 HOST_BUSY` (`reason: evicted_header_phase`, `Retry-After: 1`).
-  Only if nothing is evictable does the new connection get `503 HOST_BUSY`
-  (`reason: connection_limit`).
-  Clients that hold partial requests open (bytes received, then stalled) can therefore not block
-  complete, authenticated requests (unit tests hold 100 such connections, a verification run
-  200). Silent sockets are only evictable after 250 ms: a local process that keeps reconnecting
+  Header reads and eviction share a short ownership guard; buffered parsing and final header
+  validation cannot be evicted. Header readiness waits occur outside that guard and the table lock;
+  selectors are closed before the existing blocking body and response I/O resumes.
+  When header peers have unread input or are parsing received bytes, admission pauses for at most
+  250 ms, capped by the new request's remaining header deadline, so their readers can make progress.
+  Only the current accepted socket waits; the cap and listener backlog remain unchanged. Admitted
+  requests and young silent peers alone do not trigger this wait. If no slot or evictable peer
+  becomes available, the new connection gets `503 HOST_BUSY` (`reason: connection_limit`).
+  Parsed, stalled partial requests can be evicted (unit tests hold 100 such connections, a prior
+  verification run 200). Heavy reader scheduling delays can still exhaust the bounded wait; this
+  is not an unconditional availability guarantee. Silent sockets are only evictable after 250 ms:
+  a local process that keeps reconnecting
   silent sockets faster than that holds every slot for as long as it runs, and new connections,
   including authenticated ones, get retryable `503 HOST_BUSY` answers during that time. A
   verification run with 200 reconnecting silent sockets answered 259 of 277 health polls with

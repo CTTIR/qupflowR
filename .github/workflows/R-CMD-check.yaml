@@ -3,9 +3,9 @@
 # Do not add steps here and do not switch the ref to a branch; an update of
 # the pin needs a source and contract review first.
 #
-# The Java bridge (tools/bridge), QuPath, browser and second-machine lanes
-# are not covered by this workflow; they are run locally through
-# tools/validate.R until dedicated jobs exist.
+# Java protocol/core checks have a separate bridge-core.yaml workflow.
+# Native QuPath, browser and second-machine lanes are not covered here;
+# their local validation remains available through tools/validate.R.
 on:
   push:
     branches: [main]

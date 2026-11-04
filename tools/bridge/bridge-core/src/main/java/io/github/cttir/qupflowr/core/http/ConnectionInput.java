@@ -17,21 +17,32 @@ import java.util.concurrent.TimeUnit;
  */
 final class ConnectionInput {
 
+    @FunctionalInterface
+    interface HeaderReader {
+        int read(byte[] bytes, int offset, int length, long deadline) throws IOException;
+    }
+
     private final Socket socket;
     private final InputStream in;
     private final long idleMillis;
     private final java.util.function.IntConsumer receivedCounter;
+    private final HeaderReader headerReader;
     private final byte[] buffer = new byte[8192];
     private int pos;
     private int limit;
     private int lastLineBytes;
 
-    ConnectionInput(Socket socket, long idleMillis, java.util.function.IntConsumer receivedCounter)
+    ConnectionInput(
+            Socket socket,
+            long idleMillis,
+            java.util.function.IntConsumer receivedCounter,
+            HeaderReader headerReader)
             throws IOException {
         this.socket = socket;
         this.in = socket.getInputStream();
         this.idleMillis = idleMillis;
         this.receivedCounter = receivedCounter;
+        this.headerReader = headerReader;
     }
 
     int lastLineBytes() {
@@ -90,7 +101,7 @@ final class ConnectionInput {
     private boolean fill(long deadline) throws IOException, HttpFailure {
         int n;
         try {
-            n = timedRead(buffer, 0, buffer.length, deadline);
+            n = headerReader.read(buffer, 0, buffer.length, deadline);
         } catch (BodyTimeoutException e) {
             throw new HttpFailure(
                     new TransportError(408, TransportCodes.REQUEST_TIMEOUT, e.reason(), true, null),

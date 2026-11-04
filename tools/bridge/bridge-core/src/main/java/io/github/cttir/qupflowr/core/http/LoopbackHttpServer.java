@@ -20,6 +20,7 @@ import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.Semaphore;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicLong;
+import java.util.concurrent.locks.LockSupport;
 
 /**
  * Small HTTP/1.1 server for the local bridge that uses only {@code java.base} (decision D019).
@@ -30,8 +31,11 @@ import java.util.concurrent.atomic.AtomicLong;
  *   <li>At most {@link Limits#maxConnections()} counted connections. When the cap is reached, the
  *       oldest connection that is stalled in its header block (no unread input) is evicted and
  *       receives {@code 503 HOST_BUSY}, so clients that hold connections open without completing a
- *       request cannot block complete, authenticated requests. If nothing is evictable, the new
- *       connection gets {@code 503 HOST_BUSY} with {@code Retry-After}.
+ *       request cannot indefinitely occupy the cap. If header readers have pending input or are
+ *       parsing bytes already read,
+ *       admission allows at most 250 ms for progress, within the remaining header deadline. This
+ *       wait holds no table lock and adds no connection queue. If nothing becomes evictable, the
+ *       new connection gets {@code 503 HOST_BUSY} with {@code Retry-After}.
  *   <li>Idle read timeout, absolute header deadline and absolute request deadline.
  *   <li>Request line, header block and header count limits; HTTP/1.0 and 1.1; strict CRLF framing;
  *       no {@code Transfer-Encoding}; body only via a single {@code Content-Length}.
@@ -45,6 +49,9 @@ import java.util.concurrent.atomic.AtomicLong;
  * </ul>
  */
 public final class LoopbackHttpServer implements AutoCloseable {
+
+    private static final long HEADER_PROGRESS_WAIT_NANOS = TimeUnit.MILLISECONDS.toNanos(250);
+    private static final long HEADER_PROGRESS_POLL_NANOS = TimeUnit.MILLISECONDS.toNanos(1);
 
     private final HttpHandler handler;
     private final ServerEvent.Listener listener;
@@ -192,10 +199,12 @@ public final class LoopbackHttpServer implements AutoCloseable {
             closeQuietly(channel);
         }
         deadlines.shutdownNow();
-        try {
-            acceptThread.join(1000);
-        } catch (InterruptedException e) {
-            Thread.currentThread().interrupt();
+        if (Thread.currentThread() != acceptThread) {
+            try {
+                acceptThread.join(1000);
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+            }
         }
     }
 
@@ -222,7 +231,15 @@ public final class LoopbackHttpServer implements AutoCloseable {
                 closeQuietly(channel);
                 continue;
             }
-            ConnectionTable.Admit admit = table.admit(connection);
+            ConnectionTable.Admit admit = admitAfterHeaderProgress(connection);
+            if (closed || Thread.currentThread().isInterrupted()) {
+                table.release(connection);
+                closeQuietly(channel);
+                if (Thread.currentThread().isInterrupted()) {
+                    close();
+                }
+                return;
+            }
             switch (admit.outcome()) {
                 case ADMITTED, ADMITTED_BY_EVICTION -> {
                     if (admit.victim() != null) {
@@ -235,6 +252,39 @@ public final class LoopbackHttpServer implements AutoCloseable {
                 default -> throw new IllegalStateException("Unknown admission outcome");
             }
         }
+    }
+
+    private ConnectionTable.Admit admitAfterHeaderProgress(Connection connection) {
+        long started = System.nanoTime();
+        long headerRemaining =
+                limits.headerDeadline().toNanos() - (started - connection.acceptedAt());
+        long budget = Math.min(HEADER_PROGRESS_WAIT_NANOS, headerRemaining);
+        ConnectionTable.Admit result = table.admit(connection);
+        while (result.outcome() == ConnectionTable.Outcome.FULL
+                && !closed
+                && !Thread.currentThread().isInterrupted()
+                && table.hasPendingHeaderInput()) {
+            long remaining = budget - (System.nanoTime() - started);
+            if (remaining <= 0) {
+                break;
+            }
+            // The accept thread holds one uncounted socket, never an expanding queue. Parking
+            // outside the table monitor lets existing readers finish, release or become evictable.
+            LockSupport.parkNanos(Math.min(HEADER_PROGRESS_POLL_NANOS, remaining));
+            if (closed || Thread.currentThread().isInterrupted()) {
+                break;
+            }
+            result = table.admit(connection);
+        }
+        // The last FULL result may be stale: a reader can drain or release between admission and
+        // the pending-input query. One nonwaiting attempt observes that progress without restarting
+        // the retry budget or changing which peers can be evicted.
+        if (result.outcome() == ConnectionTable.Outcome.FULL
+                && !closed
+                && !Thread.currentThread().isInterrupted()) {
+            result = table.admit(connection);
+        }
+        return result;
     }
 
     private void startConnection(Connection connection) {

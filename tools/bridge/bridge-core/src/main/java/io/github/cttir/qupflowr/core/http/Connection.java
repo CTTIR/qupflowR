@@ -8,6 +8,9 @@ import java.io.EOFException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.Socket;
+import java.nio.ByteBuffer;
+import java.nio.channels.SelectionKey;
+import java.nio.channels.Selector;
 import java.nio.channels.SocketChannel;
 import java.util.Objects;
 import java.util.concurrent.ScheduledFuture;
@@ -27,6 +30,15 @@ final class Connection implements Runnable {
     private final long acceptedAt;
     private final java.util.concurrent.atomic.AtomicLong received =
             new java.util.concurrent.atomic.AtomicLong();
+    private enum HeaderState {
+        NEW,
+        WAITING,
+        PARSING
+    }
+
+    private final Object headerGuard = new Object();
+    private HeaderState headerState = HeaderState.NEW;
+    private volatile Selector headerSelector;
     private volatile boolean evicted;
     private volatile ScheduledFuture<?> deadline;
 
@@ -46,11 +58,6 @@ final class Connection implements Runnable {
         return acceptedAt;
     }
 
-    /** Marks the connection evicted; called under the table lock. */
-    void markEvicted() {
-        evicted = true;
-    }
-
     boolean isEvicted() {
         return evicted;
     }
@@ -61,29 +68,117 @@ final class Connection implements Runnable {
     }
 
     /**
-     * Tells whether the connection may be evicted: it is waiting for the client (no received byte
-     * is left unread) and it has either sent something already or stayed silent longer than the
-     * grace period. Called by the accept thread under the table lock while the connection thread
-     * may be blocked in a read.
+     * Atomically claims a stalled header connection for eviction. The same guard protects the
+     * nonblocking header read and publication of PARSING, so consumed or buffered bytes cannot be
+     * mistaken for a stalled socket. No blocking read or table operation runs under this guard.
      */
-    boolean isEvictable(long nowNanos) {
-        boolean spoke = received.get() > 0;
-        if (!spoke && nowNanos - acceptedAt < server.limits().evictionGrace().toNanos()) {
-            return false;
-        }
-        try {
-            return pendingInput.available() == 0;
-        } catch (IOException e) {
+    boolean tryEvict(long nowNanos) {
+        synchronized (headerGuard) {
+            if (evicted || headerState == HeaderState.PARSING) {
+                return false;
+            }
+            if (received.get() == 0
+                    && nowNanos - acceptedAt < server.limits().evictionGrace().toNanos()) {
+                return false;
+            }
+            try {
+                if (pendingInput.available() > 0) {
+                    return false;
+                }
+            } catch (IOException e) {
+                // A failed socket cannot make further header progress.
+            }
+            evicted = true;
             return true;
+        }
+    }
+
+    /** Buffered parsing and unread socket bytes both permit bounded admission progress. */
+    boolean hasHeaderProgress() {
+        synchronized (headerGuard) {
+            if (evicted) {
+                return false;
+            }
+            if (headerState == HeaderState.PARSING && received.get() > 0) {
+                return true;
+            }
+            try {
+                return pendingInput.available() > 0;
+            } catch (IOException e) {
+                return false;
+            }
         }
     }
 
     /** Wakes the connection's reader so it answers {@code 503 HOST_BUSY} and closes. */
     void interruptHeaderPhase() {
-        try {
-            channel.shutdownInput();
-        } catch (IOException | RuntimeException e) {
-            LoopbackHttpServer.closeQuietly(channel);
+        Selector selector = headerSelector;
+        if (selector != null) {
+            selector.wakeup();
+        }
+    }
+
+    private RequestHead readHead(ConnectionInput in, Limits limits, long deadline)
+            throws IOException, HttpFailure {
+        synchronized (headerGuard) {
+            if (evicted) {
+                return null;
+            }
+            headerState = HeaderState.PARSING;
+        }
+        try (Selector selector = Selector.open()) {
+            channel.configureBlocking(false);
+            channel.register(selector, SelectionKey.OP_READ);
+            headerSelector = selector;
+            return RequestParser.readHead(in, limits, server.hostPolicy(), server.port(), deadline);
+        } finally {
+            // Keep ownership through buffered parsing and final header validation. Selector.close
+            // deregisters the channel before blocking Socket body/response I/O resumes.
+            synchronized (headerGuard) {
+                headerState = HeaderState.PARSING;
+            }
+            headerSelector = null;
+            if (channel.isOpen()) {
+                channel.configureBlocking(true);
+            }
+        }
+    }
+
+    int readHeaderBytes(byte[] bytes, int offset, int length, long deadline) throws IOException {
+        long started = System.nanoTime();
+        long idleBudget = server.limits().idleReadTimeout().toNanos();
+        while (true) {
+            long now = System.nanoTime();
+            long idleRemaining = idleBudget - (now - started);
+            long headerRemaining = deadline - now;
+            long remainingMillis =
+                    TimeUnit.NANOSECONDS.toMillis(Math.min(idleRemaining, headerRemaining));
+            if (remainingMillis <= 0) {
+                throw new BodyTimeoutException(
+                        headerRemaining < idleRemaining ? "deadline_exceeded" : "idle_timeout");
+            }
+            synchronized (headerGuard) {
+                if (evicted) {
+                    return -1;
+                }
+                int n = channel.read(ByteBuffer.wrap(bytes, offset, length));
+                if (n != 0) {
+                    headerState = HeaderState.PARSING;
+                    if (n > 0) {
+                        addReceived(n);
+                    }
+                    return n;
+                }
+                headerState = HeaderState.WAITING;
+            }
+            if (Thread.currentThread().isInterrupted() || server.isClosed()) {
+                throw new IOException("Header read interrupted or server closed");
+            }
+            // A bounded readiness poll also notices a deadline-driven channel close. Neither
+            // spurious readiness nor this poll restarts the original idle/header deadlines.
+            Selector selector = headerSelector;
+            selector.select(Math.min(50, remainingMillis));
+            selector.selectedKeys().clear();
         }
     }
 
@@ -100,13 +195,14 @@ final class Connection implements Runnable {
             socket.setTcpNoDelay(true);
             ConnectionInput in =
                     new ConnectionInput(
-                            socket, limits.idleReadTimeout().toMillis(), this::addReceived);
+                            socket,
+                            limits.idleReadTimeout().toMillis(),
+                            this::addReceived,
+                            this::readHeaderBytes);
             long headerDeadline = acceptedAt + limits.headerDeadline().toNanos();
             long requestDeadline = acceptedAt + limits.requestDeadline().toNanos();
             try {
-                head =
-                        RequestParser.readHead(
-                                in, limits, server.hostPolicy(), server.port(), headerDeadline);
+                head = readHead(in, limits, headerDeadline);
             } catch (HttpFailure failure) {
                 if (evicted) {
                     respondEvicted();

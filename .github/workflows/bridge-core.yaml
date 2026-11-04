@@ -1,0 +1,72 @@
+name: bridge-core
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - tools/bridge/**
+      - inst/schema/**
+      - .github/workflows/bridge-core.yaml
+  pull_request:
+    branches: [main]
+    paths:
+      - tools/bridge/**
+      - inst/schema/**
+      - .github/workflows/bridge-core.yaml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: bridge-core-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  protocol-and-core:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    defaults:
+      run:
+        working-directory: tools/bridge
+    steps:
+      - name: Check out source
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Set up Java
+        uses: actions/setup-java@b843ebf9b913146b38da2eaa7aeddf76074ae1ad # v6.1.0
+        with:
+          distribution: temurin
+          java-version: '25.0.4.1+1'
+          cache: gradle
+          cache-dependency-path: |
+            tools/bridge/**/*.gradle.kts
+            tools/bridge/**/gradle.lockfile
+            tools/bridge/gradle.properties
+            tools/bridge/gradle/libs.versions.toml
+            tools/bridge/gradle/verification-metadata.xml
+            tools/bridge/gradle/wrapper/gradle-wrapper.properties
+      - name: Record the native environment
+        run: |
+          uname -a
+          java --version
+          ./gradlew --version
+      - name: Check protocol, core and Javadoc
+        # Keep the committed dependency locks, checksum verification and stress assertions.
+        # These tests do not qualify native QuPath execution or the extension GUI.
+        run: ./gradlew --no-daemon --max-workers=2 :bridge-protocol:check :bridge-core:check
+      - name: Retain test and documentation reports
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: bridge-core-reports
+          if-no-files-found: warn
+          retention-days: 14
+          path: |
+            tools/bridge/bridge-protocol/build/test-results/
+            tools/bridge/bridge-protocol/build/reports/tests/
+            tools/bridge/bridge-protocol/build/docs/javadoc/
+            tools/bridge/bridge-core/build/test-results/
+            tools/bridge/bridge-core/build/reports/tests/
+            tools/bridge/bridge-core/build/docs/javadoc/

@@ -1,0 +1,23 @@
+/* Keep code and printed output readable on the shared theme's code surfaces. */
+html[data-bs-theme="light"] pre .co,
+html[data-bs-theme="light"] pre .co *,
+html[data-bs-theme="light"] pre .r-pr {
+  color: #505b66 !important;
+}
+
+html[data-bs-theme="dark"] pre .co,
+html[data-bs-theme="dark"] pre .co *,
+html[data-bs-theme="dark"] pre .r-pr {
+  color: #adb5bd !important;
+}
+
+html[data-bs-theme="light"] pre .va,
+html[data-bs-theme="light"] pre .va a,
+html[data-bs-theme="light"] pre .kw,
+html[data-bs-theme="light"] pre .kw a,
+html[data-bs-theme="light"] pre .at,
+html[data-bs-theme="light"] pre .at a,
+html[data-bs-theme="light"] pre .ex,
+html[data-bs-theme="light"] pre .ex a {
+  color: #8c3b13 !important;
+}

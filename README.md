@@ -14,8 +14,8 @@ No release or CRAN acceptance is claimed.
 
 ## Installation and requirements
 
-R >= 4.5.0 is declared. The current candidate was checked locally on Linux with
-R 4.6.1; the complete cross-platform CI matrix is a separate qualification.
+R >= 4.5.0 is declared. Local R package checks, isolated Linux external-method
+tests and the cross-platform hosted CI matrix are separate qualifications.
 Java and QuPath are not needed to install or load these foundations. Optional
 packages listed in Suggests support tests or planned features and are loaded
 only where used. No runtime or model is downloaded automatically.
@@ -71,7 +71,9 @@ process, retains logs and a receipt, and hashes required outputs. Receipts may
 contain private paths or caller environment values and belong with private run
 artifacts, not in public repositories.
 
-The external-execution profile is Linux-only. It is a hygiene boundary for
+Install its optional dependencies with
+`install.packages(c("digest", "processx", "fs"))`. The external-execution profile
+is Linux-only. It is a hygiene boundary for
 trusted code, not a sandbox. Callers must declare transitive dependencies and
 validate analytical outputs themselves. `execution_complete` means process
 success and declared output presence, not biological validity or equivalence.
@@ -84,8 +86,8 @@ independently of the planned QuPath 0.7/Java 25 live bridge.
 Run `testthat::test_local()` from R. Generated native-image tests require a
 separate explicitly configured fixture tree; their skips do not qualify native
 QuPath execution. The synthetic schema/geometry oracles are included. The Java bridge scaffold and synthetic fixture generator are included as
-development sources under `tools/bridge`. The 518 bridge unit tests pass; this
-does not qualify native integration or live QuPath execution.
+development sources under `tools/bridge`. Their unit tests are a separate
+qualification and do not establish native integration or live QuPath execution.
 
 The retained quality gate supports lint, API and coverage checks:
 

@@ -10,7 +10,8 @@
 #'   expand to the new output directory; no shell interprets arguments.
 #' @param pins Data frame with `path` and `sha256` character columns. Pin the
 #'   executable and every script, model, runtime and input used by the method.
-#'   Hashes are checked before and after execution. The function cannot infer
+#'   Pins must resolve to regular files. Hashes are checked before and after
+#'   execution. The function cannot infer
 #'   undeclared transitive dependencies of an arbitrary executable.
 #' @param outputs Non-empty vector of relative output file paths. Files must
 #'   be non-empty and resolve inside the workspace. Their hashes are recorded.
@@ -49,7 +50,7 @@ qp_run_external <- function(program, args, pins, outputs, workspace,
   if (!identical(ext_system(), "Linux")) {
     qp_abort("RUNTIME_UNAVAILABLE", details = list(supported_system = "Linux"))
   }
-  qp_check_installed(c("digest", "processx"), "external method execution")
+  qp_check_installed(c("digest", "processx", "fs"), "external method execution")
   spec <- ext_validate(program, args, pins, outputs, workspace, timeout, env)
   ext_check_pins(spec$pins)
   if (!dir.create(spec$workspace, mode = "0700", showWarnings = FALSE)) {
@@ -114,7 +115,7 @@ ext_validate <- function(program, args, pins, outputs, workspace,
                          timeout, env) {
   if (!ext_strings(program) || length(program) != 1L ||
         !grepl("^(/|[A-Za-z]:[/\\])", program) ||
-        !file.exists(program) || dir.exists(program)) {
+        !isTRUE(ext_regular(program))) {
     ext_invalid("program", "an existing executable file")
   }
   program <- normalizePath(program, winslash = "/", mustWork = TRUE)
@@ -124,7 +125,7 @@ ext_validate <- function(program, args, pins, outputs, workspace,
   if (!is.data.frame(pins) || !all(c("path", "sha256") %in% names(pins)) ||
         !ext_strings(pins$path) || !ext_strings(pins$sha256) ||
         any(!grepl("^[a-f0-9]{64}$", pins$sha256)) ||
-        any(!file.exists(pins$path)) || any(dir.exists(pins$path))) {
+        any(!ext_regular(pins$path))) {
     ext_invalid("pins", "existing files with lowercase SHA-256 hashes")
   }
   pins <- pins[, c("path", "sha256"), drop = FALSE]
@@ -146,7 +147,7 @@ ext_validate <- function(program, args, pins, outputs, workspace,
     normalizePath(dirname(workspace), winslash = "/"),
     basename(workspace)
   )
-  if (!is.numeric(timeout) || length(timeout) != 1L ||
+  if (!is.numeric(timeout) || is.complex(timeout) || length(timeout) != 1L ||
         !is.finite(timeout) || timeout <= 0) {
     ext_invalid("timeout", "one positive finite number")
   }
@@ -168,9 +169,14 @@ ext_validate <- function(program, args, pins, outputs, workspace,
   list(program = program, pins = pins, workspace = workspace)
 }
 
+ext_regular <- function(paths) {
+  as.character(fs::file_info(paths, follow = TRUE, fail = FALSE)$type) %in%
+    "file"
+}
+
 ext_check_pins <- function(pins) {
   for (i in seq_len(nrow(pins))) {
-    observed <- if (file.exists(pins$path[i])) {
+    observed <- if (isTRUE(ext_regular(pins$path[i]))) {
       digest::digest(file = pins$path[i], algo = "sha256")
     } else {
       NA_character_
@@ -209,7 +215,8 @@ ext_environment <- function(private, env) {
 ext_outputs <- function(outputs, workspace) {
   paths <- file.path(workspace, outputs)
   real <- normalizePath(paths, winslash = "/", mustWork = FALSE)
-  if (any(!file.exists(paths)) || any(dir.exists(paths)) ||
+  if (!ext_workspace_safe(workspace) ||
+        any(!ext_regular(paths)) ||
         any(!startsWith(real, paste0(workspace, "/"))) ||
         any(file.info(paths)$size <= 0)) {
     qp_abort("OUTPUT_INVALID")
@@ -224,14 +231,30 @@ ext_outputs <- function(outputs, workspace) {
 
 ext_time <- function() format(Sys.time(), "%Y-%m-%dT%H:%M:%OSZ", tz = "UTC")
 
+ext_workspace_safe <- function(workspace) {
+  dir.exists(workspace) && !nzchar(Sys.readlink(workspace))
+}
+
 ext_receipt <- function(record) {
+  if (!ext_workspace_safe(record$workspace)) qp_abort("OUTPUT_INVALID")
   target <- file.path(record$workspace, "run.json")
-  temp <- paste0(target, ".partial")
-  jsonlite::write_json(record, temp,
-    auto_unbox = TRUE, pretty = TRUE,
-    dataframe = "rows", null = "null"
+  temp <- tempfile(".run-receipt-", tmpdir = record$workspace)
+  # Exclusive creation never follows an existing link or truncates a file.
+  # A unique sibling also avoids a child-created run.json.partial path.
+  connection <- tryCatch(file(temp, open = "wx", encoding = "UTF-8"),
+    error = function(e) qp_abort("OUTPUT_INVALID", parent = e)
   )
-  if (!suppressWarnings(file.rename(temp, target))) qp_abort("OUTPUT_INVALID")
+  on.exit(unlink(temp), add = TRUE)
+  tryCatch({
+    jsonlite::write_json(record, connection,
+      auto_unbox = TRUE, pretty = TRUE,
+      dataframe = "rows", null = "null"
+    )
+  }, finally = close(connection))
+  if (!ext_workspace_safe(record$workspace) ||
+        !suppressWarnings(file.rename(temp, target))) {
+    qp_abort("OUTPUT_INVALID")
+  }
   invisible(record)
 }
 

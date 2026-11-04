@@ -170,12 +170,14 @@ spaces or quotes. Other platforms remain unavailable until separately qualified.
 
 The following Linux example creates a synthetic method in a temporary directory,
 pins the executable and script, and checks the output against a known value.
-It does not read study files, start QuPath or access the network. `digest` and
-`processx` are optional dependencies required by this API. The example is
-evaluated on Linux when both are installed; elsewhere it is shown as code only.
+It does not read study files, start QuPath or access the network. `digest`,
+`processx` and `fs` are optional dependencies required by this API. Install them
+with `install.packages(c("digest", "processx", "fs"))` before using it. The example
+is evaluated on Linux when all three are installed; elsewhere it is shown as code
+only.
 Real methods must also pin their data, runtime and model dependencies.
 
-```{r external-method, eval=identical(Sys.info()[["sysname"]], "Linux") && requireNamespace("digest", quietly=TRUE) && requireNamespace("processx", quietly=TRUE)}
+```{r external-method, eval=identical(Sys.info()[["sysname"]], "Linux") && requireNamespace("digest", quietly=TRUE) && requireNamespace("processx", quietly=TRUE) && requireNamespace("fs", quietly=TRUE)}
 local({
   example_dir <- tempfile("qupflowr-example-")
   dir.create(example_dir)

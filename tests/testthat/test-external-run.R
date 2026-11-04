@@ -193,3 +193,51 @@ test_that("Java properties quote spaces and embedded quotes without a shell", {
   expect_match(env[["JAVA_TOOL_OPTIONS"]], paste0('"', root, '/home"'),
                fixed = TRUE)
 })
+
+test_that("special pins are refused before hashing or workspace creation", {
+  skip_if_not(nzchar(Sys.which("mkfifo")), "POSIX FIFO fixture needs mkfifo")
+  spec <- external_fixture("quit(status=99)")
+  pipe <- file.path(dirname(spec$workspace), "input.pipe")
+  expect_identical(system2(Sys.which("mkfifo"), shQuote(pipe)), 0L)
+  spec$pins$path[2] <- pipe
+  expect_error(do.call(qp_run_external, spec), class = "qp_validation_error")
+  expect_false(dir.exists(spec$workspace))
+  expect_error(qupflowR:::ext_check_pins(spec$pins),
+               class = "qp_reproduction_error")
+})
+
+test_that("a child receipt-path link cannot overwrite an existing file", {
+  spec <- external_fixture(c(
+    "a <- commandArgs(TRUE)",
+    "writeLines('result', file.path(a[1], 'result.txt'))",
+    "file.symlink(a[2], file.path(a[1], 'run.json.partial'))"
+  ))
+  sentinel <- file.path(dirname(spec$workspace), "sentinel.txt")
+  writeLines("preserve this source", sentinel)
+  spec$args <- c(spec$args, sentinel)
+  record <- do.call(qp_run_external, spec)
+  expect_identical(record$status, "execution_complete")
+  expect_identical(readLines(sentinel), "preserve this source")
+  expect_identical(jsonlite::read_json(
+    file.path(spec$workspace, "run.json")
+  )$status, "execution_complete")
+})
+
+test_that("receipt publication refuses a workspace replaced by a link", {
+  root <- withr::local_tempdir()
+  elsewhere <- file.path(root, "preserve")
+  dir.create(elsewhere)
+  workspace <- file.path(root, "workspace")
+  file.symlink(elsewhere, workspace)
+  expect_error(qupflowR:::ext_receipt(list(workspace = workspace)),
+               class = "qp_runtime_error")
+  expect_false(file.exists(file.path(elsewhere, "run.json")))
+})
+
+
+test_that("complex time limits fail with a classified input error", {
+  spec <- external_fixture("quit(status=99)")
+  spec$timeout <- 1 + 1i
+  expect_error(do.call(qp_run_external, spec), class = "qp_validation_error")
+  expect_false(dir.exists(spec$workspace))
+})

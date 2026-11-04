@@ -23,7 +23,8 @@ expand to the new output directory; no shell interprets arguments.}
 
 \item{pins}{Data frame with \code{path} and \code{sha256} character columns. Pin the
 executable and every script, model, runtime and input used by the method.
-Hashes are checked before and after execution. The function cannot infer
+Pins must resolve to regular files. Hashes are checked before and after
+execution. The function cannot infer
 undeclared transitive dependencies of an arbitrary executable.}
 
 \item{outputs}{Non-empty vector of relative output file paths. Files must

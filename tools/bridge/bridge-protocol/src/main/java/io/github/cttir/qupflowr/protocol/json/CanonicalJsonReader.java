@@ -34,8 +34,8 @@ import java.util.Set;
  *       unpaired_surrogate}), nesting deeper than 128 levels ({@code nesting_too_deep}), duplicate
  *       member names ({@code duplicate_key}) and every grammar violation ({@code syntax});
  *   <li>{@code JSON_UNREPRESENTABLE}: an escaped U+0000 ({@code nul_character}), an empty member
- *       name ({@code empty_member_name}) and numbers outside the double range ({@code
- *       number_out_of_range}).
+ *       name ({@code empty_member_name}) and numbers outside the double range, including nonzero
+ *       literals rounded to zero ({@code number_out_of_range}).
  * </ul>
  *
  * <p>When a text has several defects, the reported one follows the order of the R checks: text
@@ -197,7 +197,8 @@ public final class CanonicalJsonReader {
                 }
             }
             case NumberNode number -> {
-                if (Double.isInfinite(Double.parseDouble(number.token))) {
+                double value = Double.parseDouble(number.token);
+                if (!Double.isFinite(value) || (value == 0 && number.hasNonzeroSignificand())) {
                     throw CanonicalJsonException.unrepresentable(
                             CanonicalJsonException.NUMBER_OUT_OF_RANGE, pointer);
                 }
@@ -243,12 +244,26 @@ public final class CanonicalJsonReader {
     }
 
     private record NumberNode(String token) implements Node {
+        boolean hasNonzeroSignificand() {
+            for (int i = 0; i < token.length(); i++) {
+                char digit = token.charAt(i);
+                if (digit == 'e' || digit == 'E') {
+                    break;
+                }
+                if (digit >= '1' && digit <= '9') {
+                    return true;
+                }
+            }
+            return false;
+        }
+
         @Override
         public JsonElement toElement() {
             try {
                 return new JsonPrimitive(new BigDecimal(token));
             } catch (NumberFormatException e) {
-                // Exponent beyond the int range; the double value (0 after underflow) is kept.
+                // A zero literal may have an exponent beyond the BigDecimal int range.
+                // Nonzero underflow was already rejected by checkTree.
                 return new JsonPrimitive(
                         new BigDecimal(Double.toString(Double.parseDouble(token))));
             }

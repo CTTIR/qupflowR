@@ -313,6 +313,13 @@ public final class SchemaValidator {
         if (node.isEmpty()) {
             throw new SchemaException("unresolved_ref", name(from.file()), ref);
         }
+        // Document lint does not interpret arbitrary const/enum data as schemas.
+        List<SchemaIssue> issues = SchemaLint.lint(node.get(), fragment, fragment.isEmpty());
+        if (!issues.isEmpty()) {
+            SchemaIssue first = issues.get(0);
+            throw new SchemaException(
+                    first.problem(), name(file), "'" + first.keyword() + "' at '" + first.pointer() + "'");
+        }
         return new Resolved(node.get(), file, fragment);
     }
 

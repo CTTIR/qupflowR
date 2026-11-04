@@ -44,6 +44,9 @@ schema with the keyword \code{false}. \code{oneOf}, \code{anyOf} and \code{not} 
 single error at their location and none of their branch errors. Errors
 of \verb{$ref} targets and \code{allOf} branches are reported as they are. Keywords
 that do not apply to the instance type are ignored, as in Draft-07.
+Every resolved reference must itself be a supported object or boolean
+schema; pointing into arbitrary \code{const} or \code{enum} data does not bypass
+schema checks.
 }
 \examples{
 health <- qp_as_json(paste0(

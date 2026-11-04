@@ -90,8 +90,13 @@ final class SchemaLint {
      * @return issues in discovery order; empty for a supported schema
      */
     static List<SchemaIssue> lint(JsonElement document) {
+        return lint(document, "", true);
+    }
+
+    /** Lints a resolved schema target, including targets inside const/enum data. */
+    static List<SchemaIssue> lint(JsonElement document, String pointer, boolean root) {
         List<SchemaIssue> issues = new ArrayList<>();
-        node(document, "", true, issues);
+        node(document, pointer, root, issues);
         return issues;
     }
 

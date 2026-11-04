@@ -146,7 +146,7 @@ class SchemaKeywordTest {
         assertEquals(List.of(" exclusiveMaximum", " maximum"), errors("10.5", s));
         assertEquals(List.of(), errors("\"x\"", s));
         assertEquals(List.of(), errors("-0.0", s));
-        assertEquals(List.of(), errors("1e-400", s));
+        assertEquals(List.of(), errors("5e-324", s));
     }
 
     @Test

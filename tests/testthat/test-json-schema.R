@@ -332,9 +332,12 @@ test_that("malformed reference targets are classified schema errors", {
     expect_identical(report$errors$schema_path,
                      paste0("s.json", ref, "/type"), info = ref)
   }
-  # An array or null target has no keywords and accepts every instance.
-  expect_true(valid("#/definitions/x/enum")$valid)
-  expect_true(valid("#/definitions/n/const")$valid)
+  # Arrays and null are data, not schema values.
+  for (ref in c("#/definitions/x/enum", "#/definitions/n/const")) {
+    cnd <- schema_error(valid(ref))
+    expect_identical(cnd$code, "SCHEMA_INVALID")
+    expect_identical(cnd$details$reason, "schema_not_object")
+  }
 })
 
 test_that("patterns the engines read differently are not portable", {

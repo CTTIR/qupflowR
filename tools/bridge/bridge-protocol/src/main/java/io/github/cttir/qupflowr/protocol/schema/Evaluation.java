@@ -45,10 +45,6 @@ final class Evaluation {
             }
             return List.of(error(path, "false", at, "No value is allowed here."));
         }
-        if (node == null || node.isJsonNull() || node.isJsonArray()) {
-            // Only reachable through a $ref to a non-schema value; it has no keywords.
-            return List.of();
-        }
         if (!(node instanceof JsonObject schema)) {
             throw new SchemaException(
                     "schema_not_object", SchemaValidator.name(at.file()), "'" + at.pointer() + "'");

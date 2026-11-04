@@ -72,6 +72,9 @@ qp_schema_path <- function(name, set = "protocol", version = "v1") {
 #' single error at their location and none of their branch errors. Errors
 #' of `$ref` targets and `allOf` branches are reported as they are. Keywords
 #' that do not apply to the instance type are ignored, as in Draft-07.
+#' Every resolved reference must itself be a supported object or boolean
+#' schema; pointing into arbitrary `const` or `enum` data does not bypass
+#' schema checks.
 #'
 #' @param x Value to validate: an R value (it is encoded with
 #'   [qp_json_encode()] first) or JSON text marked with [qp_as_json()].
@@ -252,10 +255,10 @@ core_schema_invalid <- function(path, reason, extra = list()) {
 
 # Structural checks of a schema document: returns a data frame of issues
 # with the schema pointer, the keyword and a machine-readable problem code.
-core_schema_lint_tree <- function(tree) {
+core_schema_lint_tree <- function(tree, pointer = "", is_root = TRUE) {
   issues <- new.env(parent = emptyenv())
   issues$rows <- list()
-  core_schema_lint_node(tree, "", TRUE, issues)
+  core_schema_lint_node(tree, pointer, is_root, issues)
   rows <- issues$rows
   field <- function(name) vapply(rows, function(r) r[[name]], character(1))
   data.frame(
@@ -513,6 +516,13 @@ core_schema_resolve_ref <- function(ref, sref, ctx) {
   if (!found$found) {
     core_schema_invalid(sref$file, "unresolved_ref", list(ref = ref))
   }
+  # A pointer may enter arbitrary const/enum data, which document lint does
+  # not interpret as schemas. Check the target before evaluating or boxing.
+  issues <- core_schema_lint_tree(found$node, fragment, !nzchar(fragment))
+  if (nrow(issues) > 0L) {
+    core_schema_invalid(file, issues$problem[[1L]],
+                        list(issues = utils::head(issues, 20L)))
+  }
   list(node = found$node, file = file, pointer = fragment)
 }
 
@@ -662,9 +672,7 @@ core_schema_eval <- function(inst, node, path, sref, ctx) {
     return(list(core_schema_err(path, "false", sref,
                                 "validation.false_schema")))
   }
-  if (!is.null(node) && !is.list(node)) {
-    # Only reachable through a $ref to a string or number; a null or array
-    # target has no keywords and accepts every instance, as in Java.
+  if (!is.list(node) || is.null(names(node))) {
     core_schema_invalid(sref$file, "schema_not_object",
                         list(pointer = sref$pointer))
   }

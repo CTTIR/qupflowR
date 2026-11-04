@@ -52,7 +52,8 @@ core_json_atomic_classes <- c(
 #'   in any double-based reader; the protocol does not use them.
 #' * Duplicate or empty object keys, a byte-order mark, invalid UTF-8,
 #'   escaped NUL characters, unpaired surrogate escapes, numbers outside the
-#'   double range and nesting deeper than 128 levels are rejected
+#'   double range (including nonzero literals rounded to zero) and nesting
+#'   deeper than 128 levels are rejected
 #'   (`JSON_INVALID` or `JSON_UNREPRESENTABLE`). So are comments, white
 #'   space other than space, tab, line feed and carriage return between
 #'   tokens, and an unterminated string, also after a complete value as in
@@ -504,7 +505,15 @@ core_json_parse_tree <- function(txt, call) {
     jsonlite::parse_json(txt, simplifyVector = FALSE),
     error = function(e) core_json_invalid("syntax", call = call)
   )
-  core_json_check_tree(tree, "", 0L, call)
+  # Keep the significand of each numeric token until the depth-first check:
+  # parsing alone loses whether a zero came from a nonzero tiny value.
+  stripped <- core_json_mask_strings(scan)
+  tokens <- regmatches(stripped, gregexpr("-?[0-9][0-9.eE+-]*", stripped,
+                                          useBytes = TRUE))[[1]]
+  numbers <- new.env(parent = emptyenv())
+  numbers$nonzero <- grepl("[1-9]", sub("[eE].*$", "", tokens))
+  numbers$index <- 0L
+  core_json_check_tree(tree, "", 0L, call, numbers)
   tree
 }
 
@@ -653,7 +662,7 @@ core_json_mask_strings <- function(scan) {
   rawToChar(bytes)
 }
 
-core_json_check_tree <- function(node, path, depth, call) {
+core_json_check_tree <- function(node, path, depth, call, numbers) {
   if (depth >= core_json_max_depth) {
     core_json_invalid("nesting_too_deep", call = call)
   }
@@ -673,10 +682,14 @@ core_json_check_tree <- function(node, path, depth, call) {
     for (i in seq_along(node)) {
       segment <- if (is.null(nms)) i - 1L else core_pointer_escape(nms[[i]])
       core_json_check_tree(node[[i]], paste0(path, "/", segment), depth + 1L,
-                           call)
+                           call, numbers)
     }
-  } else if (is.double(node) && !is.finite(node)) {
-    core_json_unrepresentable(path, "number_out_of_range", call = call)
+  } else if (is.numeric(node)) {
+    numbers$index <- numbers$index + 1L
+    if (!is.finite(node) ||
+          (node == 0 && numbers$nonzero[[numbers$index]])) {
+      core_json_unrepresentable(path, "number_out_of_range", call = call)
+    }
   }
   invisible(TRUE)
 }

@@ -220,10 +220,9 @@ class SchemaReferenceTest {
                         "\"definitions\":{\"x\":{\"type\":\"string\",\"enum\":[\"a\"]}},",
                         "\"properties\":{\"p\":{\"$ref\":\"#/definitions/x/type\"},",
                         "\"q\":{\"$ref\":\"#/definitions/x/enum\"}}");
-        // An array target has no keywords and a string target is schema_not_object, in R as well.
+        // Neither string nor array data can be used as a schema.
         assertEquals("schema_not_object", reason(body, "{\"p\":1}"));
-        Path schema = write(dir, "s.json", body);
-        assertEquals(List.of(), check(new SchemaValidator(dir), "{\"q\":1}", schema));
+        assertEquals("schema_not_object", reason(body, "{\"q\":1}"));
     }
 
     @Test

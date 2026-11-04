@@ -70,7 +70,8 @@ integers, all others doubles. Integers beyond 2^53 lose precision like
 in any double-based reader; the protocol does not use them.
 \item Duplicate or empty object keys, a byte-order mark, invalid UTF-8,
 escaped NUL characters, unpaired surrogate escapes, numbers outside the
-double range and nesting deeper than 128 levels are rejected
+double range (including nonzero literals rounded to zero) and nesting
+deeper than 128 levels are rejected
 (\code{JSON_INVALID} or \code{JSON_UNREPRESENTABLE}). So are comments, white
 space other than space, tab, line feed and carriage return between
 tokens, and an unterminated string, also after a complete value as in

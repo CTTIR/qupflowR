@@ -1,5 +1,5 @@
 # Thin caller of the shared CTTIR R CMD check workflow, pinned to the
-# reviewed commit named in the build kit (docs/20_CTTIR_STANDARDS.md).
+# reviewed shared workflow commit.
 # Do not add steps here and do not switch the ref to a branch; an update of
 # the pin needs a source and contract review first.
 #
@@ -15,11 +15,10 @@ on:
 
 name: R-CMD-check
 
-# The called workflow declares `permissions: read-all`. A reusable workflow
-# can only keep or reduce the caller's token permissions, so read-all is the
-# narrowest grant that lets it run. Nothing here needs write access.
-permissions: read-all
+# The shared workflow only reads repository contents.
+permissions:
+  contents: read
 
 jobs:
   check:
-    uses: CTTIR/.github/.github/workflows/R-CMD-check.yaml@d54cd50b95ba0110dcc54e6371e3ebb82ee94afb
+    uses: CTTIR/.github/.github/workflows/R-CMD-check.yaml@cbf3c61d7cbae6b15c15bf917a36da41988c7a5f

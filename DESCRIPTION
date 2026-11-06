@@ -1,7 +1,7 @@
 Package: qupflowR
 Title: Connect R and 'Shiny' to 'QuPath' Through a Local Bridge
 Version: 0.0.0.9000
-Authors@R: person("R.", "Heller", email = "58561665+r-heller@users.noreply.github.com",
+Authors@R: person("R.", "Heller", email = "raban.heller@uni-ulm.de",
  role = c("aut", "cre", "cph"))
 Description: Development version of an interface between R and the 'QuPath'
  0.7.0 platform for digital pathology image analysis. The planned design
@@ -50,7 +50,7 @@ Suggests: bslib,
  tiff,
  withr,
  zip
-Remotes: CTTIR/hyperannotatR
+Additional_repositories: https://cttir.r-universe.dev
 VignetteBuilder: knitr
 SystemRequirements: QuPath (0.7.0) and a Java runtime (25) for the
  optional QuPath bridge; neither is needed to install or load the package.

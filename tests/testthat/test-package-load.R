@@ -7,7 +7,7 @@ description_field_packages <- function(field_value) {
   entries[nzchar(entries)]
 }
 
-test_that("DESCRIPTION carries the identity fixed in the blueprint", {
+test_that("DESCRIPTION carries the maintainer identity and contact address", {
   desc <- utils::packageDescription("qupflowR")
   expect_identical(desc$Package, "qupflowR")
   expect_identical(desc$Version, "0.0.0.9000")
@@ -18,7 +18,7 @@ test_that("DESCRIPTION carries the identity fixed in the blueprint", {
   expect_identical(authors$given, "R.")
   expect_identical(authors$family, "Heller")
   expect_identical(authors$email,
-                   "58561665+r-heller@users.noreply.github.com")
+                   "raban.heller@uni-ulm.de")
   expect_setequal(authors$role, c("aut", "cre", "cph"))
 })
 

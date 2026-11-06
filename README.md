@@ -112,3 +112,11 @@ external process/file interface rather than silently importing GPL code.
 
 Editable R sources and regeneration instructions are in
 [tools/branding](https://github.com/CTTIR/qupflowR/tree/main/tools/branding).
+
+## TODO after removing the local container setup
+
+- [ ] Recreate the Linux test environment before the next package audit. The local Docker and Colima setup was removed on 4 November 2026 to free disk space.
+- [ ] Review the saved Linux results before repeating completed work. The recorded R suite and coverage checks passed.
+- [ ] Finish and verify the Java transport and R bridge client against a real QuPath installation.
+- [ ] Run the native QuPath fixtures and GUI checks, then reproduce the workflow on a second computer.
+- [ ] Run the full quality checks and hosted CI for the final revision before publication.

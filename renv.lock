@@ -284,7 +284,7 @@
       "Source": "unknown",
       "Type": "Package",
       "Title": "Multi-Layer Region-of-Interest Annotation for Images and Spectral Cubes",
-      "Authors@R": "person(\"Raban\", \"Heller\", email = \"raban.heller@charite.de\", role = c(\"aut\", \"cre\"), comment = c(ORCID = \"0000-0001-8006-9742\"))",
+      "Authors@R": "person(\"Raban\", \"Heller\", email = \"raban.heller@uni-ulm.de\", role = c(\"aut\", \"cre\"), comment = c(ORCID = \"0000-0001-8006-9742\"))",
       "Description": "Annotate multiple layers of regions of interest across whole-slide microscopy images, hyperspectral data cubes, and conventional rasters. Annotations are stored as validated simple-feature geometries in image pixel coordinates with explicit pyramid-level transforms, and can be rasterised to binary, labelled, or multi-class integer masks for downstream segmentation and classification workflows. A batch annotation application built on 'shiny' and 'OpenSeadragon' supports resumable sessions across image queues, live mask preview, and export to 'GeoJSON', 'QuPath', and 'TIFF' formats.",
       "License": "MIT + file LICENSE",
       "URL": "https://github.com/CTTIR/annotatR, https://cttir.github.io/annotatR/",
@@ -332,7 +332,7 @@
       "VignetteBuilder": "knitr",
       "Config/roxygen2/version": "8.0.0",
       "Author": "Raban Heller [aut, cre] (ORCID: <https://orcid.org/0000-0001-8006-9742>)",
-      "Maintainer": "Raban Heller <raban.heller@charite.de>"
+      "Maintainer": "Raban Heller <raban.heller@uni-ulm.de>"
     },
     "askpass": {
       "Package": "askpass",
@@ -4176,7 +4176,7 @@
       "Version": "0.1.0",
       "Source": "unknown",
       "Title": "pkgdown Theme for the CTTIR Package Suite",
-      "Authors@R": "person(\"R.\", \"Heller\", email = \"raban.heller@charite.de\", role = c(\"aut\", \"cre\"), comment = c(ORCID = \"0000-0001-8006-9742\"))",
+      "Authors@R": "person(\"R.\", \"Heller\", email = \"raban.heller@uni-ulm.de\", role = c(\"aut\", \"cre\"), comment = c(ORCID = \"0000-0001-8006-9742\"))",
       "Description": "Provides a custom pkgdown template that gives the CTTIR family of R packages a shared visual identity: a single purple accent, monospace code styling, light and dark colour modes, and consistent navbar, hex, and footer treatment. Not intended for general use outside the CTTIR suite.",
       "License": "MIT + file LICENSE",
       "URL": "https://github.com/CTTIR/themakR, https://cttir.github.io/themakR/",
@@ -4202,7 +4202,7 @@
       "Config/roxygen2/version": "8.0.0",
       "Config/testthat/edition": "3",
       "Author": "R. Heller [aut, cre] (ORCID: <https://orcid.org/0000-0001-8006-9742>)",
-      "Maintainer": "R. Heller <raban.heller@charite.de>"
+      "Maintainer": "R. Heller <raban.heller@uni-ulm.de>"
     },
     "tibble": {
       "Package": "tibble",

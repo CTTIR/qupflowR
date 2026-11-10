@@ -40,16 +40,17 @@ or \code{"en"}. Messages missing in the chosen language fall back to English.
 Useful links:
 \itemize{
   \item \url{https://github.com/CTTIR/qupflowR}
+  \item \url{https://cttir.github.io/qupflowR/}
   \item Report bugs at \url{https://github.com/CTTIR/qupflowR/issues}
 }
 
 }
 \author{
-\strong{Maintainer}: R. Heller \email{58561665+r-heller@users.noreply.github.com} [copyright holder]
+\strong{Maintainer}: R. Heller \email{raban.heller@uni-ulm.de} [copyright holder]
 
 Authors:
 \itemize{
-  \item R. Heller \email{58561665+r-heller@users.noreply.github.com} [copyright holder]
+  \item R. Heller \email{raban.heller@uni-ulm.de} [copyright holder]
 }
 
 }

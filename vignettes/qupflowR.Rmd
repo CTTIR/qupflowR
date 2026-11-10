@@ -202,7 +202,9 @@ local({
     outputs = "result.txt",
     workspace = file.path(example_dir, "run"),
     timeout = 30,
-    trust = TRUE
+    trust = TRUE,
+    # The child does not inherit thread settings; keep it single-threaded.
+    env = c(OMP_NUM_THREADS = "1", OPENBLAS_NUM_THREADS = "1")
   )
   observed <- readLines(file.path(result$workspace, "result.txt"))
   if (!identical(observed, "42")) {

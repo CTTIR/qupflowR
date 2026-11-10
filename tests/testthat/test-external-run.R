@@ -1,5 +1,11 @@
 skip_on_os(c("windows", "mac"))
 
+# The child gets a stripped environment, so thread limits set for the check
+# run are not inherited; keep the child R process single-threaded explicitly.
+child_thread_limits <- c(
+  OMP_NUM_THREADS = "1", OPENBLAS_NUM_THREADS = "1", MKL_NUM_THREADS = "1"
+)
+
 external_fixture <- function(lines) {
   root <- tempfile("external-")
   dir.create(root)
@@ -14,7 +20,7 @@ external_fixture <- function(lines) {
   list(
     program = program, args = c("--vanilla", script, "{{workspace}}"),
     pins = pins, outputs = "result.txt", workspace = file.path(root, "run"),
-    trust = TRUE
+    trust = TRUE, env = child_thread_limits
   )
 }
 
@@ -37,7 +43,7 @@ test_that("pinned methods preserve arguments and isolate the environment", {
     " Sys.getenv('QP_UNDECLARED_SECRET')), file.path(a[1], 'result.txt'))"
   ))
   spec$args <- c(spec$args, "a; touch no-shell $HOME `echo no`")
-  spec$env <- c(QP_DECLARED = "literal")
+  spec$env <- c(spec$env, QP_DECLARED = "literal")
   record <- do.call(qp_run_external, spec)
   result <- readLines(file.path(spec$workspace, "result.txt"))
   expect_identical(

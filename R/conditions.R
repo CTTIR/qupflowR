@@ -654,3 +654,8 @@ core_named_values <- function(values, call) {
   }
   values
 }
+
+# cli's condition functions need 'rlang' at run time, but 'cli' only suggests
+# it. This reference keeps 'rlang' a declared, used dependency without loading
+# it when the package loads (see test-package-load.R).
+core_rlang_runtime <- function() rlang::is_installed("cli")

@@ -19,6 +19,7 @@ BugReports: https://github.com/CTTIR/qupflowR/issues
 Depends: R (>= 4.5.0)
 Imports: cli,
  jsonlite,
+ rlang,
  stats,
  tibble,
  utils

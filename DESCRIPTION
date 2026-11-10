@@ -1,6 +1,6 @@
 Package: qupflowR
 Title: Protocol Foundations for Connecting R to 'QuPath'
-Version: 0.0.0.9000
+Version: 0.1.0
 Authors@R: person("R.", "Heller", email = "raban.heller@uni-ulm.de",
  role = c("aut", "cre", "cph"))
 Description: Provides the R foundations for an interface between R and the

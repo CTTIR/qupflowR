@@ -10,7 +10,7 @@ description_field_packages <- function(field_value) {
 test_that("DESCRIPTION carries the maintainer identity and contact address", {
   desc <- utils::packageDescription("qupflowR")
   expect_identical(desc$Package, "qupflowR")
-  expect_identical(desc$Version, "0.0.0.9000")
+  expect_identical(desc$Version, "0.1.0")
   expect_identical(desc$License, "GPL (>= 3)")
   # Authors@R is R code by definition; R CMD build evaluates it the same way.
   authors <- eval(parse(text = desc[["Authors@R"]]))

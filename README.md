@@ -28,7 +28,7 @@ remotes::install_github("CTTIR/qupflowR", build_vignettes = TRUE)
 ```
 
 From a checked-out source tree, use `R CMD build .`, then
-`R CMD INSTALL qupflowR_0.0.0.9000.tar.gz`.
+`R CMD INSTALL qupflowR_0.1.0.tar.gz`.
 
 ## Quick start
 

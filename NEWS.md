@@ -1,4 +1,9 @@
-# qupflowR development
+# qupflowR 0.1.0
+
+* Prepare the first CRAN submission: the title and description now describe
+  the implemented foundations rather than the planned bridge, the
+  documentation site URL is declared, a spelling wordlist is added and the
+  pkgdown site is deployed with GitHub Pages from a new workflow.
 
 * Standardize the named v5 package logo across README, documentation pages
   and available application headers, with matching light and dark artwork.

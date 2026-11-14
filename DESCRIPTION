@@ -46,7 +46,7 @@ Suggests: bslib,
  sf,
  shiny,
  shinytest2,
- testthat (>= 3.0.0),
+ testthat (>= 3.1.7),
  tiff,
  withr,
  zip

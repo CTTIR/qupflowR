@@ -4,7 +4,7 @@ type: software
 title: 'qupflowR: Protocol Foundations for Connecting R to ''QuPath'''
 authors:
 - family-names: 'Heller'
-  given-names: 'Raban'
+  given-names: 'R.'
   orcid: https://orcid.org/0000-0001-8006-9742
   affiliation: Ulm University
 version: 0.1.0

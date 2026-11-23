@@ -21,6 +21,7 @@
 * The rlang package is declared in `Imports`, because the condition
   functions of cli need it at run time.
 * The documentation uses British English (`Language: en-GB`).
+* `CITATION.cff` names the author as R. Heller.
 
 * The partner package annotatR was renamed to hyperannotatR (HSI annotation).
   `Suggests` names hyperannotatR, which installs from the r-universe

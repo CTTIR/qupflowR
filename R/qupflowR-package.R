@@ -1,4 +1,4 @@
-#' qupflowR: connect R and Shiny to QuPath through a local bridge
+#' qupflowR: protocol foundations for connecting R to QuPath
 #'
 #' @description
 #' qupflowR is being built as an interface between R and

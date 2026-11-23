@@ -13,6 +13,8 @@
   value from the message catalogue, so they are fully German or fully English
   as set by the option `qupflowR.language` instead of mixing both.
 * `qp_run_external()` has a runnable example that shows the trust gate.
+* The package help page is titled after the implemented protocol foundations
+  instead of the planned Shiny and bridge features.
 * The maintainer entry in `DESCRIPTION` carries the ORCID identifier.
 * The rlang package is declared in `Imports`, because the condition
   functions of cli need it at run time.

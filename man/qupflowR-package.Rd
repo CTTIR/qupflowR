@@ -4,7 +4,7 @@
 \name{qupflowR-package}
 \alias{qupflowR}
 \alias{qupflowR-package}
-\title{qupflowR: connect R and Shiny to QuPath through a local bridge}
+\title{qupflowR: protocol foundations for connecting R to QuPath}
 \description{
 qupflowR is being built as an interface between R and
 \href{https://qupath.github.io/}{QuPath} 0.7.0. The planned design has three

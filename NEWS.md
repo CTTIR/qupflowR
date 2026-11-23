@@ -13,11 +13,16 @@
   value from the message catalogue, so they are fully German or fully English
   as set by the option `qupflowR.language` instead of mixing both.
 * `qp_run_external()` has a runnable example that shows the trust gate.
+* The maintainer entry in `DESCRIPTION` carries the ORCID identifier.
+* The rlang package is declared in `Imports`, because the condition
+  functions of cli need it at run time.
 
 * The partner package annotatR was renamed to hyperannotatR (HSI annotation).
-  `Suggests` and `Remotes` now name hyperannotatR. The contract identifiers
-  keep their names: the schema set `annotatr-control/v1`, the vocabulary
-  `qupflowr-annotatr-capabilities`, the field `annotatr_version` and the
+  `Suggests` names hyperannotatR, which installs from the r-universe
+  declared in `Additional_repositories` (there is no `Remotes` field). The
+  contract identifiers keep their names: the schema set
+  `annotatr-control/v1`, the vocabulary `qupflowr-annotatr-capabilities`,
+  the field `annotatr_version` and the
   partner contract `annotatr-control-v1`, published since annotatR 0.2.0.
   Descriptions and example reasons in that schema set now name hyperannotatR;
   validation is unchanged. Histology and cell annotation moved from annotatR

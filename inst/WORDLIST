@@ -20,6 +20,7 @@ Localised
 loopback
 NUL
 oldrel
+ORCID
 pkgdown
 precisions
 processx
@@ -27,6 +28,7 @@ QuPath
 README
 renv
 revalidation
+rlang
 roxygen
 runnable
 schemas

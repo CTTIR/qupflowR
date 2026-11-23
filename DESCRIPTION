@@ -58,6 +58,6 @@ SystemRequirements: QuPath (0.7.0) and a Java runtime (25) for the
 Config/Needs/website: CTTIR/themakR
 Config/testthat/edition: 3
 Encoding: UTF-8
-Language: en-US
+Language: en-GB
 Roxygen: list(markdown = TRUE)
 Config/roxygen2/version: 8.1.1

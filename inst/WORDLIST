@@ -1,8 +1,7 @@
 annotatR
-artefact
 backtick
+booleans
 callr
-catalogue
 cd
 cli
 CMD
@@ -14,9 +13,7 @@ HSI
 httr
 hyperannotatR
 jsonlite
-licence
 linters
-Localised
 loopback
 NUL
 oldrel
@@ -25,6 +22,7 @@ pkgdown
 precisions
 processx
 QuPath
+rd
 README
 renv
 revalidation
@@ -34,7 +32,6 @@ runnable
 schemas
 segmantR
 SHA
-signalled
 testthat
 themakR
 tibble

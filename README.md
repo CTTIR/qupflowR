@@ -71,7 +71,7 @@ SHA-256 pins for declared executable/script/runtime/model/input files and a new
 workspace. It uses a private child environment, checks inputs again after the
 process, retains logs and a receipt, and hashes required outputs. Receipts may
 contain private paths or caller environment values and belong with private run
-artifacts, not in public repositories.
+artefacts, not in public repositories.
 
 Install its optional dependencies with
 `install.packages(c("digest", "processx", "fs"))`. The external-execution profile
@@ -100,14 +100,14 @@ QUPFLOWR_CTTIR_GITHUB= Rscript tools/quality.R --mode all --report
 An empty `QUPFLOWR_CTTIR_GITHUB` selects the hash-pinned vendored house linters;
 no local sibling checkout is required. The committed API history and coverage
 baseline are retained unchanged. Shared CI workflow callers are pinned to their
-existing source revision. Hosted CI success, browser behavior, native runtime
+existing source revision. Hosted CI success, browser behaviour, native runtime
 qualification and second-computer reproduction are separate evidence states.
 
-## License
+## Licence
 
 GPL (>= 3), with the full text in `LICENSE.md`. Package code is attributed to
 the maintainer declared in DESCRIPTION. External engines and dependencies are
-not bundled and retain their own licenses. MIT consumers should use the agreed
+not bundled and retain their own licences. MIT consumers should use the agreed
 external process/file interface rather than silently importing GPL code.
 
 ## Branding

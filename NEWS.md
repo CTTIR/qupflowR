@@ -5,7 +5,7 @@
   documentation site URL is declared, a spelling wordlist is added and the
   pkgdown site is deployed with GitHub Pages from a new workflow.
 
-* Standardize the named v5 package logo across README, documentation pages
+* Standardise the named v5 package logo across README, documentation pages
   and available application headers, with matching light and dark artwork.
 
 * Errors from `qp_run_external()` now name `qp_run_external()` as the call
@@ -20,6 +20,7 @@
 * The maintainer entry in `DESCRIPTION` carries the ORCID identifier.
 * The rlang package is declared in `Imports`, because the condition
   functions of cli need it at run time.
+* The documentation uses British English (`Language: en-GB`).
 
 * The partner package annotatR was renamed to hyperannotatR (HSI annotation).
   `Suggests` names hyperannotatR, which installs from the r-universe

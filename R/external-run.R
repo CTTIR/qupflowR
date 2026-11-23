@@ -20,7 +20,7 @@
 #' @param workspace A new, not-yet-existing directory in an existing parent.
 #'   It is retained on both success and failure, with logs and a run receipt.
 #' @param timeout Finite positive time limit in seconds.
-#' @param trust Exactly `TRUE` to authorize execution of the pinned code.
+#' @param trust Exactly `TRUE` to authorise execution of the pinned code.
 #'   Hash integrity is not a substitute for deciding to trust that code.
 #' @param env Named character vector of additional environment variables.
 #'   Home, display, temporary-directory and Java-option overrides are forbidden.
@@ -35,14 +35,14 @@
 #'   process hygiene, not a sandbox for malicious trusted code. Only processes
 #'   started by this call are cleaned up. Existing output directories are never
 #'   reused. No downloads, dependency installation or silent runtime upgrade
-#'   occur. A nonzero exit or missing output never counts as completion.
+#'   occur. A non-zero exit or missing output never counts as completion.
 #'   The initial execution profile supports Linux only; other platforms fail
 #'   before creating a workspace. In particular, no Windows atomic-replacement
-#'   or process-cleanup behavior is claimed without platform qualification.
+#'   or process clean-up behaviour is claimed without platform qualification.
 #' @export
 #' @examples
 #' # Configure executable, script/model/input SHA-256 pins and output paths
-#' # before explicitly authorizing a method with trust = TRUE. Without that
+#' # before explicitly authorising a method with trust = TRUE. Without that
 #' # decision nothing is validated, created or started, on every platform:
 #' cnd <- tryCatch(
 #'   qp_run_external(

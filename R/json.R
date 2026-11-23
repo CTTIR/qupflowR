@@ -52,7 +52,7 @@ core_json_atomic_classes <- c(
 #'   in any double-based reader; the protocol does not use them.
 #' * Duplicate or empty object keys, a byte-order mark, invalid UTF-8,
 #'   escaped NUL characters, unpaired surrogate escapes, numbers outside the
-#'   double range (including nonzero literals rounded to zero) and nesting
+#'   double range (including non-zero literals rounded to zero) and nesting
 #'   deeper than 128 levels are rejected
 #'   (`JSON_INVALID` or `JSON_UNREPRESENTABLE`). So are comments, white
 #'   space other than space, tab, line feed and carriage return between

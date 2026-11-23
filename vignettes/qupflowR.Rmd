@@ -159,7 +159,7 @@ environment prevents accidental use of the user's desktop/preferences.
 
 The method itself must validate its analytical outputs. The returned
 `execution_complete` status records process success, unchanged declared inputs
-and nonempty output artifacts; it does not imply scientific equivalence or a
+and non-empty output artefacts; it does not imply scientific equivalence or a
 successful project save. Keep study configuration and data outside the public
 package. This additive API is not the future queued workflow engine and does
 not qualify the developing live bridge for other QuPath versions.
@@ -214,7 +214,7 @@ local({
 })
 ```
 
-An existing workspace, a changed pinned file, a nonzero process exit, or a
+An existing workspace, a changed pinned file, a non-zero process exit, or a
 missing/empty declared output fails the run. Inspect the retained `run.json`
 and process logs for real failures. Keep those receipts private because they
 record paths and the explicit child environment.

@@ -2,10 +2,10 @@
 # mocked so validation runs, but every case fails before a process starts.
 
 local_linux_profile <- function(env = parent.frame()) {
-  skip_if_not_installed("digest")
-  skip_if_not_installed("processx")
-  skip_if_not_installed("fs")
-  local_mocked_bindings(ext_system = function() "Linux", .env = env)
+  testthat::skip_if_not_installed("digest")
+  testthat::skip_if_not_installed("processx")
+  testthat::skip_if_not_installed("fs")
+  testthat::local_mocked_bindings(ext_system = function() "Linux", .env = env)
 }
 
 pinned_file <- function() {

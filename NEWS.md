@@ -11,7 +11,9 @@
 * Errors from `qp_run_external()` now name `qp_run_external()` as the call
   instead of an internal helper, and its argument errors take the expected
   value from the message catalogue, so they are fully German or fully English
-  as set by the option `qupflowR.language` instead of mixing both.
+  as set by the option `qupflowR.language` instead of mixing both. Like the
+  other argument errors of the package, they record the argument name in
+  `details$argument`.
 * `qp_run_external()` has a runnable example that shows the trust gate.
 * The package help page is titled after the implemented protocol foundations
   instead of the planned Shiny and bridge features.

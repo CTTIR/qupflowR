@@ -43,7 +43,7 @@ json <- qp_json_encode(payload)
 qp_json_decode(json)$object_ids
 #> [1] "1" "2"
 qp_value_state(c(1.5, NA_real_, NaN, Inf, -Inf))
-#> [1] "finite" "missing" "nan" "pos_inf" "neg_inf"
+#> [1] "finite"  "missing" "nan"     "pos_inf" "neg_inf"
 ```
 
 Mark scalar JSON fields with `qp_scalar()`; unmarked vectors remain arrays,

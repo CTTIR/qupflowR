@@ -279,6 +279,38 @@
       "de": "ein Fehlercode aus Großbuchstaben, Ziffern und Unterstrichen",
       "en": "an error code of upper-case letters, digits and underscores"
     },
+    "expect.external_arguments": {
+      "de": "ein Zeichenvektor von Argumenten ohne fehlende oder leere Werte",
+      "en": "a character argument vector without missing or empty values"
+    },
+    "expect.external_environment": {
+      "de": "benannte Umgebungsvariablen ohne Überschreibungen der Isolation",
+      "en": "named environment variables without isolation overrides"
+    },
+    "expect.external_executable": {
+      "de": "der absolute Pfad einer vorhandenen ausführbaren Datei",
+      "en": "the absolute path of an existing executable file"
+    },
+    "expect.external_new_workspace": {
+      "de": "ein neues, beschreibbares Verzeichnis in einem vorhandenen Elternverzeichnis",
+      "en": "a new, writable directory under an existing parent"
+    },
+    "expect.external_outputs": {
+      "de": "eindeutige relative Pfade ohne Verzeichniswechsel nach oben",
+      "en": "distinct relative paths without traversal"
+    },
+    "expect.external_pin_files": {
+      "de": "vorhandene Dateien mit SHA-256-Prüfsummen in Kleinbuchstaben",
+      "en": "existing files with lower-case SHA-256 hashes"
+    },
+    "expect.external_pin_unique": {
+      "de": "eindeutige Dateien einschließlich der ausführbaren Datei",
+      "en": "unique files including the executable"
+    },
+    "expect.external_timeout": {
+      "de": "eine einzelne positive endliche Zahl",
+      "en": "one positive finite number"
+    },
     "expect.flag": {
       "de": "ein einzelner Wahrheitswert (TRUE oder FALSE)",
       "en": "a single logical value (TRUE or FALSE)"

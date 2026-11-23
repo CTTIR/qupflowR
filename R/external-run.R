@@ -42,31 +42,45 @@
 #' @export
 #' @examples
 #' # Configure executable, script/model/input SHA-256 pins and output paths
-#' # before explicitly authorizing a method with trust = TRUE.
+#' # before explicitly authorizing a method with trust = TRUE. Without that
+#' # decision nothing is validated, created or started, on every platform:
+#' cnd <- tryCatch(
+#'   qp_run_external(
+#'     program = "/usr/bin/true", args = character(), pins = data.frame(),
+#'     outputs = "result.txt", workspace = file.path(tempdir(), "qp-run")
+#'   ),
+#'   qp_error = function(e) e
+#' )
+#' qp_condition_code(cnd)
+#' dir.exists(file.path(tempdir(), "qp-run"))
 qp_run_external <- function(program, args, pins, outputs, workspace,
                             timeout = 600, trust = FALSE,
                             env = character()) {
-  if (!identical(trust, TRUE)) qp_abort("TRUST_REQUIRED")
+  call <- environment()
+  if (!identical(trust, TRUE)) qp_abort("TRUST_REQUIRED", call = call)
   if (!identical(ext_system(), "Linux")) {
-    qp_abort("RUNTIME_UNAVAILABLE", details = list(supported_system = "Linux"))
+    qp_abort("RUNTIME_UNAVAILABLE", details = list(supported_system = "Linux"),
+             call = call)
   }
-  qp_check_installed(c("digest", "processx", "fs"), "external method execution")
-  spec <- ext_validate(program, args, pins, outputs, workspace, timeout, env)
-  ext_check_pins(spec$pins)
+  qp_check_installed(c("digest", "processx", "fs"), "external method execution",
+                     call = call)
+  spec <- ext_validate(program, args, pins, outputs, workspace, timeout, env,
+                       call = call)
+  ext_check_pins(spec$pins, call)
   if (!dir.create(spec$workspace, mode = "0700", showWarnings = FALSE)) {
-    ext_invalid("workspace", "a new writable directory")
+    ext_invalid("workspace", "new_workspace", call)
   }
   private <- tempfile("qpx-")
-  ext_mkdir(private)
+  ext_mkdir(private, call)
   on.exit(unlink(private, recursive = TRUE), add = TRUE)
-  child_env <- ext_environment(private, env)
+  child_env <- ext_environment(private, env, call)
   command_args <- gsub("{{workspace}}", spec$workspace, args, fixed = TRUE)
   record <- list(
     schema_version = "1", status = "running", program = spec$program,
     args = command_args, pins = spec$pins, environment = as.list(child_env),
     workspace = spec$workspace, started = ext_time(), timeout = timeout
   )
-  ext_receipt(record)
+  ext_receipt(record, call)
   result <- tryCatch(processx::run(
     spec$program, command_args,
     wd = spec$workspace, env = child_env,
@@ -76,34 +90,43 @@ qp_run_external <- function(program, args, pins, outputs, workspace,
   ), error = function(e) {
     record$status <- "process_error"
     record$finished <- ext_time()
-    ext_receipt(record)
-    qp_abort("RUNTIME_UNAVAILABLE", parent = e)
+    ext_receipt(record, call)
+    qp_abort("RUNTIME_UNAVAILABLE", parent = e, call = call)
   })
   record$exit_status <- result$status
   record$finished <- ext_time()
   if (!identical(result$status, 0L) || isTRUE(result$timeout)) {
     record$status <- if (isTRUE(result$timeout)) "timeout" else "failed"
-    ext_receipt(record)
-    qp_abort("RUNTIME_UNAVAILABLE", details = list(status = record$status))
+    ext_receipt(record, call)
+    qp_abort("RUNTIME_UNAVAILABLE", details = list(status = record$status),
+             call = call)
   }
   tryCatch(
     {
-      ext_check_pins(spec$pins)
-      record$outputs <- ext_outputs(outputs, spec$workspace)
+      ext_check_pins(spec$pins, call)
+      record$outputs <- ext_outputs(outputs, spec$workspace, call)
     },
     qp_error = function(e) {
       record$status <- "validation_failed"
-      ext_receipt(record)
-      qp_abort(e$code, parent = e)
+      ext_receipt(record, call)
+      qp_abort(e$code, parent = e, call = call)
     }
   )
   record$status <- "execution_complete"
-  ext_receipt(record)
+  ext_receipt(record, call)
   record
 }
 
-ext_invalid <- function(arg, expected) {
-  qp_abort("INVALID_ARGUMENT", arg = arg, expected = expected)
+# `expected` names a catalogue key below "expect.external_", so the message is
+# shown in the language chosen by the option qupflowR.language.
+ext_invalid <- function(arg, expected, call = parent.frame()) {
+  qp_abort(
+    "INVALID_ARGUMENT",
+    arg = arg,
+    expected = qp_msg(paste0("expect.external_", expected)),
+    details = list(argument = arg),
+    call = call
+  )
 }
 
 ext_strings <- function(x, empty = FALSE) {
@@ -112,36 +135,36 @@ ext_strings <- function(x, empty = FALSE) {
 }
 
 ext_validate <- function(program, args, pins, outputs, workspace,
-                         timeout, env) {
+                         timeout, env, call = parent.frame()) {
   if (!ext_strings(program) || length(program) != 1L ||
         !grepl("^(/|[A-Za-z]:[/\\])", program) ||
         !isTRUE(ext_regular(program))) {
-    ext_invalid("program", "an existing executable file")
+    ext_invalid("program", "executable", call)
   }
   program <- normalizePath(program, winslash = "/", mustWork = TRUE)
   if (!ext_strings(args, empty = TRUE)) {
-    ext_invalid("args", "a character argument vector")
+    ext_invalid("args", "arguments", call)
   }
   if (!is.data.frame(pins) || !all(c("path", "sha256") %in% names(pins)) ||
         !ext_strings(pins$path) || !ext_strings(pins$sha256) ||
         any(!grepl("^[a-f0-9]{64}$", pins$sha256)) ||
         any(!ext_regular(pins$path))) {
-    ext_invalid("pins", "existing files with lowercase SHA-256 hashes")
+    ext_invalid("pins", "pin_files", call)
   }
   pins <- pins[, c("path", "sha256"), drop = FALSE]
   pins$path <- normalizePath(pins$path, winslash = "/", mustWork = TRUE)
   if (anyDuplicated(pins$path) || !program %in% pins$path) {
-    ext_invalid("pins", "unique files including the executable")
+    ext_invalid("pins", "pin_unique", call)
   }
   if (!ext_strings(outputs) || anyDuplicated(outputs) ||
         any(grepl("(^/|^[A-Za-z]:|\\\\|(^|/)\\.\\.?(/|$))", outputs)) ||
         any(outputs %in% c("stdout.log", "stderr.log", "run.json"))) {
-    ext_invalid("outputs", "distinct relative paths without traversal")
+    ext_invalid("outputs", "outputs", call)
   }
   if (!ext_strings(workspace) || length(workspace) != 1L ||
         file.exists(workspace) || !dir.exists(dirname(workspace)) ||
         basename(workspace) %in% c(".", "..")) {
-    ext_invalid("workspace", "a new directory under an existing parent")
+    ext_invalid("workspace", "new_workspace", call)
   }
   workspace <- file.path(
     normalizePath(dirname(workspace), winslash = "/"),
@@ -149,7 +172,7 @@ ext_validate <- function(program, args, pins, outputs, workspace,
   )
   if (!is.numeric(timeout) || is.complex(timeout) || length(timeout) != 1L ||
         !is.finite(timeout) || timeout <= 0) {
-    ext_invalid("timeout", "one positive finite number")
+    ext_invalid("timeout", "timeout", call)
   }
   reserved <- c(
     "PATH", "LANG", "HOME", "DISPLAY", "WAYLAND_DISPLAY",
@@ -164,7 +187,7 @@ ext_validate <- function(program, args, pins, outputs, workspace,
       !any(startsWith(names(env), "XDG_"))
   }
   if (!is.character(env) || anyNA(env) || !valid_names) {
-    ext_invalid("env", "named variables without isolation overrides")
+    ext_invalid("env", "environment", call)
   }
   list(program = program, pins = pins, workspace = workspace)
 }
@@ -174,7 +197,7 @@ ext_regular <- function(paths) {
     "file"
 }
 
-ext_check_pins <- function(pins) {
+ext_check_pins <- function(pins, call = parent.frame()) {
   for (i in seq_len(nrow(pins))) {
     observed <- if (isTRUE(ext_regular(pins$path[i]))) {
       digest::digest(file = pins$path[i], algo = "sha256")
@@ -182,17 +205,17 @@ ext_check_pins <- function(pins) {
       NA_character_
     }
     if (!identical(observed, pins$sha256[i])) {
-      qp_abort("INPUT_MISMATCH", details = list(pin_index = i))
+      qp_abort("INPUT_MISMATCH", details = list(pin_index = i), call = call)
     }
   }
 }
 
-ext_environment <- function(private, env) {
+ext_environment <- function(private, env, call = parent.frame()) {
   dirs <- file.path(private, c(
     "home", "config", "cache", "data", "state",
     "tmp", "prefs"
   ))
-  for (dir in dirs) ext_mkdir(dir)
+  for (dir in dirs) ext_mkdir(dir, call)
   java <- paste0(
     c(
       "-Duser.home=", "-Djava.util.prefs.userRoot=",
@@ -212,14 +235,14 @@ ext_environment <- function(private, env) {
   )
 }
 
-ext_outputs <- function(outputs, workspace) {
+ext_outputs <- function(outputs, workspace, call = parent.frame()) {
   paths <- file.path(workspace, outputs)
   real <- normalizePath(paths, winslash = "/", mustWork = FALSE)
   if (!ext_workspace_safe(workspace) ||
         any(!ext_regular(paths)) ||
         any(!startsWith(real, paste0(workspace, "/"))) ||
         any(file.info(paths)$size <= 0)) {
-    qp_abort("OUTPUT_INVALID")
+    qp_abort("OUTPUT_INVALID", call = call)
   }
   data.frame(
     path = outputs, bytes = as.double(file.info(paths)$size),
@@ -235,14 +258,16 @@ ext_workspace_safe <- function(workspace) {
   dir.exists(workspace) && !nzchar(Sys.readlink(workspace))
 }
 
-ext_receipt <- function(record) {
-  if (!ext_workspace_safe(record$workspace)) qp_abort("OUTPUT_INVALID")
+ext_receipt <- function(record, call = parent.frame()) {
+  if (!ext_workspace_safe(record$workspace)) {
+    qp_abort("OUTPUT_INVALID", call = call)
+  }
   target <- file.path(record$workspace, "run.json")
   temp <- tempfile(".run-receipt-", tmpdir = record$workspace)
   # Exclusive creation never follows an existing link or truncates a file.
   # A unique sibling also avoids a child-created run.json.partial path.
   connection <- tryCatch(file(temp, open = "wx", encoding = "UTF-8"),
-    error = function(e) qp_abort("OUTPUT_INVALID", parent = e)
+    error = function(e) qp_abort("OUTPUT_INVALID", parent = e, call = call)
   )
   on.exit(unlink(temp), add = TRUE)
   tryCatch({
@@ -253,17 +278,18 @@ ext_receipt <- function(record) {
   }, finally = close(connection))
   if (!ext_workspace_safe(record$workspace) ||
         !suppressWarnings(file.rename(temp, target))) {
-    qp_abort("OUTPUT_INVALID")
+    qp_abort("OUTPUT_INVALID", call = call)
   }
   invisible(record)
 }
 
 ext_system <- function() unname(Sys.info()[["sysname"]])
 
-ext_mkdir <- function(path) {
+ext_mkdir <- function(path, call = parent.frame()) {
   if (!dir.create(path, mode = "0700", showWarnings = FALSE)) {
     qp_abort("RUNTIME_UNAVAILABLE",
-             details = list(reason = "private_directory_creation_failed"))
+             details = list(reason = "private_directory_creation_failed"),
+             call = call)
   }
   invisible(path)
 }

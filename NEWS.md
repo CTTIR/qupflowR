@@ -8,6 +8,11 @@
 * Standardize the named v5 package logo across README, documentation pages
   and available application headers, with matching light and dark artwork.
 
+* Errors from `qp_run_external()` now name `qp_run_external()` as the call
+  instead of an internal helper, and its argument errors take the expected
+  value from the message catalogue, so they are fully German or fully English
+  as set by the option `qupflowR.language` instead of mixing both.
+* `qp_run_external()` has a runnable example that shows the trust gate.
 
 * The partner package annotatR was renamed to hyperannotatR (HSI annotation).
   `Suggests` and `Remotes` now name hyperannotatR. The contract identifiers

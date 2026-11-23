@@ -70,5 +70,15 @@ or process-cleanup behavior is claimed without platform qualification.
 }
 \examples{
 # Configure executable, script/model/input SHA-256 pins and output paths
-# before explicitly authorizing a method with trust = TRUE.
+# before explicitly authorizing a method with trust = TRUE. Without that
+# decision nothing is validated, created or started, on every platform:
+cnd <- tryCatch(
+  qp_run_external(
+    program = "/usr/bin/true", args = character(), pins = data.frame(),
+    outputs = "result.txt", workspace = file.path(tempdir(), "qp-run")
+  ),
+  qp_error = function(e) e
+)
+qp_condition_code(cnd)
+dir.exists(file.path(tempdir(), "qp-run"))
 }

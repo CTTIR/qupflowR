@@ -16,6 +16,10 @@ home:
     conditions, protocol JSON, schema validation and pinned external methods.
 reference:
   - title: Conditions and messages
+    desc: >
+      Classified errors and warnings with registry codes, mapping of protocol
+      responses to conditions, redaction of details and the German and English
+      message catalogue.
     contents:
       - qp_abort
       - qp_warn
@@ -26,20 +30,31 @@ reference:
       - qp_redact
       - qp_msg
   - title: Protocol JSON
+    desc: >
+      Exact encoding and decoding of protocol JSON, canonical JSON for digests,
+      scalar marks and measurement value states.
     contents:
       - qp_json_encode
       - qp_json_canonical
       - qp_scalar
       - qp_value_state
   - title: Schema validation
+    desc: >
+      Validation against the installed Draft-07 subset schemas of the bridge
+      protocol.
     contents:
       - qp_schema_validate
       - qp_schema_assert
       - qp_schema_path
   - title: External methods
+    desc: >
+      Execution of an explicitly trusted, hash-pinned external method in an
+      isolated process.
     contents:
       - qp_run_external
   - title: Package
+    desc: >
+      Package overview, current scope and options.
     contents:
       - qupflowR-package
 articles:

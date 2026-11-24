@@ -1,5 +1,5 @@
-# Thin caller of the shared CTTIR coverage workflow, pinned to the reviewed
-# commit named in the build kit (docs/20_CTTIR_STANDARDS.md).
+# The workflow pin supplies current action runtimes and validates finite
+# coverage values; the coverage floor is unchanged.
 # The shared workflow measures covr::package_coverage(type = "tests") and
 # exits non-zero below the floor. The floor of 90 percent is this project's
 # own target (decision D009). The coverage baseline check lives in
@@ -20,7 +20,7 @@ permissions: read-all
 
 jobs:
   coverage:
-    uses: CTTIR/.github/.github/workflows/test-coverage.yaml@d54cd50b95ba0110dcc54e6371e3ebb82ee94afb
+    uses: CTTIR/.github/.github/workflows/test-coverage.yaml@cfc7bb9d090a8e35b60911ff5d71aef18b2d0d94
     with:
       floor: 90
     # No secrets are passed, exactly as in the docs/20 caller block: the

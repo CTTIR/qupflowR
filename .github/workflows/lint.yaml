@@ -1,6 +1,5 @@
-# Thin caller of the shared CTTIR lint workflow, pinned to the reviewed
-# commit named in the build kit (docs/20_CTTIR_STANDARDS.md). The linter
-# configuration is taken from the same commit through config-ref.
+# The workflow pin supplies current action runtimes. config-ref retains
+# the original reviewed linter configuration used by tools/quality.R.
 # Blocking from the first commit: this code base starts with zero findings.
 # tools/quality.R --mode lint runs the same linter set locally.
 on:
@@ -19,7 +18,7 @@ permissions: read-all
 
 jobs:
   lint:
-    uses: CTTIR/.github/.github/workflows/lint.yaml@d54cd50b95ba0110dcc54e6371e3ebb82ee94afb
+    uses: CTTIR/.github/.github/workflows/lint.yaml@cfc7bb9d090a8e35b60911ff5d71aef18b2d0d94
     with:
       blocking: true
       with-defaults: true
